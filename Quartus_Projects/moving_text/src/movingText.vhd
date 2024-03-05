@@ -5,8 +5,6 @@ use ieee.std_logic_1164.all;
 entity movingText is
 	generic(
 		FREQ: natural := 50000000;  --50MHz
-		--FREQ_74HC595: natural := 15000000;
-		--REFRESH_RATE: positive range 1 to 32 := 10; --value in ms 
 		DISPLAY_LENGTH: positive range 1 to 64 := 32	
 	);	
 	
