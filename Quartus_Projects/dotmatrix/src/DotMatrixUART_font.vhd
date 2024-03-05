@@ -1,3 +1,6 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
 type TerminalFont8x8 is array(0 to 95, 0 to 7) of std_logic_vector(7 downto 0);
 
 constant LedFont : TerminalFont8x8 := (
