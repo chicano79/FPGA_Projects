@@ -1,0 +1,33 @@
+
+*** Running vivado
+    with args -log eight_digit_counter.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source eight_digit_counter.tcl
+
+
+****** Vivado v2019.2 (64-bit)
+  **** SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+  **** IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source eight_digit_counter.tcl -notrace
+Command: synth_design -top eight_digit_counter -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 26192 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 573.113 ; gain = 242.500
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'eight_digit_counter' [C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Vivado_Projects/eight_digit_counter/src/eight_digit_counter.vhd:19]
+	Parameter FREQ bound to: 100000000 - type: integer 
+ERROR: [Synth 8-690] width mismatch in assignment; target has 7 bits, source has 15 bits [C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Vivado_Projects/eight_digit_counter/src/eight_digit_counter.vhd:35]
+ERROR: [Synth 8-285] failed synthesizing module 'eight_digit_counter' [C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Vivado_Projects/eight_digit_counter/src/eight_digit_counter.vhd:19]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 645.785 ; gain = 315.172
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+3 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Sat Mar  2 00:49:19 2024...
