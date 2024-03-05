@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition"
 
--- DATE "03/01/2024 09:22:41"
+-- DATE "03/05/2024 13:05:30"
 
 -- 
 -- Device: Altera EP4CE115F29C7 Package FBGA780
@@ -80,7 +80,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 ENTITY 	eight_digit_counter IS
     PORT (
 	clk_50MHz : IN std_logic;
-	SEG : OUT std_logic_vector(0 TO 55)
+	SEG : BUFFER std_logic_vector(0 TO 55)
 	);
 END eight_digit_counter;
 
