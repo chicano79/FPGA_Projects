@@ -30,7 +30,7 @@ signal disp_selector: integer range 0 to 20 := 0;
 
 signal clk_10KHz, clk_1KHz, clk_10Hz: std_logic := '0';
 
---signal state_count: integer range 0 to 20 := 0;
+signal state_count: integer range 0 to 20 := 0;
 
 begin
 
