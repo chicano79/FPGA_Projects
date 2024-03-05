@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Vivado_Projects/eight_digit_counter/eight_digit_counter.runs/synth_1'
+HD_PWD='C:/Users/desig/Documents/FPGA/FPGA_Projects/Vivado_Projects/eight_digit_counter/eight_digit_counter.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -1,0 +1,35 @@
+|four_1_mux
+A => two_1_mux:MUX1.A
+B => two_1_mux:MUX1.B
+C => two_1_mux:MUX2.A
+D => two_1_mux:MUX2.B
+SEL[0] => two_1_mux:MUX1.SEL
+SEL[0] => two_1_mux:MUX2.SEL
+SEL[1] => two_1_mux:MUX3.SEL
+Q <= two_1_mux:MUX3.Q
+
+
+|four_1_mux|two_1_mux:MUX1
+A => Selector0.IN3
+B => Selector0.IN4
+SEL => Selector0.IN5
+SEL => Selector0.IN1
+Q <= Selector0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|four_1_mux|two_1_mux:MUX2
+A => Selector0.IN3
+B => Selector0.IN4
+SEL => Selector0.IN5
+SEL => Selector0.IN1
+Q <= Selector0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|four_1_mux|two_1_mux:MUX3
+A => Selector0.IN3
+B => Selector0.IN4
+SEL => Selector0.IN5
+SEL => Selector0.IN1
+Q <= Selector0.DB_MAX_OUTPUT_PORT_TYPE
+
+

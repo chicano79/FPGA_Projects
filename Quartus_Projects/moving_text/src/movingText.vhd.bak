@@ -1,0 +1,630 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity movingText is
+	generic(
+		FREQ: natural := 50000000;
+		FREQ_74HC595: natural := 15000000;
+		REFRESH_RATE positive range 1 to 32 := 16; --value in ms 
+		DISPLAY_LENGTH: positive range 1 to 64 := 32	
+	);	
+	
+	port(
+		CLK_50MHz: in std_logic;
+		LEDR: out std_logic_vector(0 to 9) := (others => '0');
+		GPIO: out std_logic_vector(0 to 19)	:= (others => '0')
+	);
+
+end entity;
+
+
+architecture rtl of movingText is
+
+constant message_info: string(1 to 44) := "Welcome to 7067CEM: FPGA Digital Design.    ";
+
+signal CLK_74HC595: std_logic;
+
+signal column_driver: std_logic_vector(7 downto 0) := (others => '0');
+signal row_driver: std_logic_vector(7 downto 0) := (others => '0');
+
+type SCAN_STATE is (LOAD1, CLOCK1, SHIFT1, SHOW1, 
+					LOAD2, CLOCK2, SHIFT2, SHOW2, 
+					LOAD3, CLOCK3, SHIFT3, SHOW3, 
+					LOAD4, CLOCK4, SHIFT4, SHOW4, 
+					LOAD5, CLOCK5, SHIFT5, SHOW5,
+					LOAD6, CLOCK6, SHIFT6, SHOW6,
+					LOAD7, CLOCK7, SHIFT7, SHOW7,
+					LOAD8, CLOCK8, SHIFT8, SHOW8
+					);
+					
+signal scanStateVariable: SCAN_STATE := LOAD1;
+
+type eightbyeight is array(0 to 7) of std_logic_vector(7 downto 0);
+
+signal singleDisplayChar: eightbyeight := (others => (others => '0'));
+
+type screenAreaFormat is array(0 to 7) of std_logic_vector(DISPLAY_LENGTH-1 downto 0);
+signal screenArea: screenAreaFormat := (others => (others =>'0'));
+
+type SHIFT_STATES is (LOAD, SHIFT);
+signal shiftStateVariable: SHIFT_STATES := LOAD;
+
+
+signal screenAreaLatch: std_logic_vector(DISPLAY_LENGTH-1 downto 0) := (others => '0');
+
+
+signal ascii_char: character := message_info(1);
+
+signal array_index: integer range 0 to 255 := 0;
+
+signal matrix_column_data: std_logic_vector(0 to 7) := (others => '0');
+
+type TerminalFont8x8 is array(0 to 95) of eightbyeight;
+
+constant LedFont : TerminalFont8x8 := (
+											(x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00"),  -- Code for char  
+											(x"00", x"00", x"06", x"5F", x"06", x"00", x"00", x"00"),  -- Code for char !
+											(x"00", x"07", x"03", x"00", x"07", x"03", x"00", x"00"),  -- Code for char "
+											(x"00", x"24", x"7E", x"24", x"7E", x"24", x"00", x"00"),  -- Code for char #
+											(x"00", x"24", x"2B", x"6A", x"12", x"00", x"00", x"00"),  -- Code for char $
+											(x"00", x"63", x"13", x"08", x"64", x"63", x"00", x"00"),  -- Code for char %
+											(x"00", x"36", x"49", x"56", x"20", x"50", x"00", x"00"),  -- Code for char &
+											(x"00", x"00", x"07", x"03", x"00", x"00", x"00", x"00"),  -- Code for char '
+											(x"00", x"00", x"3E", x"41", x"00", x"00", x"00", x"00"),  -- Code for char (
+											(x"00", x"00", x"41", x"3E", x"00", x"00", x"00", x"00"),  -- Code for char )
+											(x"00", x"08", x"3E", x"1C", x"3E", x"08", x"00", x"00"),  -- Code for char *
+											(x"00", x"08", x"08", x"3E", x"08", x"08", x"00", x"00"),  -- Code for char +
+											(x"00", x"00", x"E0", x"60", x"00", x"00", x"00", x"00"),  -- Code for char ,
+											(x"00", x"08", x"08", x"08", x"08", x"08", x"00", x"00"),  -- Code for char -
+											(x"00", x"00", x"60", x"60", x"00", x"00", x"00", x"00"),  -- Code for char .
+											(x"00", x"20", x"10", x"08", x"04", x"02", x"00", x"00"),  -- Code for char /
+											(x"00", x"3E", x"51", x"49", x"45", x"3E", x"00", x"00"),  -- Code for char 0
+											(x"00", x"00", x"42", x"7F", x"40", x"00", x"00", x"00"),  -- Code for char 1
+											(x"00", x"62", x"51", x"49", x"49", x"46", x"00", x"00"),  -- Code for char 2
+											(x"00", x"22", x"49", x"49", x"49", x"36", x"00", x"00"),  -- Code for char 3
+											(x"00", x"18", x"14", x"12", x"7F", x"10", x"00", x"00"),  -- Code for char 4
+											(x"00", x"2F", x"49", x"49", x"49", x"31", x"00", x"00"),  -- Code for char 5
+											(x"00", x"3C", x"4A", x"49", x"49", x"30", x"00", x"00"),  -- Code for char 6
+											(x"00", x"01", x"71", x"09", x"05", x"03", x"00", x"00"),  -- Code for char 7
+											(x"00", x"36", x"49", x"49", x"49", x"36", x"00", x"00"),  -- Code for char 8
+											(x"00", x"06", x"49", x"49", x"29", x"1E", x"00", x"00"),  -- Code for char 9
+											(x"00", x"00", x"6C", x"6C", x"00", x"00", x"00", x"00"),  -- Code for char :
+											(x"00", x"00", x"EC", x"6C", x"00", x"00", x"00", x"00"),  -- Code for char ;
+											(x"00", x"08", x"14", x"22", x"41", x"00", x"00", x"00"),  -- Code for char <
+											(x"00", x"24", x"24", x"24", x"24", x"24", x"00", x"00"),  -- Code for char =
+											(x"00", x"00", x"41", x"22", x"14", x"08", x"00", x"00"),  -- Code for char >
+											(x"00", x"02", x"01", x"59", x"09", x"06", x"00", x"00"),  -- Code for char ?
+											(x"00", x"3E", x"41", x"5D", x"55", x"1E", x"00", x"00"),  -- Code for char @
+											(x"00", x"7E", x"11", x"11", x"11", x"7E", x"00", x"00"),  -- Code for char A
+											(x"00", x"7F", x"49", x"49", x"49", x"36", x"00", x"00"),  -- Code for char B
+											(x"00", x"3E", x"41", x"41", x"41", x"22", x"00", x"00"),  -- Code for char C
+											(x"00", x"7F", x"41", x"41", x"41", x"3E", x"00", x"00"),  -- Code for char D
+											(x"00", x"7F", x"49", x"49", x"49", x"41", x"00", x"00"),  -- Code for char E
+											(x"00", x"7F", x"09", x"09", x"09", x"01", x"00", x"00"),  -- Code for char F
+											(x"00", x"3E", x"41", x"49", x"49", x"7A", x"00", x"00"),  -- Code for char G
+											(x"00", x"7F", x"08", x"08", x"08", x"7F", x"00", x"00"),  -- Code for char H
+											(x"00", x"00", x"41", x"7F", x"41", x"00", x"00", x"00"),  -- Code for char I
+											(x"00", x"30", x"40", x"40", x"40", x"3F", x"00", x"00"),  -- Code for char J
+											(x"00", x"7F", x"08", x"14", x"22", x"41", x"00", x"00"),  -- Code for char K
+											(x"00", x"7F", x"40", x"40", x"40", x"40", x"00", x"00"),  -- Code for char L
+											(x"00", x"7F", x"02", x"04", x"02", x"7F", x"00", x"00"),  -- Code for char M
+											(x"00", x"7F", x"02", x"04", x"08", x"7F", x"00", x"00"),  -- Code for char N
+											(x"00", x"3E", x"41", x"41", x"41", x"3E", x"00", x"00"),  -- Code for char O
+											(x"00", x"7F", x"09", x"09", x"09", x"06", x"00", x"00"),  -- Code for char P
+											(x"00", x"3E", x"41", x"51", x"21", x"5E", x"00", x"00"),  -- Code for char Q
+											(x"00", x"7F", x"09", x"09", x"19", x"66", x"00", x"00"),  -- Code for char R
+											(x"00", x"26", x"49", x"49", x"49", x"32", x"00", x"00"),  -- Code for char S
+											(x"00", x"01", x"01", x"7F", x"01", x"01", x"00", x"00"),  -- Code for char T
+											(x"00", x"3F", x"40", x"40", x"40", x"3F", x"00", x"00"),  -- Code for char U
+											(x"00", x"1F", x"20", x"40", x"20", x"1F", x"00", x"00"),  -- Code for char V
+											(x"00", x"3F", x"40", x"3C", x"40", x"3F", x"00", x"00"),  -- Code for char W
+											(x"00", x"63", x"14", x"08", x"14", x"63", x"00", x"00"),  -- Code for char X
+											(x"00", x"07", x"08", x"70", x"08", x"07", x"00", x"00"),  -- Code for char Y
+											(x"00", x"71", x"49", x"45", x"43", x"00", x"00", x"00"),  -- Code for char Z
+											(x"00", x"00", x"7F", x"41", x"41", x"00", x"00", x"00"),  -- Code for char [
+											(x"00", x"02", x"04", x"08", x"10", x"20", x"00", x"00"),  -- Code for char BackSlash
+											(x"00", x"00", x"41", x"41", x"7F", x"00", x"00", x"00"),  -- Code for char ]
+											(x"00", x"04", x"02", x"01", x"02", x"04", x"00", x"00"),  -- Code for char ^
+											(x"80", x"80", x"80", x"80", x"80", x"80", x"00", x"00"),  -- Code for char _
+											(x"00", x"00", x"03", x"07", x"00", x"00", x"00", x"00"),  -- Code for char `
+											(x"00", x"20", x"54", x"54", x"54", x"78", x"00", x"00"),  -- Code for char a
+											(x"00", x"7F", x"44", x"44", x"44", x"38", x"00", x"00"),  -- Code for char b
+											(x"00", x"38", x"44", x"44", x"44", x"28", x"00", x"00"),  -- Code for char c
+											(x"00", x"38", x"44", x"44", x"44", x"7F", x"00", x"00"),  -- Code for char d
+											(x"00", x"38", x"54", x"54", x"54", x"08", x"00", x"00"),  -- Code for char e
+											(x"00", x"08", x"7E", x"09", x"09", x"00", x"00", x"00"),  -- Code for char f
+											(x"00", x"18", x"A4", x"A4", x"A4", x"7C", x"00", x"00"),  -- Code for char g
+											(x"00", x"7F", x"04", x"04", x"78", x"00", x"00", x"00"),  -- Code for char h
+											(x"00", x"00", x"00", x"7D", x"40", x"00", x"00", x"00"),  -- Code for char i
+											(x"00", x"40", x"80", x"84", x"7D", x"00", x"00", x"00"),  -- Code for char j
+											(x"00", x"7F", x"10", x"28", x"44", x"00", x"00", x"00"),  -- Code for char k
+											(x"00", x"00", x"00", x"7F", x"40", x"00", x"00", x"00"),  -- Code for char l
+											(x"00", x"7C", x"04", x"18", x"04", x"78", x"00", x"00"),  -- Code for char m
+											(x"00", x"7C", x"04", x"04", x"78", x"00", x"00", x"00"),  -- Code for char n
+											(x"00", x"38", x"44", x"44", x"44", x"38", x"00", x"00"),  -- Code for char o
+											(x"00", x"FE", x"22", x"22", x"22", x"1C", x"00", x"00"),  -- Code for char p
+											(x"00", x"1C", x"22", x"22", x"22", x"FE", x"00", x"00"),  -- Code for char q
+											(x"00", x"44", x"78", x"44", x"04", x"08", x"00", x"00"),  -- Code for char r
+											(x"00", x"08", x"54", x"54", x"54", x"20", x"00", x"00"),  -- Code for char s
+											(x"00", x"04", x"3E", x"44", x"24", x"00", x"00", x"00"),  -- Code for char t
+											(x"00", x"3C", x"40", x"20", x"7C", x"00", x"00", x"00"),  -- Code for char u
+											(x"00", x"1C", x"20", x"40", x"20", x"1C", x"00", x"00"),  -- Code for char v
+											(x"00", x"3C", x"60", x"30", x"60", x"3C", x"00", x"00"),  -- Code for char w
+											(x"00", x"6C", x"10", x"10", x"6C", x"00", x"00", x"00"),  -- Code for char x
+											(x"00", x"9C", x"A0", x"60", x"3C", x"00", x"00", x"00"),  -- Code for char y
+											(x"00", x"64", x"54", x"54", x"4C", x"00", x"00", x"00"),  -- Code for char z
+											(x"00", x"08", x"3E", x"41", x"41", x"00", x"00", x"00"),  -- Code for char {
+											(x"00", x"00", x"00", x"77", x"00", x"00", x"00", x"00"),  -- Code for char |
+											(x"00", x"00", x"41", x"41", x"3E", x"08", x"00", x"00"),  -- Code for char }
+											(x"00", x"02", x"01", x"02", x"01", x"00", x"00", x"00"),  -- Code for char ~
+											(x"00", x"3C", x"26", x"23", x"26", x"3C", x"00", x"00")   -- Code for char 
+										);
+
+
+signal serial_data: std_logic := '0';
+signal output_enable: std_logic := '1';
+signal parallel_load: std_logic := '0';
+signal serial_clk: std_logic := '0';
+
+
+begin
+
+GPIO(12) <= row_driver(7);
+GPIO(14) <= row_driver(6);
+GPIO(16) <= row_driver(5);
+GPIO(1) <=  row_driver(4);
+GPIO(3) <=  row_driver(3);
+GPIO(5) <=  row_driver(2);
+GPIO(7) <=  row_driver(1);
+GPIO(9) <=  row_driver(0);
+
+GPIO(0) <= serial_data;
+GPIO(2) <= output_enable;
+GPIO(4) <= parallel_load;
+GPIO(6) <= serial_clk;
+
+LEDR(0) <= CHAR_CLK;
+
+array_index <= (character'pos(ascii_char) - character'pos(' '));
+
+--remap the character pattern to properly orientate with the dotmatrix module
+LEVEL1:	for i in 7 downto 0 generate
+LEVEL2:		for j in 0 to 7 generate
+MAPPING:			singleDisplayChar(j)(i) <= LedFont(array_index)(7-i)(j);			
+				end generate LEVEL2;		
+			end generate LEVEL1;
+			
+-- scanl1:	for i in 0 to 7 generate
+			-- screenArea(i)(7 downto 0) <= screenArea(i)(6 downto 1) & matrix_column_data(i);
+		-- end generate scanl1;
+
+
+
+SCREEN_AREA_SHIFT_PROC: process(CLK_50MHz) -- this is the process that takes care of shifting characters from right to left on the display
+	
+	constant shiftFreq: integer range 0 to 32 := 10; --this is the frequency of this shift operation in Hertz (changeable as preferred)
+	
+	constant shiftCountRange: integer range 0 to FREQ := FREQ/(shiftFreq);--the number of counts required to divide the main clock 
+																			 --to produce the needed shift frequency
+	variable shiftCounter: integer range 0 to shiftCountRange := 0;  --variable to loop through the number of counts
+
+	variable stringIndex: integer range 0 to message_info'high := 0; --variable indexing each character of the message string
+	
+	constant totalColNum: integer range 0 to 10 := 8; --the total number of columns of the single Display character
+	variable charAreaColCount: integer range 0 to totalColNum := 0; --variable indexing each column of the single Display character
+		
+	begin
+		if rising_edge(CLK_50MHz) then
+			case shiftStateVariable is
+			
+				when LOAD =>
+					if stringIndex < message_info'high then
+						stringIndex := stringIndex + 1;
+						ascii_char <= message_info(stringIndex); --get each character in the string
+						shiftStateVariable <= SHIFT; --go to next state
+					else	
+						stringIndex := 0;	--restart the string
+					end if;
+					
+				when SHIFT =>
+					if shiftCounter < shiftCountRange then 
+						shiftCounter := shiftCounter + 1;
+					else
+						shiftCounter := 0;  
+						
+						if charAreaColCount < totalColNum then 
+							charAreaColCount := charAreaColCount + 1;
+						
+							--each line of the dotmatrix screen area has been configured as a continous shift register
+							screenArea(0)(screenArea'left downto 0) <= screenArea(0)(screenArea'left-1 downto 1) & singleDisplayChar(0)(8-charAreaColCount);
+							screenArea(1)(screenArea'left downto 0) <= screenArea(1)(screenArea'left-1 downto 1) & singleDisplayChar(1)(8-charAreaColCount);
+							screenArea(2)(screenArea'left downto 0) <= screenArea(2)(screenArea'left-1 downto 1) & singleDisplayChar(2)(8-charAreaColCount);
+							screenArea(3)(screenArea'left downto 0) <= screenArea(3)(screenArea'left-1 downto 1) & singleDisplayChar(3)(8-charAreaColCount);
+							screenArea(4)(screenArea'left downto 0) <= screenArea(4)(screenArea'left-1 downto 1) & singleDisplayChar(4)(8-charAreaColCount);
+							screenArea(5)(screenArea'left downto 0) <= screenArea(5)(screenArea'left-1 downto 1) & singleDisplayChar(5)(8-charAreaColCount);
+							screenArea(6)(screenArea'left downto 0) <= screenArea(6)(screenArea'left-1 downto 1) & singleDisplayChar(6)(8-charAreaColCount);
+							screenArea(7)(screenArea'left downto 0) <= screenArea(7)(screenArea'left-1 downto 1) & singleDisplayChar(7)(8-charAreaColCount);
+						else
+							charAreaColCount := 0;
+							shiftStateVariable <= LOAD;							
+						end if;	
+					end if;
+			end case;
+		end if;	
+	end process;	
+	
+	
+_74HC595_CLK_PROC: process(CLK_50MHz) --generate the 74HC595 shift in frequency
+
+	constant peri_count_range: integer range 0 to FREQ := FREQ/(2 * FREQ_74HC595);
+	variable peri_counter: integer range 0 to peri_count_range := 0;
+	
+	begin
+		if rising_edge(CLK_50MHz) then 
+			if peri_counter < peri_count_range then
+				peri_counter := peri_counter + 1;
+			else
+				peri_counter := 0;
+				CLK_74HC595 <= not CLK_74HC595;					
+			end if;	
+		end if;			
+	end process;
+
+LINE_SACN_PROC: process(CLK_74HC595)
+
+	constant totalScreenColNum: integer range 0 to DISPLAY_LENGTH := DISPLAY_LENGTH; --the total number of columns of the screen
+	variable latchAreaColCount: integer range 0 to totalScreenColNum := 0; --variable indexing each column of the screen latch
+	
+	
+	constant displayStates: integer range 0 to 255 := 16; 
+	constant scanFreq: integer range 0 to 4096 := (1000 * displayStates) / REFRESH_RATE  ; --this is the frequency of the 
+																							--screen scan operation in Hertz
+	constant scanCountRange: integer range 0 to FREQ_74HC595 := FREQ_74HC595/(2 * scanFreq);--the number of counts required to divide 
+																			                -- the main clock to produce the needed shift frequency
+
+	variable scanCount: integer range 0 to scanCountRange := 0;
+
+
+	begin
+		
+		serial_data <= screenAreaLatch(screenAreaLatch'left);
+	
+		if rising_edge(CLK_74HC595) then
+			case scanStateVariable is
+				when LOAD1 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(0); --copy the first row of the screen area into the latch					
+					scanStateVariable <= CLOCK1;
+					
+				when CLOCK1=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT1;
+					
+				when SHIFT1 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK1;
+					else	
+						latchAreaColCount := 0;						
+						parallel_load <= '1';						
+						scanStateVariable <= SHOW1;	
+					end if;
+					
+				when SHOW1 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD2;					
+					end if;
+				
+				
+				when LOAD2 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(1); --copy the second row of the screen area into the latch					
+					scanStateVariable <= CLOCK2;
+					
+				when CLOCK2=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT2;
+					
+				when SHIFT2 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK2;
+					else	
+						latchAreaColCount := 0;
+						
+						parallel_load <= '1';
+						output_enable <= '0';
+						row_driver <= (row_driver'left-1 => '1', others => '0');
+						scanStateVariable <= SHOW2;	
+					end if;
+					
+				when SHOW2 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD3;					
+					end if;
+
+				
+				when LOAD3 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(2); --copy the 3rd row of the screen area into the latch					
+					scanStateVariable <= CLOCK3;
+					
+				when CLOCK3=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT3;
+					
+				when SHIFT3 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK3;
+					else	
+						latchAreaColCount := 0;
+						
+						parallel_load <= '1';
+						output_enable <= '0';
+						row_driver <= (row_driver'left-2 => '1', others => '0');
+						scanStateVariable <= SHOW3;	
+					end if;
+					
+				when SHOW3 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD4;					
+					end if;
+
+
+				when LOAD4 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(3); --copy the 4th row of the screen area into the latch					
+					scanStateVariable <= CLOCK4;
+					
+				when CLOCK4=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT4;
+					
+				when SHIFT4 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK4;
+					else	
+						latchAreaColCount := 0;
+						
+						parallel_load <= '1';
+						output_enable <= '0';
+						row_driver <= (row_driver'left-3 => '1', others => '0');
+						scanStateVariable <= SHOW4;	
+					end if;
+					
+				when SHOW4 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD5;					
+					end if;
+
+
+
+				when LOAD5 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(4); --copy the 5th row of the screen area into the latch					
+					scanStateVariable <= CLOCK5;
+					
+				when CLOCK5=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT5;
+					
+				when SHIFT5 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK5;
+					else	
+						latchAreaColCount := 0;
+						
+						parallel_load <= '1';
+						output_enable <= '0';
+						row_driver <= (row_driver'left-4 => '1', others => '0');
+						scanStateVariable <= SHOW5;	
+					end if;
+					
+				when SHOW5 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD6;					
+					end if;
+
+
+
+				when LOAD6 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(5); --copy the 6th row of the screen area into the latch					
+					scanStateVariable <= CLOCK6;
+					
+				when CLOCK6=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT6;
+					
+				when SHIFT6 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK6;
+					else	
+						latchAreaColCount := 0;
+						
+						parallel_load <= '1';
+						output_enable <= '0';
+						row_driver <= (row_driver'left-5 => '1', others => '0');
+						scanStateVariable <= SHOW6;	
+					end if;
+					
+				when SHOW6 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD7;					
+					end if;
+
+
+				when LOAD7 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(6); --copy the 7th row of the screen area into the latch					
+					scanStateVariable <= CLOCK7;
+					
+				when CLOCK7=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT7;
+					
+				when SHIFT7 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK7;
+					else	
+						latchAreaColCount := 0;
+						
+						parallel_load <= '1';
+						output_enable <= '0';
+						row_driver <= (row_driver'left-6 => '1', others => '0');
+						scanStateVariable <= SHOW7;	
+					end if;
+					
+				when SHOW7 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD8;					
+					end if;
+
+
+				when LOAD8 =>
+					row_driver <= (others => '0'); --turn off the row drivers
+					serial_clk <= '0';
+					output_enable <= '1';
+					parallel_load <= '0';
+					
+					screenAreaLatch <= screenArea(7); --copy the 8th row of the screen area into the latch					
+					scanStateVariable <= CLOCK8;
+					
+				when CLOCK8=>
+					serial_clk <= '1';
+					scanStateVariable <= SHIFT8;
+					
+				when SHIFT8 =>
+					serial_clk <= '0';
+					
+					if latchAreaColCount < totalScreenColNum then
+						latchAreaColCount := latchAreaColCount + 1
+						
+						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 1) & '0';
+						scanStateVariable <= CLOCK8;
+					else	
+						latchAreaColCount := 0;
+						
+						parallel_load <= '1';
+						output_enable <= '0';
+						row_driver <= (row_driver'right => '1', others => '0');
+						scanStateVariable <= SHOW8;	
+					end if;
+					
+				when SHOW8 =>
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else
+						scanCount := 0;
+						output_enable <= '0';
+						row_driver <= (row_driver'left => '1', others => '0');
+						scanStateVariable <= LOAD1;					
+					end if;
+					
+				when others =>				
+					scanStateVariable <= LOAD1;
+			
+			end case;	
+		
+		end if;	
+	
+	end process;
+
+end architecture;

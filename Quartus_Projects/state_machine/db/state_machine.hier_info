@@ -1,0 +1,23 @@
+|state_machine
+clk => ledr[3]~reg0.CLK
+clk => ledr[2]~reg0.CLK
+clk => ledr[1]~reg0.CLK
+clk => stateVariable~4.DATAIN
+rst => ledr[3]~reg0.ACLR
+rst => ledr[2]~reg0.ACLR
+rst => ledr[1]~reg0.PRESET
+rst => stateVariable~6.DATAIN
+key[3] => stateVariable.OUTPUTSELECT
+key[3] => stateVariable.OUTPUTSELECT
+key[3] => stateVariable.OUTPUTSELECT
+key[2] => stateVariable.OUTPUTSELECT
+key[2] => stateVariable.OUTPUTSELECT
+key[2] => stateVariable.OUTPUTSELECT
+key[1] => stateVariable.OUTPUTSELECT
+key[1] => stateVariable.OUTPUTSELECT
+key[1] => stateVariable.OUTPUTSELECT
+ledr[3] <= ledr[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ledr[2] <= ledr[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ledr[1] <= ledr[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

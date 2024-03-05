@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/desig/Documents/FPGA/FPGA_Projects/Vivado_Projects/multiplexer/src/two_1_mux.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'two_1_mux'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/desig/Documents/FPGA/FPGA_Projects/Vivado_Projects/multiplexer/src/four_1_mux.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'four_1_mux'

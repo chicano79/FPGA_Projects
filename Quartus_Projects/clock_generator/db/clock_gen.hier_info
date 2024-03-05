@@ -1,0 +1,41 @@
+|clock_gen
+CLK_50 => sig1.IN0
+SW => sig1.IN1
+SW => LED[0].DATAIN
+SW => CLK_10.ACLR
+SW => \COUNTER_PROC:counter[0].ACLR
+SW => \COUNTER_PROC:counter[1].ACLR
+SW => \COUNTER_PROC:counter[2].ACLR
+SW => \COUNTER_PROC:counter[3].ACLR
+SW => \COUNTER_PROC:counter[4].ACLR
+SW => \COUNTER_PROC:counter[5].ACLR
+SW => \COUNTER_PROC:counter[6].ACLR
+SW => \COUNTER_PROC:counter[7].ACLR
+SW => \COUNTER_PROC:counter[8].ACLR
+SW => \COUNTER_PROC:counter[9].ACLR
+SW => \COUNTER_PROC:counter[10].ACLR
+SW => \COUNTER_PROC:counter[11].ACLR
+SW => \COUNTER_PROC:counter[12].ACLR
+SW => \COUNTER_PROC:counter[13].ACLR
+SW => \COUNTER_PROC:counter[14].ACLR
+SW => \COUNTER_PROC:counter[15].ACLR
+SW => \COUNTER_PROC:counter[16].ACLR
+SW => \COUNTER_PROC:counter[17].ACLR
+SW => \COUNTER_PROC:counter[18].ACLR
+SW => \COUNTER_PROC:counter[19].ACLR
+SW => \COUNTER_PROC:counter[20].ACLR
+SW => \COUNTER_PROC:counter[21].ACLR
+SW => \COUNTER_PROC:counter[22].ACLR
+SW => \COUNTER_PROC:counter[23].ACLR
+SW => \COUNTER_PROC:counter[24].ACLR
+SW => \COUNTER_PROC:counter[25].ACLR
+SW => \COUNTER_PROC:counter[26].ACLR
+SW => \COUNTER_PROC:counter[27].ACLR
+SW => \COUNTER_PROC:counter[28].ACLR
+SW => \COUNTER_PROC:counter[29].ACLR
+SW => \COUNTER_PROC:counter[30].ACLR
+SW => \COUNTER_PROC:counter[31].ACLR
+LED[0] <= SW.DB_MAX_OUTPUT_PORT_TYPE
+LED[1] <= CLK_10.DB_MAX_OUTPUT_PORT_TYPE
+
+

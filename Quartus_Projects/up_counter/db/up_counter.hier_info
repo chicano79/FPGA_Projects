@@ -1,0 +1,151 @@
+|up_counter
+clk_50MHz => counter_clk[0].CLK
+clk_50MHz => scaler[0].CLK
+clk_50MHz => scaler[1].CLK
+clk_50MHz => scaler[2].CLK
+clk_50MHz => scaler[3].CLK
+clk_50MHz => scaler[4].CLK
+clk_50MHz => scaler[5].CLK
+clk_50MHz => scaler[6].CLK
+clk_50MHz => scaler[7].CLK
+clk_50MHz => scaler[8].CLK
+clk_50MHz => scaler[9].CLK
+clk_50MHz => scaler[10].CLK
+clk_50MHz => scaler[11].CLK
+clk_50MHz => scaler[12].CLK
+clk_50MHz => scaler[13].CLK
+clk_50MHz => scaler[14].CLK
+clk_50MHz => scaler[15].CLK
+clk_50MHz => scaler[16].CLK
+clk_50MHz => scaler[17].CLK
+clk_50MHz => scaler[18].CLK
+clk_50MHz => scaler[19].CLK
+clk_50MHz => scaler[20].CLK
+clk_50MHz => scaler[21].CLK
+clk_50MHz => scaler[22].CLK
+clk_50MHz => scaler[23].CLK
+clk_50MHz => scaler[24].CLK
+rst_main => bcd_counter:COUNTER_INST1.rst
+rst_main => bcd_counter:COUNTER_INST2.rst
+SEG0[6] <= bcd_decoder:DECODER_INST1.Q[6]
+SEG0[5] <= bcd_decoder:DECODER_INST1.Q[5]
+SEG0[4] <= bcd_decoder:DECODER_INST1.Q[4]
+SEG0[3] <= bcd_decoder:DECODER_INST1.Q[3]
+SEG0[2] <= bcd_decoder:DECODER_INST1.Q[2]
+SEG0[1] <= bcd_decoder:DECODER_INST1.Q[1]
+SEG0[0] <= bcd_decoder:DECODER_INST1.Q[0]
+SEG1[6] <= bcd_decoder:DECODER_INST2.Q[6]
+SEG1[5] <= bcd_decoder:DECODER_INST2.Q[5]
+SEG1[4] <= bcd_decoder:DECODER_INST2.Q[4]
+SEG1[3] <= bcd_decoder:DECODER_INST2.Q[3]
+SEG1[2] <= bcd_decoder:DECODER_INST2.Q[2]
+SEG1[1] <= bcd_decoder:DECODER_INST2.Q[1]
+SEG1[0] <= bcd_decoder:DECODER_INST2.Q[0]
+
+
+|up_counter|bcd_counter:COUNTER_INST1
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+rst => counter[0].ACLR
+rst => counter[1].ACLR
+rst => counter[2].ACLR
+rst => counter[3].ACLR
+Q[0] <= counter[0].DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= counter[1].DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= counter[2].DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= counter[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|up_counter|bcd_decoder:DECODER_INST1
+D[0] => Mux0.IN19
+D[0] => Mux1.IN19
+D[0] => Mux2.IN19
+D[0] => Mux3.IN19
+D[0] => Mux4.IN19
+D[0] => Mux5.IN19
+D[0] => Mux6.IN19
+D[1] => Mux0.IN18
+D[1] => Mux1.IN18
+D[1] => Mux2.IN18
+D[1] => Mux3.IN18
+D[1] => Mux4.IN18
+D[1] => Mux5.IN18
+D[1] => Mux6.IN18
+D[2] => Mux0.IN17
+D[2] => Mux1.IN17
+D[2] => Mux2.IN17
+D[2] => Mux3.IN17
+D[2] => Mux4.IN17
+D[2] => Mux5.IN17
+D[2] => Mux6.IN17
+D[3] => Mux0.IN16
+D[3] => Mux1.IN16
+D[3] => Mux2.IN16
+D[3] => Mux3.IN16
+D[3] => Mux4.IN16
+D[3] => Mux5.IN16
+D[3] => Mux6.IN16
+Q[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|up_counter|bcd_counter:COUNTER_INST2
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+rst => counter[0].ACLR
+rst => counter[1].ACLR
+rst => counter[2].ACLR
+rst => counter[3].ACLR
+Q[0] <= counter[0].DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= counter[1].DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= counter[2].DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= counter[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|up_counter|bcd_decoder:DECODER_INST2
+D[0] => Mux0.IN19
+D[0] => Mux1.IN19
+D[0] => Mux2.IN19
+D[0] => Mux3.IN19
+D[0] => Mux4.IN19
+D[0] => Mux5.IN19
+D[0] => Mux6.IN19
+D[1] => Mux0.IN18
+D[1] => Mux1.IN18
+D[1] => Mux2.IN18
+D[1] => Mux3.IN18
+D[1] => Mux4.IN18
+D[1] => Mux5.IN18
+D[1] => Mux6.IN18
+D[2] => Mux0.IN17
+D[2] => Mux1.IN17
+D[2] => Mux2.IN17
+D[2] => Mux3.IN17
+D[2] => Mux4.IN17
+D[2] => Mux5.IN17
+D[2] => Mux6.IN17
+D[3] => Mux0.IN16
+D[3] => Mux1.IN16
+D[3] => Mux2.IN16
+D[3] => Mux3.IN16
+D[3] => Mux4.IN16
+D[3] => Mux5.IN16
+D[3] => Mux6.IN16
+Q[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

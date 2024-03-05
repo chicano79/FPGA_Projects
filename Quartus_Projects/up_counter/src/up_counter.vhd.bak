@@ -1,0 +1,46 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+
+
+entity up_counter is
+	port(
+		clk_50MHz, rst_main: in std_logic; 
+		SEG: out std_logic_vector(0 to 6)	--7 segment display output segments a to g
+	);
+end entity;
+
+architecture rtl of up_counter is
+signal bcd_data: integer range 0 to 9;
+
+	component bcd_counter is
+		port(
+			clk, rst: in std_logic;
+			Q: out integer range 0 to 9
+		);
+	end component;
+	
+	component bcd_decoder is
+		port(
+			D: in integer range 0 to 9; --bcd input 
+			Q: out std_logic_vector(0 to 6)	--7 segment display output segments a to g
+		);
+	end component;
+
+begin
+	
+	COUNTER_INST1: bcd_counter
+		port map(
+			clk => clk_50MHz,
+			rst => rst_main,
+			Q => bcd_data		
+		);
+		
+	DECODER_INST1: bcd_decoder
+		port map(
+			D => bcd_data,			
+			Q => SEG		
+		);
+
+end architecture;

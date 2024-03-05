@@ -1,0 +1,113 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk_50MHz'
+Slack : -3.648
+TNS   : -70.042
+
+Type  : Slow 1200mV 85C Model Setup 'counter_clk[0]'
+Slack : -1.067
+TNS   : -3.770
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : -0.258
+TNS   : -0.949
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : 0.405
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'counter_clk[0]'
+Slack : 0.419
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk_50MHz'
+Slack : 0.427
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -3.000
+TNS   : -36.410
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'counter_clk[0]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Slow 1200mV 0C Model Setup 'clk_50MHz'
+Slack : -3.301
+TNS   : -61.957
+
+Type  : Slow 1200mV 0C Model Setup 'counter_clk[0]'
+Slack : -0.846
+TNS   : -3.092
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : -0.137
+TNS   : -0.477
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : 0.354
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'counter_clk[0]'
+Slack : 0.370
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk_50MHz'
+Slack : 0.386
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -3.000
+TNS   : -36.410
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'counter_clk[0]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Fast 1200mV 0C Model Setup 'clk_50MHz'
+Slack : -1.263
+TNS   : -19.474
+
+Type  : Fast 1200mV 0C Model Setup 'counter_clk[0]'
+Slack : -0.050
+TNS   : -0.057
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : 0.381
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'counter_clk[0]'
+Slack : 0.170
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk_50MHz'
+Slack : 0.193
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -3.000
+TNS   : -36.638
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter:COUNTER_INST1|counter[0]'
+Slack : -1.000
+TNS   : -4.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'counter_clk[0]'
+Slack : -1.000
+TNS   : -4.000
+
+------------------------------------------------------------

@@ -1,0 +1,19 @@
+
+State Machine - |dotmatrix_4x4_driver|state_variable
+Name state_variable.ROW8 state_variable.LOAD8 state_variable.ROW7 state_variable.LOAD7 state_variable.ROW6 state_variable.LOAD6 state_variable.ROW5 state_variable.LOAD5 state_variable.ROW4 state_variable.LOAD4 state_variable.ROW3 state_variable.LOAD3 state_variable.ROW2 state_variable.LOAD2 state_variable.ROW1 state_variable.LOAD1 
+state_variable.LOAD1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state_variable.ROW1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state_variable.LOAD2 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state_variable.ROW2 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state_variable.LOAD3 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state_variable.ROW3 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state_variable.LOAD4 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state_variable.ROW4 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state_variable.LOAD5 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state_variable.ROW5 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state_variable.LOAD6 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state_variable.ROW6 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state_variable.LOAD7 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state_variable.ROW7 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state_variable.LOAD8 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state_variable.ROW8 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

@@ -1,0 +1,77 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'CLK_50MHz'
+Slack : -4.783
+TNS   : -1317.478
+
+Type  : Slow 1200mV 85C Model Setup 'shiftRegisterClk'
+Slack : -3.614
+TNS   : -199.414
+
+Type  : Slow 1200mV 85C Model Hold 'shiftRegisterClk'
+Slack : 0.324
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CLK_50MHz'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK_50MHz'
+Slack : -3.000
+TNS   : -464.587
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'shiftRegisterClk'
+Slack : -1.403
+TNS   : -129.076
+
+Type  : Slow 1200mV 0C Model Setup 'CLK_50MHz'
+Slack : -4.299
+TNS   : -1182.828
+
+Type  : Slow 1200mV 0C Model Setup 'shiftRegisterClk'
+Slack : -3.251
+TNS   : -176.281
+
+Type  : Slow 1200mV 0C Model Hold 'shiftRegisterClk'
+Slack : 0.291
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLK_50MHz'
+Slack : 0.306
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK_50MHz'
+Slack : -3.000
+TNS   : -464.587
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'shiftRegisterClk'
+Slack : -1.403
+TNS   : -129.076
+
+Type  : Fast 1200mV 0C Model Setup 'CLK_50MHz'
+Slack : -1.461
+TNS   : -360.529
+
+Type  : Fast 1200mV 0C Model Setup 'shiftRegisterClk'
+Slack : -0.965
+TNS   : -38.938
+
+Type  : Fast 1200mV 0C Model Hold 'shiftRegisterClk'
+Slack : 0.142
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLK_50MHz'
+Slack : 0.149
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK_50MHz'
+Slack : -3.000
+TNS   : -388.634
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'shiftRegisterClk'
+Slack : -1.000
+TNS   : -92.000
+
+------------------------------------------------------------

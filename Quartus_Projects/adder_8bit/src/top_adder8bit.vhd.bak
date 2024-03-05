@@ -1,0 +1,44 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+
+entity top_adder8bit is
+	port(
+		SW: in std_logic_vector(0 to 17);
+		LEDR: out std_logic_vector(0 to 17);
+		LEDG: out std_logic_vector(8 downto 0)
+	);
+
+
+end entity;
+
+
+architecture rtl of top_adder8bit is
+
+signal cin: std_logic;
+	
+	component full_adder_8 is
+		port(
+			A, B: in std_logic_vector(7 downto 0);
+			SUM: out std_logic_vector(7 downto 0);
+			Cin: in std_logic;
+			Cout: out std_logic
+	);
+	end component;
+
+
+begin
+
+
+
+UUT: full_adder_8
+	port map(
+		A => SW(17 downto 10),
+		B => SW(7 downto 0),
+		SUM => LEDG(7 downto 0),
+		Cin => '0',
+		Cout => LEDG(8)		
+	);
+
+end architecture;

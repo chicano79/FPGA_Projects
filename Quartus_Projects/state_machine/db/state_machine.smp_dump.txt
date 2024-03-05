@@ -1,0 +1,6 @@
+
+State Machine - |state_machine|stateVariable
+Name stateVariable.STATE3 stateVariable.STATE2 stateVariable.STATE1 
+stateVariable.STATE1 0 0 0 
+stateVariable.STATE2 0 1 1 
+stateVariable.STATE3 1 0 1 

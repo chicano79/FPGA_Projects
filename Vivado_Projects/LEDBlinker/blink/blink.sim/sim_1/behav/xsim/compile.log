@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/desig/Documents/FPGA/FPGA_Projects/Vivado_Projects/LEDBlinker/hdl/blink.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'blink'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/desig/Documents/FPGA/FPGA_Projects/Vivado_Projects/LEDBlinker/tb/blink_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'blink_tb'

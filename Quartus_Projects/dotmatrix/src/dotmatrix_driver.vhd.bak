@@ -1,0 +1,50 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+
+
+entity dotmatrix_4x4_driver is
+	port(
+		--CLK: std_logic;
+		GPIO: std_logic_vector(0 to 22)
+	);
+end entity;
+
+
+architecture rtl of dotmatrix_4x4_driver is
+
+signal row: std_logic_vector(1 to 8);
+signal col: std_logic_vector(1 to 8);
+
+alias row(1): std_logic is GPIO(4);
+alias row(2): std_logic is GPIO(2);
+alias row(3): std_logic is GPIO(0);
+alias row(4): std_logic is GPIO(1); 
+alias row(5): std_logic is GPIO(3);
+alias row(6): std_logic is GPIO(5); 
+alias row(7): std_logic is GPIO(7);
+alias row(8): std_logic is GPIO(9);
+
+alias col(1): std_logic is GPIO(12);
+alias col(2): std_logic is GPIO(14);
+alias col(3): std_logic is GPIO(16);
+alias col(4): std_logic is GPIO(18); 
+alias col(5): std_logic is GPIO(20);
+alias col(6): std_logic is GPIO(22); 
+alias col(7): std_logic is GPIO(8);
+alias col(8): std_logic is GPIO(6);
+  
+
+type fourbyfour is array(0 to 3) of std_logic_vector(0 to 3);
+
+signal displayArea: fourbyfour;
+
+--procedure lightPixel(d: fourbyfour) 
+
+begin
+
+row <= "10000000";
+col <= "01000000";
+
+end architecture;

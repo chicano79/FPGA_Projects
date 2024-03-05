@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/desig/Documents/FPGA/FPGA_Projects/Vivado_Projects/eight_digit_counter/src/bcd_counter_unit.vhd" into library work
+INFO: [VRFC 10-3107] analyzing entity 'bcd_counter_unit'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/desig/Documents/FPGA/FPGA_Projects/Vivado_Projects/eight_digit_counter/src/eight_digit_counter.vhd" into library work
+INFO: [VRFC 10-3107] analyzing entity 'eight_digit_counter'

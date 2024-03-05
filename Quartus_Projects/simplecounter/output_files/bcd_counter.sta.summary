@@ -1,0 +1,329 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk_50MHz'
+Slack : -2.036
+TNS   : -31.208
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : -0.476
+TNS   : -1.478
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : -0.437
+TNS   : -1.603
+
+Type  : Slow 1200mV 85C Model Setup 'clk_1KHz'
+Slack : -0.427
+TNS   : -1.805
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : -0.346
+TNS   : -1.449
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : -0.285
+TNS   : -1.287
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : -0.274
+TNS   : -1.240
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : -0.271
+TNS   : -1.217
+
+Type  : Slow 1200mV 85C Model Setup 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : -0.262
+TNS   : -0.963
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : 0.404
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk_1KHz'
+Slack : 0.405
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk_50MHz'
+Slack : 0.545
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -3.000
+TNS   : -24.845
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_1KHz'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Slow 1200mV 0C Model Setup 'clk_50MHz'
+Slack : -1.752
+TNS   : -27.263
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : -0.329
+TNS   : -0.833
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : -0.289
+TNS   : -0.937
+
+Type  : Slow 1200mV 0C Model Setup 'clk_1KHz'
+Slack : -0.281
+TNS   : -1.120
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : -0.219
+TNS   : -0.826
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : -0.152
+TNS   : -0.666
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : -0.151
+TNS   : -0.636
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : -0.145
+TNS   : -0.603
+
+Type  : Slow 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : -0.135
+TNS   : -0.477
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : 0.354
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk_1KHz'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : 0.356
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk_50MHz'
+Slack : 0.495
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -3.000
+TNS   : -24.845
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_1KHz'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Fast 1200mV 0C Model Setup 'clk_50MHz'
+Slack : -0.461
+TNS   : -6.027
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : 0.262
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : 0.286
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk_1KHz'
+Slack : 0.287
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : 0.328
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : 0.360
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : 0.369
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : 0.375
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : 0.380
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : 0.183
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk_1KHz'
+Slack : 0.183
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk_50MHz'
+Slack : 0.247
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -3.000
+TNS   : -25.089
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:0:gen2|clk_out'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:1:gen2|clk_out'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:2:gen2|clk_out'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:3:gen2|clk_out'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:4:gen2|clk_out'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:5:gen2|clk_out'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_1KHz'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'bcd_counter_unit:\gen1:6:gen2|clk_out'
+Slack : -1.000
+TNS   : -4.000
+
+------------------------------------------------------------

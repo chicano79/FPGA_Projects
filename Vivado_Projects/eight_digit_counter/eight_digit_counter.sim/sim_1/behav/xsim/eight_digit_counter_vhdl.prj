@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl work  \
+"../../../../src/bcd_counter_unit.vhd" \
+"../../../../src/eight_digit_counter.vhd" \
+
+# Do not sort compile order
+nosort
