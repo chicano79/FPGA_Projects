@@ -1,3 +1,4 @@
+# constraints file
 set_property IOSTANDARD LVTTL [get_ports clk_100MHz]
 set_property IOSTANDARD LVTTL [get_ports rst]
 set_property IOSTANDARD LVTTL [get_ports {SEGMENT[0]}]
