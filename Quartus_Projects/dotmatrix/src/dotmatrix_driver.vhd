@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 
 entity dotmatrix_4x4_driver is
 	generic(
-		FREQ: natural := 50000000
+		FREQ: natural := 50e6
 	);
 	
 	port(
