@@ -1,0 +1,1199 @@
+Timing Analyzer report for switch_blink
+Wed Mar  6 19:22:28 2024
+Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Slow 1200mV 85C Model Fmax Summary
+  6. Timing Closure Recommendations
+  7. Slow 1200mV 85C Model Setup Summary
+  8. Slow 1200mV 85C Model Hold Summary
+  9. Slow 1200mV 85C Model Recovery Summary
+ 10. Slow 1200mV 85C Model Removal Summary
+ 11. Slow 1200mV 85C Model Minimum Pulse Width Summary
+ 12. Slow 1200mV 85C Model Setup: 'CLK_50MHz'
+ 13. Slow 1200mV 85C Model Hold: 'CLK_50MHz'
+ 14. Slow 1200mV 85C Model Metastability Summary
+ 15. Slow 1200mV 0C Model Fmax Summary
+ 16. Slow 1200mV 0C Model Setup Summary
+ 17. Slow 1200mV 0C Model Hold Summary
+ 18. Slow 1200mV 0C Model Recovery Summary
+ 19. Slow 1200mV 0C Model Removal Summary
+ 20. Slow 1200mV 0C Model Minimum Pulse Width Summary
+ 21. Slow 1200mV 0C Model Setup: 'CLK_50MHz'
+ 22. Slow 1200mV 0C Model Hold: 'CLK_50MHz'
+ 23. Slow 1200mV 0C Model Metastability Summary
+ 24. Fast 1200mV 0C Model Setup Summary
+ 25. Fast 1200mV 0C Model Hold Summary
+ 26. Fast 1200mV 0C Model Recovery Summary
+ 27. Fast 1200mV 0C Model Removal Summary
+ 28. Fast 1200mV 0C Model Minimum Pulse Width Summary
+ 29. Fast 1200mV 0C Model Setup: 'CLK_50MHz'
+ 30. Fast 1200mV 0C Model Hold: 'CLK_50MHz'
+ 31. Fast 1200mV 0C Model Metastability Summary
+ 32. Multicorner Timing Analysis Summary
+ 33. Board Trace Model Assignments
+ 34. Input Transition Times
+ 35. Signal Integrity Metrics (Slow 1200mv 0c Model)
+ 36. Signal Integrity Metrics (Slow 1200mv 85c Model)
+ 37. Signal Integrity Metrics (Fast 1200mv 0c Model)
+ 38. Setup Transfers
+ 39. Hold Transfers
+ 40. Report TCCS
+ 41. Report RSKM
+ 42. Unconstrained Paths Summary
+ 43. Clock Status Summary
+ 44. Unconstrained Input Ports
+ 45. Unconstrained Output Ports
+ 46. Unconstrained Input Ports
+ 47. Unconstrained Output Ports
+ 48. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++--------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                        ;
++-----------------------+--------------------------------------------------------+
+; Quartus Prime Version ; Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
+; Timing Analyzer       ; Legacy Timing Analyzer                                 ;
+; Revision Name         ; switch_blink                                           ;
+; Device Family         ; Cyclone IV E                                           ;
+; Device Name           ; EP4CE115F29C7                                          ;
+; Timing Models         ; Final                                                  ;
+; Delay Model           ; Combined                                               ;
+; Rise/Fall Delays      ; Enabled                                                ;
++-----------------------+--------------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.02        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.5%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets       ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------------+
+; CLK_50MHz  ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLK_50MHz } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------------+
+
+
++--------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary               ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 249.56 MHz ; 249.56 MHz      ; CLK_50MHz  ;      ;
++------------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
+----------------------------------
+; Timing Closure Recommendations ;
+----------------------------------
+HTML report is unavailable in plain text report export.
+
+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++-----------+--------+----------------+
+; Clock     ; Slack  ; End Point TNS  ;
++-----------+--------+----------------+
+; CLK_50MHz ; -3.007 ; -200.901       ;
++-----------+--------+----------------+
+
+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++-----------+-------+----------------+
+; Clock     ; Slack ; End Point TNS  ;
++-----------+-------+----------------+
+; CLK_50MHz ; 0.385 ; 0.000          ;
++-----------+-------+----------------+
+
+
+------------------------------------------
+; Slow 1200mV 85C Model Recovery Summary ;
+------------------------------------------
+No paths to report.
+
+
+-----------------------------------------
+; Slow 1200mV 85C Model Removal Summary ;
+-----------------------------------------
+No paths to report.
+
+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++-----------+--------+------------------------------+
+; Clock     ; Slack  ; End Point TNS                ;
++-----------+--------+------------------------------+
+; CLK_50MHz ; -3.000 ; -110.940                     ;
++-----------+--------+------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Setup: 'CLK_50MHz'                                                                               ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node          ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; -3.007 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.925      ;
+; -3.007 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.925      ;
+; -3.007 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.925      ;
+; -3.007 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.925      ;
+; -2.999 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.917      ;
+; -2.999 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.917      ;
+; -2.999 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.917      ;
+; -2.999 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.917      ;
+; -2.928 ; \BLOCK_D:count[17] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.846      ;
+; -2.928 ; \BLOCK_D:count[17] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.846      ;
+; -2.928 ; \BLOCK_D:count[17] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.846      ;
+; -2.928 ; \BLOCK_D:count[17] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.846      ;
+; -2.928 ; \BLOCK_D:count[17] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.846      ;
+; -2.895 ; \BLOCK_D:count[19] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.383      ;
+; -2.895 ; \BLOCK_D:count[19] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.383      ;
+; -2.895 ; \BLOCK_D:count[19] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.383      ;
+; -2.895 ; \BLOCK_D:count[19] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.383      ;
+; -2.895 ; \BLOCK_D:count[19] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.383      ;
+; -2.891 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.376      ;
+; -2.888 ; \BLOCK_D:count[21] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.376      ;
+; -2.888 ; \BLOCK_D:count[21] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.376      ;
+; -2.888 ; \BLOCK_D:count[21] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.376      ;
+; -2.888 ; \BLOCK_D:count[21] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.376      ;
+; -2.888 ; \BLOCK_D:count[21] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.376      ;
+; -2.885 ; \BLOCK_D:count[22] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.373      ;
+; -2.885 ; \BLOCK_D:count[22] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.373      ;
+; -2.885 ; \BLOCK_D:count[22] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.373      ;
+; -2.885 ; \BLOCK_D:count[22] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.373      ;
+; -2.885 ; \BLOCK_D:count[22] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.373      ;
+; -2.874 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.792      ;
+; -2.874 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.792      ;
+; -2.874 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.792      ;
+; -2.874 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.792      ;
+; -2.846 ; \BLOCK_D:count[13] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.334      ;
+; -2.846 ; \BLOCK_D:count[13] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.334      ;
+; -2.846 ; \BLOCK_D:count[13] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.334      ;
+; -2.846 ; \BLOCK_D:count[13] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.334      ;
+; -2.846 ; \BLOCK_D:count[13] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.334      ;
+; -2.814 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.299      ;
+; -2.779 ; \BLOCK_D:count[18] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.267      ;
+; -2.779 ; \BLOCK_D:count[18] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.267      ;
+; -2.779 ; \BLOCK_D:count[18] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.267      ;
+; -2.779 ; \BLOCK_D:count[18] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.267      ;
+; -2.779 ; \BLOCK_D:count[18] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.267      ;
+; -2.764 ; \BLOCK_C:count[2]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.249      ;
+; -2.757 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.675      ;
+; -2.757 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.675      ;
+; -2.757 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.675      ;
+; -2.757 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.675      ;
+; -2.737 ; \BLOCK_B:count[12] ; \BLOCK_B:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.656      ;
+; -2.737 ; \BLOCK_B:count[12] ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.656      ;
+; -2.737 ; \BLOCK_B:count[12] ; \BLOCK_B:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.656      ;
+; -2.737 ; \BLOCK_B:count[12] ; \BLOCK_B:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.656      ;
+; -2.737 ; \BLOCK_B:count[12] ; \BLOCK_B:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.656      ;
+; -2.735 ; \BLOCK_D:count[20] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.223      ;
+; -2.735 ; \BLOCK_D:count[20] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.223      ;
+; -2.735 ; \BLOCK_D:count[20] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.223      ;
+; -2.735 ; \BLOCK_D:count[20] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.223      ;
+; -2.735 ; \BLOCK_D:count[20] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.510     ; 3.223      ;
+; -2.723 ; \BLOCK_D:count[23] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.641      ;
+; -2.723 ; \BLOCK_D:count[23] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.641      ;
+; -2.723 ; \BLOCK_D:count[23] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.641      ;
+; -2.723 ; \BLOCK_D:count[23] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.641      ;
+; -2.723 ; \BLOCK_D:count[23] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.641      ;
+; -2.713 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.198      ;
+; -2.686 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.171      ;
+; -2.682 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.083     ; 3.597      ;
+; -2.682 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.083     ; 3.597      ;
+; -2.674 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.083     ; 3.589      ;
+; -2.674 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.083     ; 3.589      ;
+; -2.632 ; \BLOCK_C:count[4]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.117      ;
+; -2.631 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.116      ;
+; -2.612 ; \BLOCK_D:count[17] ; \BLOCK_D:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.078     ; 3.532      ;
+; -2.601 ; \BLOCK_B:count[15] ; \BLOCK_B:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.520      ;
+; -2.601 ; \BLOCK_B:count[15] ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.520      ;
+; -2.601 ; \BLOCK_B:count[15] ; \BLOCK_B:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.520      ;
+; -2.601 ; \BLOCK_B:count[15] ; \BLOCK_B:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.520      ;
+; -2.601 ; \BLOCK_B:count[15] ; \BLOCK_B:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.079     ; 3.520      ;
+; -2.598 ; \BLOCK_C:count[10] ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.077     ; 3.519      ;
+; -2.598 ; \BLOCK_C:count[10] ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.077     ; 3.519      ;
+; -2.598 ; \BLOCK_C:count[10] ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.077     ; 3.519      ;
+; -2.598 ; \BLOCK_C:count[10] ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.077     ; 3.519      ;
+; -2.594 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.925      ;
+; -2.594 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.925      ;
+; -2.594 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.925      ;
+; -2.594 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.925      ;
+; -2.594 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.925      ;
+; -2.591 ; \BLOCK_D:count[16] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.509      ;
+; -2.591 ; \BLOCK_D:count[16] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.509      ;
+; -2.591 ; \BLOCK_D:count[16] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.509      ;
+; -2.591 ; \BLOCK_D:count[16] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.509      ;
+; -2.591 ; \BLOCK_D:count[16] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.509      ;
+; -2.586 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.917      ;
+; -2.586 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.917      ;
+; -2.586 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.917      ;
+; -2.586 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.917      ;
+; -2.586 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.333      ; 3.917      ;
+; -2.585 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.513     ; 3.070      ;
+; -2.584 ; \BLOCK_D:count[15] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.502      ;
+; -2.584 ; \BLOCK_D:count[15] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.080     ; 3.502      ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Hold: 'CLK_50MHz'                                                                               ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node          ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; 0.385 ; sig[4]             ; sig[4]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.098      ; 0.669      ;
+; 0.403 ; sig[2]             ; sig[2]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.669      ;
+; 0.403 ; sig[3]             ; sig[3]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.669      ;
+; 0.404 ; sig[1]             ; sig[1]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.079      ; 0.669      ;
+; 0.425 ; \BLOCK_D:count[24] ; \BLOCK_D:count[24] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.708      ;
+; 0.426 ; \BLOCK_B:count[17] ; \BLOCK_B:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.709      ;
+; 0.427 ; \BLOCK_A:count[14] ; \BLOCK_A:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.693      ;
+; 0.433 ; \BLOCK_C:count[21] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.716      ;
+; 0.524 ; \BLOCK_D:count[3]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.220      ;
+; 0.528 ; \BLOCK_D:count[9]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.224      ;
+; 0.538 ; \BLOCK_D:count[17] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.234      ;
+; 0.538 ; \BLOCK_D:count[2]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.234      ;
+; 0.540 ; \BLOCK_C:count[14] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.236      ;
+; 0.545 ; \BLOCK_C:count[14] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.241      ;
+; 0.548 ; \BLOCK_D:count[8]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.244      ;
+; 0.549 ; \BLOCK_D:count[16] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.245      ;
+; 0.553 ; \BLOCK_D:count[23] ; \BLOCK_D:count[24] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.249      ;
+; 0.568 ; \BLOCK_C:count[20] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.264      ;
+; 0.617 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.900      ;
+; 0.620 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.903      ;
+; 0.622 ; \BLOCK_C:count[4]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.905      ;
+; 0.623 ; \BLOCK_C:count[2]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.906      ;
+; 0.623 ; \BLOCK_D:count[4]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.906      ;
+; 0.627 ; \BLOCK_D:count[18] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.910      ;
+; 0.627 ; \BLOCK_C:count[15] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.910      ;
+; 0.629 ; \BLOCK_D:count[19] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.912      ;
+; 0.632 ; \BLOCK_D:count[20] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.915      ;
+; 0.634 ; \BLOCK_D:count[1]  ; \BLOCK_D:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.900      ;
+; 0.635 ; \BLOCK_A:count[1]  ; \BLOCK_A:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.901      ;
+; 0.636 ; \BLOCK_B:count[1]  ; \BLOCK_B:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.902      ;
+; 0.636 ; \BLOCK_B:count[3]  ; \BLOCK_B:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.902      ;
+; 0.636 ; \BLOCK_D:count[2]  ; \BLOCK_D:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.902      ;
+; 0.636 ; \BLOCK_D:count[5]  ; \BLOCK_D:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.902      ;
+; 0.637 ; \BLOCK_D:count[3]  ; \BLOCK_D:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.903      ;
+; 0.638 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.921      ;
+; 0.639 ; \BLOCK_A:count[2]  ; \BLOCK_A:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.905      ;
+; 0.639 ; \BLOCK_B:count[2]  ; \BLOCK_B:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.905      ;
+; 0.640 ; \BLOCK_D:count[9]  ; \BLOCK_D:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.906      ;
+; 0.640 ; \BLOCK_D:count[11] ; \BLOCK_D:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.906      ;
+; 0.640 ; \BLOCK_D:count[13] ; \BLOCK_D:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.923      ;
+; 0.641 ; \BLOCK_D:count[15] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.907      ;
+; 0.641 ; \BLOCK_D:count[7]  ; \BLOCK_D:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.907      ;
+; 0.642 ; \BLOCK_B:count[6]  ; \BLOCK_B:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.908      ;
+; 0.642 ; \BLOCK_B:count[7]  ; \BLOCK_B:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.908      ;
+; 0.642 ; \BLOCK_B:count[8]  ; \BLOCK_B:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.908      ;
+; 0.642 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.908      ;
+; 0.642 ; \BLOCK_D:count[21] ; \BLOCK_D:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.925      ;
+; 0.642 ; \BLOCK_C:count[16] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.925      ;
+; 0.643 ; \BLOCK_A:count[13] ; \BLOCK_A:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.909      ;
+; 0.643 ; \BLOCK_B:count[4]  ; \BLOCK_B:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.909      ;
+; 0.643 ; \BLOCK_B:count[5]  ; \BLOCK_B:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.909      ;
+; 0.643 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.909      ;
+; 0.643 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.909      ;
+; 0.643 ; \BLOCK_C:count[13] ; \BLOCK_C:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.909      ;
+; 0.643 ; \BLOCK_C:count[14] ; \BLOCK_C:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.909      ;
+; 0.643 ; \BLOCK_D:count[10] ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.926      ;
+; 0.644 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.910      ;
+; 0.646 ; \BLOCK_B:count[16] ; \BLOCK_B:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.929      ;
+; 0.646 ; \BLOCK_D:count[8]  ; \BLOCK_D:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.912      ;
+; 0.646 ; \BLOCK_D:count[22] ; \BLOCK_D:count[22] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.097      ; 0.929      ;
+; 0.647 ; \BLOCK_D:count[6]  ; \BLOCK_D:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.913      ;
+; 0.647 ; \BLOCK_D:count[16] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.913      ;
+; 0.648 ; \BLOCK_D:count[1]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.344      ;
+; 0.649 ; \BLOCK_C:count[11] ; \BLOCK_C:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.915      ;
+; 0.650 ; \BLOCK_D:count[17] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.916      ;
+; 0.651 ; \BLOCK_D:count[11] ; \BLOCK_D:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.508      ; 1.345      ;
+; 0.651 ; \BLOCK_C:count[13] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.347      ;
+; 0.655 ; \BLOCK_D:count[7]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.351      ;
+; 0.655 ; \BLOCK_D:count[15] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.351      ;
+; 0.656 ; \BLOCK_A:count[3]  ; \BLOCK_A:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.922      ;
+; 0.656 ; \BLOCK_A:count[5]  ; \BLOCK_A:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.922      ;
+; 0.656 ; \BLOCK_C:count[13] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.352      ;
+; 0.657 ; \BLOCK_A:count[11] ; \BLOCK_A:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.923      ;
+; 0.657 ; \BLOCK_C:count[17] ; \BLOCK_C:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.923      ;
+; 0.658 ; \BLOCK_B:count[9]  ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.079      ; 0.923      ;
+; 0.659 ; \BLOCK_A:count[7]  ; \BLOCK_A:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.925      ;
+; 0.659 ; \BLOCK_A:count[6]  ; \BLOCK_A:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.925      ;
+; 0.659 ; \BLOCK_A:count[9]  ; \BLOCK_A:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.925      ;
+; 0.659 ; \BLOCK_D:count[17] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.355      ;
+; 0.661 ; \BLOCK_A:count[0]  ; \BLOCK_A:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.927      ;
+; 0.661 ; \BLOCK_D:count[14] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.927      ;
+; 0.662 ; \BLOCK_A:count[4]  ; \BLOCK_A:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.928      ;
+; 0.662 ; \BLOCK_A:count[8]  ; \BLOCK_A:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.928      ;
+; 0.662 ; \BLOCK_A:count[10] ; \BLOCK_A:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.928      ;
+; 0.662 ; \BLOCK_A:count[12] ; \BLOCK_A:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.928      ;
+; 0.662 ; \BLOCK_B:count[0]  ; \BLOCK_B:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.928      ;
+; 0.662 ; \BLOCK_D:count[0]  ; \BLOCK_D:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.928      ;
+; 0.663 ; \BLOCK_C:count[18] ; \BLOCK_C:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.929      ;
+; 0.664 ; \BLOCK_D:count[17] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.360      ;
+; 0.665 ; \BLOCK_D:count[23] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.931      ;
+; 0.667 ; \BLOCK_C:count[12] ; \BLOCK_C:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.933      ;
+; 0.667 ; \BLOCK_D:count[0]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.363      ;
+; 0.668 ; \BLOCK_C:count[19] ; \BLOCK_C:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.934      ;
+; 0.670 ; \BLOCK_D:count[16] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.366      ;
+; 0.671 ; \BLOCK_C:count[20] ; \BLOCK_C:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.080      ; 0.937      ;
+; 0.675 ; \BLOCK_D:count[6]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.371      ;
+; 0.675 ; \BLOCK_D:count[16] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.371      ;
+; 0.676 ; \BLOCK_C:count[19] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.372      ;
+; 0.686 ; \BLOCK_C:count[18] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.382      ;
+; 0.689 ; \BLOCK_D:count[14] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.510      ; 1.385      ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
+-----------------------------------------------
+; Slow 1200mV 85C Model Metastability Summary ;
+-----------------------------------------------
+No synchronizer chains to report.
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                                                                         ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note                                                          ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; 272.41 MHz ; 250.0 MHz       ; CLK_50MHz  ; limit due to minimum period restriction (max I/O toggle rate) ;
++------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++-----------+--------+---------------+
+; Clock     ; Slack  ; End Point TNS ;
++-----------+--------+---------------+
+; CLK_50MHz ; -2.671 ; -176.599      ;
++-----------+--------+---------------+
+
+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++-----------+-------+---------------+
+; Clock     ; Slack ; End Point TNS ;
++-----------+-------+---------------+
+; CLK_50MHz ; 0.338 ; 0.000         ;
++-----------+-------+---------------+
+
+
+-----------------------------------------
+; Slow 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Slow 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++-----------+--------+-----------------------------+
+; Clock     ; Slack  ; End Point TNS               ;
++-----------+--------+-----------------------------+
+; CLK_50MHz ; -3.000 ; -110.940                    ;
++-----------+--------+-----------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup: 'CLK_50MHz'                                                                                ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node          ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; -2.671 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.598      ;
+; -2.671 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.598      ;
+; -2.671 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.598      ;
+; -2.671 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.598      ;
+; -2.662 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.589      ;
+; -2.662 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.589      ;
+; -2.662 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.589      ;
+; -2.662 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.589      ;
+; -2.589 ; \BLOCK_D:count[17] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.516      ;
+; -2.589 ; \BLOCK_D:count[17] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.516      ;
+; -2.589 ; \BLOCK_D:count[17] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.516      ;
+; -2.589 ; \BLOCK_D:count[17] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.516      ;
+; -2.589 ; \BLOCK_D:count[17] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.516      ;
+; -2.575 ; \BLOCK_D:count[21] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.107      ;
+; -2.575 ; \BLOCK_D:count[21] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.107      ;
+; -2.575 ; \BLOCK_D:count[21] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.107      ;
+; -2.575 ; \BLOCK_D:count[21] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.107      ;
+; -2.575 ; \BLOCK_D:count[21] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.107      ;
+; -2.569 ; \BLOCK_D:count[19] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.101      ;
+; -2.569 ; \BLOCK_D:count[19] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.101      ;
+; -2.569 ; \BLOCK_D:count[19] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.101      ;
+; -2.569 ; \BLOCK_D:count[19] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.101      ;
+; -2.569 ; \BLOCK_D:count[19] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.101      ;
+; -2.558 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.485      ;
+; -2.558 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.485      ;
+; -2.558 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.485      ;
+; -2.558 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.485      ;
+; -2.555 ; \BLOCK_D:count[22] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.087      ;
+; -2.555 ; \BLOCK_D:count[22] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.087      ;
+; -2.555 ; \BLOCK_D:count[22] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.087      ;
+; -2.555 ; \BLOCK_D:count[22] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.087      ;
+; -2.555 ; \BLOCK_D:count[22] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.087      ;
+; -2.546 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.469     ; 3.076      ;
+; -2.533 ; \BLOCK_D:count[13] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.065      ;
+; -2.533 ; \BLOCK_D:count[13] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.065      ;
+; -2.533 ; \BLOCK_D:count[13] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.065      ;
+; -2.533 ; \BLOCK_D:count[13] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.065      ;
+; -2.533 ; \BLOCK_D:count[13] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 3.065      ;
+; -2.467 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.469     ; 2.997      ;
+; -2.462 ; \BLOCK_D:count[18] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.994      ;
+; -2.462 ; \BLOCK_D:count[18] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.994      ;
+; -2.462 ; \BLOCK_D:count[18] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.994      ;
+; -2.462 ; \BLOCK_D:count[18] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.994      ;
+; -2.462 ; \BLOCK_D:count[18] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.994      ;
+; -2.447 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.374      ;
+; -2.447 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.374      ;
+; -2.447 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.374      ;
+; -2.447 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.374      ;
+; -2.435 ; \BLOCK_C:count[2]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.469     ; 2.965      ;
+; -2.414 ; \BLOCK_D:count[23] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.341      ;
+; -2.414 ; \BLOCK_D:count[23] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.341      ;
+; -2.414 ; \BLOCK_D:count[23] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.341      ;
+; -2.414 ; \BLOCK_D:count[23] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.341      ;
+; -2.414 ; \BLOCK_D:count[23] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.341      ;
+; -2.409 ; \BLOCK_D:count[20] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.941      ;
+; -2.409 ; \BLOCK_D:count[20] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.941      ;
+; -2.409 ; \BLOCK_D:count[20] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.941      ;
+; -2.409 ; \BLOCK_D:count[20] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.941      ;
+; -2.409 ; \BLOCK_D:count[20] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.467     ; 2.941      ;
+; -2.405 ; \BLOCK_B:count[12] ; \BLOCK_B:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.332      ;
+; -2.405 ; \BLOCK_B:count[12] ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.332      ;
+; -2.405 ; \BLOCK_B:count[12] ; \BLOCK_B:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.332      ;
+; -2.405 ; \BLOCK_B:count[12] ; \BLOCK_B:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.332      ;
+; -2.405 ; \BLOCK_B:count[12] ; \BLOCK_B:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.332      ;
+; -2.374 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.074     ; 3.299      ;
+; -2.374 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.074     ; 3.299      ;
+; -2.368 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.469     ; 2.898      ;
+; -2.365 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.074     ; 3.290      ;
+; -2.365 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.074     ; 3.290      ;
+; -2.356 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.469     ; 2.886      ;
+; -2.319 ; \BLOCK_C:count[4]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.469     ; 2.849      ;
+; -2.314 ; \BLOCK_C:count[10] ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.069     ; 3.244      ;
+; -2.314 ; \BLOCK_C:count[10] ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.069     ; 3.244      ;
+; -2.314 ; \BLOCK_C:count[10] ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.069     ; 3.244      ;
+; -2.314 ; \BLOCK_C:count[10] ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.069     ; 3.244      ;
+; -2.303 ; \BLOCK_D:count[17] ; \BLOCK_D:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.069     ; 3.233      ;
+; -2.298 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.469     ; 2.828      ;
+; -2.291 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.598      ;
+; -2.291 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.598      ;
+; -2.291 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.598      ;
+; -2.291 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.598      ;
+; -2.291 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.598      ;
+; -2.291 ; \BLOCK_B:count[15] ; \BLOCK_B:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.218      ;
+; -2.291 ; \BLOCK_B:count[15] ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.218      ;
+; -2.291 ; \BLOCK_B:count[15] ; \BLOCK_B:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.218      ;
+; -2.291 ; \BLOCK_B:count[15] ; \BLOCK_B:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.218      ;
+; -2.291 ; \BLOCK_B:count[15] ; \BLOCK_B:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.218      ;
+; -2.284 ; \BLOCK_D:count[15] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.211      ;
+; -2.284 ; \BLOCK_D:count[15] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.211      ;
+; -2.284 ; \BLOCK_D:count[15] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.211      ;
+; -2.284 ; \BLOCK_D:count[15] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.211      ;
+; -2.284 ; \BLOCK_D:count[15] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.211      ;
+; -2.283 ; \BLOCK_D:count[19] ; \BLOCK_D:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.464     ; 2.818      ;
+; -2.282 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.589      ;
+; -2.282 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.589      ;
+; -2.282 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.589      ;
+; -2.282 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.589      ;
+; -2.282 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.308      ; 3.589      ;
+; -2.281 ; \BLOCK_D:count[16] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.208      ;
+; -2.281 ; \BLOCK_D:count[16] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.072     ; 3.208      ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold: 'CLK_50MHz'                                                                                ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node          ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; 0.338 ; sig[4]             ; sig[4]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.088      ; 0.597      ;
+; 0.354 ; sig[2]             ; sig[2]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.597      ;
+; 0.355 ; sig[1]             ; sig[1]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.597      ;
+; 0.355 ; sig[3]             ; sig[3]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.597      ;
+; 0.385 ; \BLOCK_B:count[17] ; \BLOCK_B:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.643      ;
+; 0.385 ; \BLOCK_D:count[24] ; \BLOCK_D:count[24] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.643      ;
+; 0.387 ; \BLOCK_A:count[14] ; \BLOCK_A:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.629      ;
+; 0.391 ; \BLOCK_C:count[21] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.088      ; 0.650      ;
+; 0.475 ; \BLOCK_D:count[3]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.113      ;
+; 0.475 ; \BLOCK_D:count[9]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.113      ;
+; 0.480 ; \BLOCK_C:count[14] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.118      ;
+; 0.484 ; \BLOCK_D:count[2]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.122      ;
+; 0.486 ; \BLOCK_D:count[17] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.124      ;
+; 0.491 ; \BLOCK_C:count[14] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.129      ;
+; 0.494 ; \BLOCK_D:count[8]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.132      ;
+; 0.495 ; \BLOCK_D:count[16] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.133      ;
+; 0.498 ; \BLOCK_D:count[23] ; \BLOCK_D:count[24] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.136      ;
+; 0.506 ; \BLOCK_C:count[20] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.144      ;
+; 0.564 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.822      ;
+; 0.568 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.826      ;
+; 0.569 ; \BLOCK_D:count[4]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.088      ; 0.828      ;
+; 0.570 ; \BLOCK_C:count[2]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.828      ;
+; 0.570 ; \BLOCK_C:count[4]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.828      ;
+; 0.572 ; \BLOCK_D:count[18] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.830      ;
+; 0.573 ; \BLOCK_C:count[15] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.088      ; 0.832      ;
+; 0.575 ; \BLOCK_D:count[19] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.833      ;
+; 0.576 ; \BLOCK_D:count[11] ; \BLOCK_D:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.465      ; 1.212      ;
+; 0.577 ; \BLOCK_D:count[20] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.835      ;
+; 0.579 ; \BLOCK_D:count[1]  ; \BLOCK_D:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.822      ;
+; 0.579 ; \BLOCK_C:count[13] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.217      ;
+; 0.580 ; \BLOCK_D:count[2]  ; \BLOCK_D:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.823      ;
+; 0.580 ; \BLOCK_D:count[1]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.218      ;
+; 0.582 ; \BLOCK_B:count[3]  ; \BLOCK_B:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.825      ;
+; 0.583 ; \BLOCK_A:count[1]  ; \BLOCK_A:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.825      ;
+; 0.583 ; \BLOCK_B:count[1]  ; \BLOCK_B:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.826      ;
+; 0.583 ; \BLOCK_D:count[3]  ; \BLOCK_D:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.826      ;
+; 0.583 ; \BLOCK_D:count[5]  ; \BLOCK_D:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.826      ;
+; 0.584 ; \BLOCK_B:count[2]  ; \BLOCK_B:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.827      ;
+; 0.584 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.842      ;
+; 0.584 ; \BLOCK_D:count[9]  ; \BLOCK_D:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.827      ;
+; 0.584 ; \BLOCK_D:count[11] ; \BLOCK_D:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.827      ;
+; 0.585 ; \BLOCK_A:count[2]  ; \BLOCK_A:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.827      ;
+; 0.585 ; \BLOCK_B:count[6]  ; \BLOCK_B:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.828      ;
+; 0.585 ; \BLOCK_B:count[8]  ; \BLOCK_B:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.828      ;
+; 0.585 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.828      ;
+; 0.585 ; \BLOCK_D:count[15] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.828      ;
+; 0.585 ; \BLOCK_D:count[17] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.223      ;
+; 0.585 ; \BLOCK_C:count[16] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.088      ; 0.844      ;
+; 0.586 ; \BLOCK_D:count[7]  ; \BLOCK_D:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.829      ;
+; 0.586 ; \BLOCK_D:count[15] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.224      ;
+; 0.587 ; \BLOCK_B:count[4]  ; \BLOCK_B:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.830      ;
+; 0.587 ; \BLOCK_B:count[5]  ; \BLOCK_B:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.830      ;
+; 0.587 ; \BLOCK_B:count[7]  ; \BLOCK_B:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.830      ;
+; 0.587 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.830      ;
+; 0.587 ; \BLOCK_D:count[13] ; \BLOCK_D:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.845      ;
+; 0.587 ; \BLOCK_D:count[10] ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.088      ; 0.846      ;
+; 0.587 ; \BLOCK_D:count[7]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.225      ;
+; 0.588 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.831      ;
+; 0.588 ; \BLOCK_C:count[14] ; \BLOCK_C:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.830      ;
+; 0.589 ; \BLOCK_A:count[13] ; \BLOCK_A:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.831      ;
+; 0.589 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.832      ;
+; 0.589 ; \BLOCK_C:count[13] ; \BLOCK_C:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.831      ;
+; 0.589 ; \BLOCK_D:count[21] ; \BLOCK_D:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.847      ;
+; 0.590 ; \BLOCK_D:count[8]  ; \BLOCK_D:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.833      ;
+; 0.590 ; \BLOCK_C:count[13] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.228      ;
+; 0.591 ; \BLOCK_B:count[16] ; \BLOCK_B:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.849      ;
+; 0.591 ; \BLOCK_D:count[6]  ; \BLOCK_D:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.834      ;
+; 0.591 ; \BLOCK_D:count[16] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.834      ;
+; 0.591 ; \BLOCK_D:count[22] ; \BLOCK_D:count[22] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.087      ; 0.849      ;
+; 0.594 ; \BLOCK_C:count[11] ; \BLOCK_C:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.836      ;
+; 0.594 ; \BLOCK_D:count[16] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.232      ;
+; 0.595 ; \BLOCK_D:count[17] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.838      ;
+; 0.596 ; \BLOCK_D:count[17] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.234      ;
+; 0.598 ; \BLOCK_D:count[0]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.236      ;
+; 0.600 ; \BLOCK_A:count[3]  ; \BLOCK_A:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.842      ;
+; 0.600 ; \BLOCK_A:count[5]  ; \BLOCK_A:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.842      ;
+; 0.601 ; \BLOCK_A:count[11] ; \BLOCK_A:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.843      ;
+; 0.601 ; \BLOCK_B:count[9]  ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.844      ;
+; 0.601 ; \BLOCK_C:count[17] ; \BLOCK_C:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.843      ;
+; 0.602 ; \BLOCK_A:count[6]  ; \BLOCK_A:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.844      ;
+; 0.602 ; \BLOCK_C:count[19] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.240      ;
+; 0.604 ; \BLOCK_A:count[7]  ; \BLOCK_A:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.846      ;
+; 0.604 ; \BLOCK_A:count[9]  ; \BLOCK_A:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.846      ;
+; 0.604 ; \BLOCK_D:count[14] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.847      ;
+; 0.605 ; \BLOCK_A:count[0]  ; \BLOCK_A:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.847      ;
+; 0.605 ; \BLOCK_D:count[0]  ; \BLOCK_D:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.848      ;
+; 0.605 ; \BLOCK_D:count[6]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.243      ;
+; 0.605 ; \BLOCK_D:count[16] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.243      ;
+; 0.606 ; \BLOCK_A:count[4]  ; \BLOCK_A:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.848      ;
+; 0.606 ; \BLOCK_A:count[8]  ; \BLOCK_A:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.848      ;
+; 0.606 ; \BLOCK_A:count[10] ; \BLOCK_A:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.848      ;
+; 0.606 ; \BLOCK_A:count[12] ; \BLOCK_A:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.848      ;
+; 0.606 ; \BLOCK_B:count[0]  ; \BLOCK_B:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.849      ;
+; 0.607 ; \BLOCK_C:count[18] ; \BLOCK_C:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.849      ;
+; 0.607 ; \BLOCK_D:count[23] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.072      ; 0.850      ;
+; 0.609 ; \BLOCK_C:count[18] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.247      ;
+; 0.610 ; \BLOCK_C:count[12] ; \BLOCK_C:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.852      ;
+; 0.612 ; \BLOCK_C:count[19] ; \BLOCK_C:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.854      ;
+; 0.612 ; \BLOCK_C:count[12] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.467      ; 1.250      ;
+; 0.614 ; \BLOCK_C:count[20] ; \BLOCK_C:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.071      ; 0.856      ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Slow 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+No synchronizer chains to report.
+
+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++-----------+--------+---------------+
+; Clock     ; Slack  ; End Point TNS ;
++-----------+--------+---------------+
+; CLK_50MHz ; -0.898 ; -50.890       ;
++-----------+--------+---------------+
+
+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++-----------+-------+---------------+
+; Clock     ; Slack ; End Point TNS ;
++-----------+-------+---------------+
+; CLK_50MHz ; 0.173 ; 0.000         ;
++-----------+-------+---------------+
+
+
+-----------------------------------------
+; Fast 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Fast 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++-----------+--------+-----------------------------+
+; Clock     ; Slack  ; End Point TNS               ;
++-----------+--------+-----------------------------+
+; CLK_50MHz ; -3.000 ; -112.265                    ;
++-----------+--------+-----------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Setup: 'CLK_50MHz'                                                                                ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node          ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; -0.898 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.843      ;
+; -0.898 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.843      ;
+; -0.898 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.843      ;
+; -0.898 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.843      ;
+; -0.890 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.835      ;
+; -0.890 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.835      ;
+; -0.890 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.835      ;
+; -0.890 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.835      ;
+; -0.882 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.623      ;
+; -0.875 ; \BLOCK_D:count[17] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.820      ;
+; -0.875 ; \BLOCK_D:count[17] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.820      ;
+; -0.875 ; \BLOCK_D:count[17] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.820      ;
+; -0.875 ; \BLOCK_D:count[17] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.820      ;
+; -0.875 ; \BLOCK_D:count[17] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.820      ;
+; -0.872 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.613      ;
+; -0.872 ; \BLOCK_D:count[22] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.615      ;
+; -0.872 ; \BLOCK_D:count[22] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.615      ;
+; -0.872 ; \BLOCK_D:count[22] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.615      ;
+; -0.872 ; \BLOCK_D:count[22] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.615      ;
+; -0.872 ; \BLOCK_D:count[22] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.615      ;
+; -0.863 ; \BLOCK_D:count[21] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.606      ;
+; -0.863 ; \BLOCK_D:count[21] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.606      ;
+; -0.863 ; \BLOCK_D:count[21] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.606      ;
+; -0.863 ; \BLOCK_D:count[21] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.606      ;
+; -0.863 ; \BLOCK_D:count[21] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.606      ;
+; -0.862 ; \BLOCK_D:count[13] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.605      ;
+; -0.862 ; \BLOCK_D:count[13] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.605      ;
+; -0.862 ; \BLOCK_D:count[13] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.605      ;
+; -0.862 ; \BLOCK_D:count[13] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.605      ;
+; -0.862 ; \BLOCK_D:count[13] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.605      ;
+; -0.838 ; \BLOCK_D:count[19] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.581      ;
+; -0.838 ; \BLOCK_D:count[19] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.581      ;
+; -0.838 ; \BLOCK_D:count[19] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.581      ;
+; -0.838 ; \BLOCK_D:count[19] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.581      ;
+; -0.838 ; \BLOCK_D:count[19] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.581      ;
+; -0.831 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.776      ;
+; -0.831 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.776      ;
+; -0.831 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.776      ;
+; -0.831 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.776      ;
+; -0.818 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.559      ;
+; -0.804 ; \BLOCK_C:count[2]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.545      ;
+; -0.794 ; \BLOCK_D:count[20] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.537      ;
+; -0.794 ; \BLOCK_D:count[20] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.537      ;
+; -0.794 ; \BLOCK_D:count[20] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.537      ;
+; -0.794 ; \BLOCK_D:count[20] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.537      ;
+; -0.794 ; \BLOCK_D:count[20] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.537      ;
+; -0.789 ; \BLOCK_D:count[18] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.532      ;
+; -0.789 ; \BLOCK_D:count[18] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.532      ;
+; -0.789 ; \BLOCK_D:count[18] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.532      ;
+; -0.789 ; \BLOCK_D:count[18] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.532      ;
+; -0.789 ; \BLOCK_D:count[18] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.244     ; 1.532      ;
+; -0.785 ; \BLOCK_B:count[12] ; \BLOCK_B:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.731      ;
+; -0.785 ; \BLOCK_B:count[12] ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.731      ;
+; -0.785 ; \BLOCK_B:count[12] ; \BLOCK_B:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.731      ;
+; -0.785 ; \BLOCK_B:count[12] ; \BLOCK_B:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.731      ;
+; -0.785 ; \BLOCK_B:count[12] ; \BLOCK_B:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.731      ;
+; -0.782 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.523      ;
+; -0.772 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.717      ;
+; -0.772 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.717      ;
+; -0.772 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.717      ;
+; -0.772 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.717      ;
+; -0.759 ; \BLOCK_D:count[23] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.704      ;
+; -0.759 ; \BLOCK_D:count[23] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.704      ;
+; -0.759 ; \BLOCK_D:count[23] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.704      ;
+; -0.759 ; \BLOCK_D:count[23] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.704      ;
+; -0.759 ; \BLOCK_D:count[23] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.704      ;
+; -0.737 ; \BLOCK_C:count[4]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.478      ;
+; -0.737 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.478      ;
+; -0.732 ; \BLOCK_C:count[10] ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.039     ; 1.680      ;
+; -0.732 ; \BLOCK_C:count[10] ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.039     ; 1.680      ;
+; -0.732 ; \BLOCK_C:count[10] ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.039     ; 1.680      ;
+; -0.732 ; \BLOCK_C:count[10] ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.039     ; 1.680      ;
+; -0.731 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.044     ; 1.674      ;
+; -0.731 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.044     ; 1.674      ;
+; -0.729 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.044     ; 1.672      ;
+; -0.729 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.044     ; 1.672      ;
+; -0.718 ; \BLOCK_D:count[14] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.663      ;
+; -0.718 ; \BLOCK_D:count[14] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.663      ;
+; -0.718 ; \BLOCK_D:count[14] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.663      ;
+; -0.718 ; \BLOCK_D:count[14] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.663      ;
+; -0.718 ; \BLOCK_D:count[14] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.663      ;
+; -0.718 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.246     ; 1.459      ;
+; -0.711 ; \BLOCK_B:count[15] ; \BLOCK_B:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.657      ;
+; -0.711 ; \BLOCK_B:count[15] ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.657      ;
+; -0.711 ; \BLOCK_B:count[15] ; \BLOCK_B:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.657      ;
+; -0.711 ; \BLOCK_B:count[15] ; \BLOCK_B:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.657      ;
+; -0.711 ; \BLOCK_B:count[15] ; \BLOCK_B:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.041     ; 1.657      ;
+; -0.708 ; \BLOCK_D:count[16] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.653      ;
+; -0.708 ; \BLOCK_D:count[16] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.653      ;
+; -0.708 ; \BLOCK_D:count[16] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.653      ;
+; -0.708 ; \BLOCK_D:count[16] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.653      ;
+; -0.708 ; \BLOCK_D:count[16] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.042     ; 1.653      ;
+; -0.703 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.153      ; 1.843      ;
+; -0.703 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.153      ; 1.843      ;
+; -0.703 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.153      ; 1.843      ;
+; -0.703 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.153      ; 1.843      ;
+; -0.703 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; 0.153      ; 1.843      ;
+; -0.701 ; \BLOCK_C:count[19] ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.040     ; 1.648      ;
+; -0.701 ; \BLOCK_C:count[19] ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.040     ; 1.648      ;
+; -0.701 ; \BLOCK_C:count[19] ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 1.000        ; -0.040     ; 1.648      ;
++--------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Hold: 'CLK_50MHz'                                                                                ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node          ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+; 0.173 ; sig[4]             ; sig[4]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.050      ; 0.307      ;
+; 0.182 ; sig[2]             ; sig[2]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.307      ;
+; 0.182 ; sig[3]             ; sig[3]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.307      ;
+; 0.183 ; sig[1]             ; sig[1]             ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.307      ;
+; 0.192 ; \BLOCK_B:count[17] ; \BLOCK_B:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.325      ;
+; 0.192 ; \BLOCK_D:count[24] ; \BLOCK_D:count[24] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.325      ;
+; 0.194 ; \BLOCK_A:count[14] ; \BLOCK_A:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.318      ;
+; 0.197 ; \BLOCK_C:count[21] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.330      ;
+; 0.235 ; \BLOCK_D:count[3]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.563      ;
+; 0.238 ; \BLOCK_D:count[9]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.566      ;
+; 0.245 ; \BLOCK_D:count[17] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.573      ;
+; 0.247 ; \BLOCK_D:count[2]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.575      ;
+; 0.250 ; \BLOCK_C:count[14] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.577      ;
+; 0.251 ; \BLOCK_D:count[23] ; \BLOCK_D:count[24] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.579      ;
+; 0.252 ; \BLOCK_D:count[8]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.580      ;
+; 0.253 ; \BLOCK_C:count[14] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.580      ;
+; 0.253 ; \BLOCK_D:count[16] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.581      ;
+; 0.263 ; \BLOCK_C:count[20] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.590      ;
+; 0.280 ; \BLOCK_C:count[1]  ; \BLOCK_C:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.413      ;
+; 0.281 ; \BLOCK_C:count[3]  ; \BLOCK_C:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.414      ;
+; 0.282 ; \BLOCK_C:count[2]  ; \BLOCK_C:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.415      ;
+; 0.282 ; \BLOCK_D:count[4]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.415      ;
+; 0.283 ; \BLOCK_C:count[4]  ; \BLOCK_C:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.416      ;
+; 0.286 ; \BLOCK_D:count[19] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.419      ;
+; 0.286 ; \BLOCK_D:count[18] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.419      ;
+; 0.287 ; \BLOCK_D:count[1]  ; \BLOCK_D:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.413      ;
+; 0.287 ; \BLOCK_C:count[15] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.420      ;
+; 0.288 ; \BLOCK_D:count[2]  ; \BLOCK_D:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.414      ;
+; 0.288 ; \BLOCK_D:count[3]  ; \BLOCK_D:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.414      ;
+; 0.288 ; \BLOCK_D:count[5]  ; \BLOCK_D:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.414      ;
+; 0.288 ; \BLOCK_D:count[20] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.421      ;
+; 0.289 ; \BLOCK_B:count[1]  ; \BLOCK_B:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.414      ;
+; 0.290 ; \BLOCK_A:count[1]  ; \BLOCK_A:count[1]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.414      ;
+; 0.290 ; \BLOCK_B:count[2]  ; \BLOCK_B:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.415      ;
+; 0.290 ; \BLOCK_B:count[3]  ; \BLOCK_B:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.415      ;
+; 0.290 ; \BLOCK_C:count[0]  ; \BLOCK_C:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.423      ;
+; 0.290 ; \BLOCK_D:count[11] ; \BLOCK_D:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.416      ;
+; 0.291 ; \BLOCK_A:count[2]  ; \BLOCK_A:count[2]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.415      ;
+; 0.291 ; \BLOCK_D:count[15] ; \BLOCK_D:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.417      ;
+; 0.291 ; \BLOCK_D:count[9]  ; \BLOCK_D:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.417      ;
+; 0.292 ; \BLOCK_B:count[7]  ; \BLOCK_B:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.417      ;
+; 0.292 ; \BLOCK_B:count[8]  ; \BLOCK_B:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.417      ;
+; 0.292 ; \BLOCK_C:count[7]  ; \BLOCK_C:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.418      ;
+; 0.292 ; \BLOCK_C:count[8]  ; \BLOCK_C:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.418      ;
+; 0.292 ; \BLOCK_D:count[7]  ; \BLOCK_D:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.418      ;
+; 0.292 ; \BLOCK_D:count[13] ; \BLOCK_D:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.425      ;
+; 0.293 ; \BLOCK_B:count[5]  ; \BLOCK_B:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.418      ;
+; 0.293 ; \BLOCK_B:count[6]  ; \BLOCK_B:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.418      ;
+; 0.293 ; \BLOCK_C:count[5]  ; \BLOCK_C:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.419      ;
+; 0.293 ; \BLOCK_C:count[6]  ; \BLOCK_C:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.419      ;
+; 0.293 ; \BLOCK_D:count[8]  ; \BLOCK_D:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.419      ;
+; 0.293 ; \BLOCK_D:count[10] ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.426      ;
+; 0.293 ; \BLOCK_C:count[16] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.426      ;
+; 0.294 ; \BLOCK_B:count[16] ; \BLOCK_B:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.427      ;
+; 0.294 ; \BLOCK_B:count[4]  ; \BLOCK_B:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.419      ;
+; 0.294 ; \BLOCK_C:count[13] ; \BLOCK_C:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.419      ;
+; 0.294 ; \BLOCK_C:count[14] ; \BLOCK_C:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.419      ;
+; 0.294 ; \BLOCK_D:count[6]  ; \BLOCK_D:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.420      ;
+; 0.294 ; \BLOCK_D:count[16] ; \BLOCK_D:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.420      ;
+; 0.294 ; \BLOCK_D:count[21] ; \BLOCK_D:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.427      ;
+; 0.295 ; \BLOCK_A:count[13] ; \BLOCK_A:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.419      ;
+; 0.295 ; \BLOCK_D:count[22] ; \BLOCK_D:count[22] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.049      ; 0.428      ;
+; 0.296 ; \BLOCK_C:count[11] ; \BLOCK_C:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.421      ;
+; 0.298 ; \BLOCK_D:count[17] ; \BLOCK_D:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.424      ;
+; 0.300 ; \BLOCK_B:count[9]  ; \BLOCK_B:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.425      ;
+; 0.300 ; \BLOCK_C:count[17] ; \BLOCK_C:count[17] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.425      ;
+; 0.300 ; \BLOCK_D:count[0]  ; \BLOCK_D:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.426      ;
+; 0.300 ; \BLOCK_D:count[1]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.628      ;
+; 0.301 ; \BLOCK_A:count[3]  ; \BLOCK_A:count[3]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.425      ;
+; 0.301 ; \BLOCK_A:count[0]  ; \BLOCK_A:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.425      ;
+; 0.301 ; \BLOCK_A:count[5]  ; \BLOCK_A:count[5]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.425      ;
+; 0.301 ; \BLOCK_A:count[11] ; \BLOCK_A:count[11] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.425      ;
+; 0.301 ; \BLOCK_B:count[0]  ; \BLOCK_B:count[0]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.426      ;
+; 0.301 ; \BLOCK_D:count[14] ; \BLOCK_D:count[14] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.427      ;
+; 0.302 ; \BLOCK_A:count[7]  ; \BLOCK_A:count[7]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.426      ;
+; 0.302 ; \BLOCK_A:count[6]  ; \BLOCK_A:count[6]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.426      ;
+; 0.302 ; \BLOCK_A:count[9]  ; \BLOCK_A:count[9]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.426      ;
+; 0.302 ; \BLOCK_C:count[18] ; \BLOCK_C:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.427      ;
+; 0.302 ; \BLOCK_D:count[11] ; \BLOCK_D:count[13] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.242      ; 0.628      ;
+; 0.303 ; \BLOCK_A:count[4]  ; \BLOCK_A:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.427      ;
+; 0.303 ; \BLOCK_A:count[8]  ; \BLOCK_A:count[8]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.427      ;
+; 0.304 ; \BLOCK_A:count[10] ; \BLOCK_A:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.428      ;
+; 0.304 ; \BLOCK_A:count[12] ; \BLOCK_A:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.040      ; 0.428      ;
+; 0.304 ; \BLOCK_D:count[23] ; \BLOCK_D:count[23] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.042      ; 0.430      ;
+; 0.304 ; \BLOCK_C:count[13] ; \BLOCK_C:count[15] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.631      ;
+; 0.304 ; \BLOCK_D:count[15] ; \BLOCK_D:count[18] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.632      ;
+; 0.305 ; \BLOCK_C:count[12] ; \BLOCK_C:count[12] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.430      ;
+; 0.305 ; \BLOCK_C:count[19] ; \BLOCK_C:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.430      ;
+; 0.305 ; \BLOCK_D:count[7]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.633      ;
+; 0.307 ; \BLOCK_C:count[20] ; \BLOCK_C:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.041      ; 0.432      ;
+; 0.307 ; \BLOCK_C:count[13] ; \BLOCK_C:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.634      ;
+; 0.308 ; \BLOCK_D:count[17] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.636      ;
+; 0.311 ; \BLOCK_D:count[17] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.639      ;
+; 0.314 ; \BLOCK_D:count[0]  ; \BLOCK_D:count[4]  ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.642      ;
+; 0.315 ; \BLOCK_C:count[19] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.642      ;
+; 0.315 ; \BLOCK_B:count[15] ; \BLOCK_B:count[16] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.642      ;
+; 0.316 ; \BLOCK_D:count[16] ; \BLOCK_D:count[19] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.644      ;
+; 0.319 ; \BLOCK_D:count[6]  ; \BLOCK_D:count[10] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.647      ;
+; 0.319 ; \BLOCK_D:count[16] ; \BLOCK_D:count[20] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.244      ; 0.647      ;
+; 0.324 ; \BLOCK_C:count[18] ; \BLOCK_C:count[21] ; CLK_50MHz    ; CLK_50MHz   ; 0.000        ; 0.243      ; 0.651      ;
++-------+--------------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Fast 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+No synchronizer chains to report.
+
+
++--------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                            ;
++------------------+----------+-------+----------+---------+---------------------+
+; Clock            ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+----------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -3.007   ; 0.173 ; N/A      ; N/A     ; -3.000              ;
+;  CLK_50MHz       ; -3.007   ; 0.173 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -200.901 ; 0.0   ; 0.0      ; 0.0     ; -112.265            ;
+;  CLK_50MHz       ; -200.901 ; 0.000 ; N/A      ; N/A     ; -112.265            ;
++------------------+----------+-------+----------+---------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Board Trace Model Assignments                                                                                                                                                                                                                                                                                                                                                                                    ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; Pin           ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; LED[0]        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[1]        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[2]        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[3]        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+
+
++----------------------------------------------------------------------------+
+; Input Transition Times                                                     ;
++-------------------------+--------------+-----------------+-----------------+
+; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++-------------------------+--------------+-----------------+-----------------+
+; SW[0]                   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[1]                   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[2]                   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[3]                   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; CLK_50MHz               ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_FLASH_nCE_nCSO~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_DATA0~          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
++-------------------------+--------------+-----------------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; LED[0]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.58e-08 V                   ; 3.13 V              ; -0.117 V            ; 0.143 V                              ; 0.259 V                              ; 6.22e-10 s                  ; 4.46e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 1.58e-08 V                  ; 3.13 V             ; -0.117 V           ; 0.143 V                             ; 0.259 V                             ; 6.22e-10 s                 ; 4.46e-10 s                 ; No                        ; No                        ;
+; LED[1]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.58e-08 V                   ; 3.13 V              ; -0.117 V            ; 0.143 V                              ; 0.259 V                              ; 6.22e-10 s                  ; 4.46e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 1.58e-08 V                  ; 3.13 V             ; -0.117 V           ; 0.143 V                             ; 0.259 V                             ; 6.22e-10 s                 ; 4.46e-10 s                 ; No                        ; No                        ;
+; LED[2]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.58e-08 V                   ; 3.13 V              ; -0.117 V            ; 0.143 V                              ; 0.259 V                              ; 6.22e-10 s                  ; 4.46e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 1.58e-08 V                  ; 3.13 V             ; -0.117 V           ; 0.143 V                             ; 0.259 V                             ; 6.22e-10 s                 ; 4.46e-10 s                 ; No                        ; No                        ;
+; LED[3]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.58e-08 V                   ; 3.13 V              ; -0.117 V            ; 0.143 V                              ; 0.259 V                              ; 6.22e-10 s                  ; 4.46e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 1.58e-08 V                  ; 3.13 V             ; -0.117 V           ; 0.143 V                             ; 0.259 V                             ; 6.22e-10 s                 ; 4.46e-10 s                 ; No                        ; No                        ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.67e-09 V                   ; 2.38 V              ; -0.0485 V           ; 0.167 V                              ; 0.096 V                              ; 2.95e-10 s                  ; 2.73e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.67e-09 V                  ; 2.38 V             ; -0.0485 V          ; 0.167 V                             ; 0.096 V                             ; 2.95e-10 s                 ; 2.73e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.18e-09 V                   ; 2.38 V              ; -0.00483 V          ; 0.152 V                              ; 0.012 V                              ; 4.81e-10 s                  ; 6.29e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.18e-09 V                  ; 2.38 V             ; -0.00483 V         ; 0.152 V                             ; 0.012 V                             ; 4.81e-10 s                 ; 6.29e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 85c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; LED[0]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.9e-06 V                    ; 3.11 V              ; -0.0625 V           ; 0.224 V                              ; 0.17 V                               ; 6.86e-10 s                  ; 6.31e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 1.9e-06 V                   ; 3.11 V             ; -0.0625 V          ; 0.224 V                             ; 0.17 V                              ; 6.86e-10 s                 ; 6.31e-10 s                 ; Yes                       ; No                        ;
+; LED[1]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.9e-06 V                    ; 3.11 V              ; -0.0625 V           ; 0.224 V                              ; 0.17 V                               ; 6.86e-10 s                  ; 6.31e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 1.9e-06 V                   ; 3.11 V             ; -0.0625 V          ; 0.224 V                             ; 0.17 V                              ; 6.86e-10 s                 ; 6.31e-10 s                 ; Yes                       ; No                        ;
+; LED[2]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.9e-06 V                    ; 3.11 V              ; -0.0625 V           ; 0.224 V                              ; 0.17 V                               ; 6.86e-10 s                  ; 6.31e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 1.9e-06 V                   ; 3.11 V             ; -0.0625 V          ; 0.224 V                             ; 0.17 V                              ; 6.86e-10 s                 ; 6.31e-10 s                 ; Yes                       ; No                        ;
+; LED[3]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.9e-06 V                    ; 3.11 V              ; -0.0625 V           ; 0.224 V                              ; 0.17 V                               ; 6.86e-10 s                  ; 6.31e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 1.9e-06 V                   ; 3.11 V             ; -0.0625 V          ; 0.224 V                             ; 0.17 V                              ; 6.86e-10 s                 ; 6.31e-10 s                 ; Yes                       ; No                        ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.75e-07 V                   ; 2.35 V              ; -0.0109 V           ; 0.084 V                              ; 0.027 V                              ; 4.31e-10 s                  ; 3.61e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 3.75e-07 V                  ; 2.35 V             ; -0.0109 V          ; 0.084 V                             ; 0.027 V                             ; 4.31e-10 s                 ; 3.61e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.15e-07 V                   ; 2.35 V              ; -0.00712 V          ; 0.093 V                              ; 0.02 V                               ; 6.21e-10 s                  ; 7.9e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 6.15e-07 V                  ; 2.35 V             ; -0.00712 V         ; 0.093 V                             ; 0.02 V                              ; 6.21e-10 s                 ; 7.9e-10 s                  ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Fast 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; LED[0]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; LED[1]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; LED[2]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; LED[3]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.22e-08 V                   ; 2.74 V              ; -0.06 V             ; 0.158 V                              ; 0.08 V                               ; 2.68e-10 s                  ; 2.19e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.22e-08 V                  ; 2.74 V             ; -0.06 V            ; 0.158 V                             ; 0.08 V                              ; 2.68e-10 s                 ; 2.19e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.54e-08 V                   ; 2.7 V               ; -0.00943 V          ; 0.276 V                              ; 0.035 V                              ; 3.19e-10 s                  ; 4.99e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 3.54e-08 V                  ; 2.7 V              ; -0.00943 V         ; 0.276 V                             ; 0.035 V                             ; 3.19e-10 s                 ; 4.99e-10 s                 ; No                        ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------+
+; Setup Transfers                                                    ;
++------------+-----------+----------+----------+----------+----------+
+; From Clock ; To Clock  ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+-----------+----------+----------+----------+----------+
+; CLK_50MHz  ; CLK_50MHz ; 2395     ; 0        ; 0        ; 0        ;
++------------+-----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++--------------------------------------------------------------------+
+; Hold Transfers                                                     ;
++------------+-----------+----------+----------+----------+----------+
+; From Clock ; To Clock  ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+-----------+----------+----------+----------+----------+
+; CLK_50MHz  ; CLK_50MHz ; 2395     ; 0        ; 0        ; 0        ;
++------------+-----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No non-DPA dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths Summary                    ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 4     ; 4    ;
+; Unconstrained Input Port Paths  ; 4     ; 4    ;
+; Unconstrained Output Ports      ; 4     ; 4    ;
+; Unconstrained Output Port Paths ; 8     ; 8    ;
++---------------------------------+-------+------+
+
+
++--------------------------------------------+
+; Clock Status Summary                       ;
++-----------+-----------+------+-------------+
+; Target    ; Clock     ; Type ; Status      ;
++-----------+-----------+------+-------------+
+; CLK_50MHz ; CLK_50MHz ; Base ; Constrained ;
++-----------+-----------+------+-------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; SW[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; LED[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[3]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; SW[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; LED[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[3]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+    Info: Processing started: Wed Mar  6 19:22:26 2024
+Info: Command: quartus_sta switch_blink -c switch_blink
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Critical Warning (332012): Synopsys Design Constraints File file not found: 'switch_blink.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name CLK_50MHz CLK_50MHz
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1200mV 85C Model
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -3.007
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.007            -200.901 CLK_50MHz 
+Info (332146): Worst-case hold slack is 0.385
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.385               0.000 CLK_50MHz 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000            -110.940 CLK_50MHz 
+Info: Analyzing Slow 1200mV 0C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -2.671
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -2.671            -176.599 CLK_50MHz 
+Info (332146): Worst-case hold slack is 0.338
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.338               0.000 CLK_50MHz 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000            -110.940 CLK_50MHz 
+Info: Analyzing Fast 1200mV 0C Model
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -0.898
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -0.898             -50.890 CLK_50MHz 
+Info (332146): Worst-case hold slack is 0.173
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.173               0.000 CLK_50MHz 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000            -112.265 CLK_50MHz 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 4843 megabytes
+    Info: Processing ended: Wed Mar  6 19:22:28 2024
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
+
+

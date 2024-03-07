@@ -11,8 +11,6 @@ entity eight_digit_counter is
 	port(
 		clk_100MHz: in std_logic;
 		SEG_7: buffer std_logic_vector(0 to 6);
-		BTNC:  in std_logic;
-		LED: buffer std_logic_vector(15 downto 0) := (0 =>'1', others => '0');
 		ANODE: buffer std_logic_vector(0 to 7) := (others => '1')
 	);
 
@@ -23,30 +21,93 @@ architecture rtl of eight_digit_counter is
 
 signal counter_clk_in: std_logic_vector(0 to 7) := (others => '0');
 signal counter_clk_out: std_logic_vector(0 to 7) := (others => '0');
-
 signal SEG: std_logic_vector(0 to 55) := (others => '0');
-
 signal disp_selector: integer range 0 to 20 := 0;
+signal clk_1KHz: std_logic := '0';
 
-signal clk_10KHz, clk_1KHz, clk_10Hz: std_logic := '0';
+type eight_digit_counters is array(0 to 7) of std_logic_vector(3 downto 0);
+signal bcd_counters: eight_digit_counters := (others => (others => '0'));
 
---signal state_count: integer range 0 to 20 := 0;
+-- component bcd_counter is
+	-- port(
+		-- clk_in: in std_logic;
+		-- clk_out: out std_logic;
+		-- bcd_out_to_port: out std_logic_vector(3 downto 0);
+		-- segment: out std_logic_vector(0 to 6) --segment outputs
+	-- );
+-- end component;
 
 begin
 
-JOHNSON_RING_COUNTER:
-	process(clk_10Hz, BTNC)
-	
-	begin
-		if BTNC = '1' then
-			LED <= (0 =>'1', others => '0');
-		else
-			if rising_edge(clk_10Hz) then
-				LED <= LED(14 downto 0) & LED(15);			
-			end if;
-		end if;
-	end process;
+COUNTERS:
+for i in 0 to 7 generate
+comp1:  entity work.bcd_counter
+			port map (
+				clk_in => counter_clk_in(i),
+				clk_out => counter_clk_out(i),
+				bcd_out_to_port => bcd_counters(i),
+				segment => SEG((i+0)+(i*6) to (i+6)+(i*6))
+			);
+	end generate;
 
+counter_clk_in(0 to 7) <= clk_1KHz & counter_clk_out (0 to 6);
+
+
+-- COUNTERA:	bcd_counter
+	-- port map (
+		-- clk_in => clk_1KHz,
+		-- clk_out => counter_clk_in(1),
+		-- segment => SEG(0 to 6)
+	-- );
+	
+-- COUNTERB:	bcd_counter
+	-- port map (
+		-- clk_in => counter_clk_in(1),
+		-- clk_out => counter_clk_in(2),
+		-- segment => SEG(7 to 13)
+	-- );
+	
+-- COUNTERC:	bcd_counter
+	-- port map (
+		-- clk_in => counter_clk_in(2),
+		-- clk_out => counter_clk_in(3),
+		-- segment => SEG(14 to 20)
+	-- );
+	
+-- COUNTERD:	bcd_counter
+	-- port map (
+		-- clk_in => counter_clk_in(3),
+		-- clk_out => counter_clk_in(4),
+		-- segment => SEG(21 to 27)
+	-- );
+	
+-- COUNTERE:	bcd_counter
+	-- port map (
+		-- clk_in => counter_clk_in(4),
+		-- clk_out => counter_clk_in(5),
+		-- segment => SEG(28 to 34)
+	-- );
+	
+-- COUNTERF:	bcd_counter
+	-- port map (
+		-- clk_in => counter_clk_in(5),
+		-- clk_out => counter_clk_in(6),
+		-- segment => SEG(35 to 41)
+	-- );
+	
+-- COUNTERG:	bcd_counter
+	-- port map (
+		-- clk_in => counter_clk_in(6),
+		-- clk_out => counter_clk_in(7),
+		-- segment => SEG(42 to 48)
+	-- );
+	
+-- COUNTERH:	bcd_counter
+	-- port map (
+		-- clk_in => counter_clk_in(7),
+		-- segment => SEG(49 to 55)
+	-- );
+ 
 MUX_TO_DISPLAY:
 	with disp_selector select
 		SEG_7 <= SEG(0 to 6)     when 0,
@@ -88,7 +149,7 @@ MUX_TO_DISPLAY:
 				 
 				 (others => '1') when others;						 
 
-One_ms_PROC:
+CLOCK_1KHz_GEN:
 	process(clk_100MHz)
 		constant count_range: integer range 0 to FREQ := FREQ/1e3;
 		variable counter: integer range 0 to count_range := 0;
@@ -114,53 +175,6 @@ DISPLAY_SCAN:
 				disp_selector <= disp_selector + 1;
 			else
 				disp_selector <= 0;
-			end if;
-		end if;	
-	end process;
-	
-
-
-gen1: for n in 0 to 7 generate
-gen2:	entity work.bcd_counter_unit(rtl)
-			port map(
-				clk_in => counter_clk_in(n),
-				clk_out => counter_clk_out(n),
-				segment =>	SEG((n+0)+(n*6) to (n+6)+(n*6))	
-			);	
-		end generate gen1;
-
-counter_clk_in(0 to 7) <= clk_10KHz & counter_clk_out(0 to 6);
-
-
-clk_10KHz_PROC:
-	process(clk_100MHz)
-		constant count_range: integer range 0 to FREQ := FREQ/10e3;
-		variable counter: integer range 0 to count_range;
-	begin
-		if rising_edge(clk_100MHz) then
-			if counter < count_range then				
-				clk_10KHz <= '0';
-				counter := counter + 1;
-			else 
-				clk_10KHz <= '1';
-				counter := 0;							
-			end if;
-		end if;	
-	end process;
-
-
-clk_10Hz_PROC:
-	process(clk_100MHz)
-		constant count_range: integer range 0 to FREQ := FREQ/10;
-		variable counter: integer range 0 to count_range;
-	begin
-		if rising_edge(clk_100MHz) then
-			if counter < count_range then				
-				clk_10Hz <= '0';
-				counter := counter + 1;
-			else 
-				clk_10Hz <= '1';
-				counter := 0;							
 			end if;
 		end if;	
 	end process;

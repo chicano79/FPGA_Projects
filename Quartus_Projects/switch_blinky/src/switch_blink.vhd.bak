@@ -1,0 +1,96 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity switch_blink is
+	port(
+		SW: in std_logic_vector(3 downto 0);
+		LED: out std_logic_vector(3 downto 0) := (others => '0')';
+		CLK_100MHz: in std_logic	
+	);
+end entity;
+
+
+architecture rtl of switch_blink is
+signal sig: std_logic_vector(1 to 4) := (others => '0');
+
+begin
+
+BLOCK_E:
+LED(3) <= SW(3) and sig(1);
+
+BLOCK_F:
+LED(2) <= SW(2) and sig(2);
+
+BLOCK_G:
+LED(1) <= SW(1) and sig(3);
+
+BLOCK_H:
+LED(0) <= SW(0) and sig(4);
+
+BLOCK_A:
+	process(CLK_100MHz)
+		constant count_range: integer range 0 to 100e6 := 100e6/1000;
+		variable count: integer range 0 to count_range := 0;
+	begin
+		if rising_edge(CLK_100MHz) then
+			if count < count_range then
+				sig(1) <= '0';
+				count := count + 1;
+			else
+				sig(1) <= '1';
+				count := 0;
+			end if;
+		end if;
+	end process;
+
+BLOCK_B:
+	process(CLK_100MHz)
+		constant count_range: integer range 0 to 100e6 := 100e6/100;
+		variable count: integer range 0 to count_range := 0;
+	begin
+		if rising_edge(CLK_100MHz) then
+			if count < count_range then
+				sig(2) <= '0';
+				count := count + 1;
+			else
+				sig(2) <= '1';
+				count := 0;
+			end if;
+		end if;
+	end process;
+
+
+BLOCK_C:
+	process(CLK_100MHz)
+		constant count_range: integer range 0 to 100e6 := 100e6/10;
+		variable count: integer range 0 to count_range := 0;
+	begin
+		if rising_edge(CLK_100MHz) then
+			if count < count_range then
+				sig(3) <= '0';
+				count := count + 1;
+			else
+				sig(3) <= '1';
+				count := 0;
+			end if;
+		end if;
+	end process;
+
+BLOCK_D:
+	process(CLK_100MHz)
+		constant count_range: integer range 0 to 100e6 := 100e6;
+		variable count: integer range 0 to count_range := 0;
+	begin
+		if rising_edge(CLK_100MHz) then
+			if count < count_range then
+				sig(4) <= '0';
+				count := count + 1;
+			else
+				sig(4) <= '1';
+				count := 0;
+			end if;
+		end if;
+	end process;
+	
+end architecture;
