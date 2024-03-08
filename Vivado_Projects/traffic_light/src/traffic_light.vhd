@@ -53,9 +53,9 @@ TRAFFIC_STATES:
 		constant count_range_2sec: integer range 0 to FREQ*2 := FREQ*2;
 		constant count_range_4sec: integer range 0 to FREQ*4 := FREQ*4;
 		constant count_range_5sec: integer range 0 to FREQ*5 := FREQ*5;
-		variable counter: integer range 0 to count_range;
+		variable counter: integer range 0 to count_range_5sec;
 	begin
-		if clk_100MHz'event and clk_100MHz = 1 then
+		if clk_100MHz'event and clk_100MHz = '1' then
 			case trafficVariable is
 			
 				when stateA => 
@@ -68,6 +68,7 @@ TRAFFIC_STATES:
 					else
 						counter := 0;
 						trafficVariable <= stateB;
+					end if;
 						
 				when stateB => 
 					blink_en <= '0';
@@ -79,6 +80,7 @@ TRAFFIC_STATES:
 					else
 						counter := 0;
 						trafficVariable <= stateC;
+					end if;
 			
 				when stateC =>
 					blink_en <= '0';
@@ -89,7 +91,8 @@ TRAFFIC_STATES:
 						counter := counter + 1;
 					else
 						counter := 0;
-						trafficVariable <= stateD;			
+						trafficVariable <= stateD;
+					end if;			
 			
 				when stateD => 
 					blink_en <= '0';
@@ -101,6 +104,7 @@ TRAFFIC_STATES:
 					else
 						counter := 0;
 						trafficVariable <= stateE;
+					end if;			
 						
 				when stateE => 
 					blink_en <= '1';
@@ -112,6 +116,7 @@ TRAFFIC_STATES:
 					else
 						counter := 0;
 						trafficVariable <= stateA;
+					end if;			
 						
 				when others =>
 					blink_en <= '0';
