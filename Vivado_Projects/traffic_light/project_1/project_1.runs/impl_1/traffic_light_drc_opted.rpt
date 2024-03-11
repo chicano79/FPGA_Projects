@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Sat Mar  9 08:57:56 2024
+| Date         : Mon Mar 11 01:09:31 2024
 | Host         : DESKTOP-7RQ9HLB running 64-bit major release  (build 9200)
 | Command      : report_drc -file traffic_light_drc_opted.rpt -pb traffic_light_drc_opted.pb -rpx traffic_light_drc_opted.rpx
 | Design       : traffic_light
