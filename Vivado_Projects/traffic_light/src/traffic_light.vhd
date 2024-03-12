@@ -30,9 +30,10 @@ signal bcd_counter: integer range 0 to 9 := 0;
 
 begin
 
-GPIO(2) <= redLED;
-GPIO(1) <= yellowLED xor (blink_en and clk_2Hz);
+--GPIO(1) <= yellowLED xor (blink_en and clk_2Hz);
 GPIO(0) <= greenLED;
+GPIO(1) <= clk_2Hz when blink_en = '1' else yellowLED;
+GPIO(2) <= redLED;
 
 LED <= clk_2Hz;
 
@@ -220,7 +221,7 @@ TRAFFIC_STATES:
 						
 						blink_en <= '1';
 						redLED <= '0';
-						yellowLED <= '1';
+						yellowLED <= '0';
 						greenLED <= '1';
 						trafficVariable <= stateE;
 					end if;			
