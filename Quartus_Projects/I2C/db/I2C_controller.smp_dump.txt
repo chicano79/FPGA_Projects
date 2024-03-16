@@ -1,0 +1,19 @@
+
+State Machine - |I2C_controller|i2cVariable
+Name i2cVariable.STOP i2cVariable.NACK i2cVariable.NEXT7 i2cVariable.NEXT6 i2cVariable.NEXT5 i2cVariable.SETUP4 i2cVariable.RPT_START i2cVariable.SETUP3 i2cVariable.NEXT4 i2cVariable.NEXT3 i2cVariable.SETUP2 i2cVariable.NEXT2 i2cVariable.NEXT1 i2cVariable.SETUP1 i2cVariable.START i2cVariable.INIT 
+i2cVariable.INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+i2cVariable.START 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+i2cVariable.SETUP1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+i2cVariable.NEXT1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+i2cVariable.NEXT2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+i2cVariable.SETUP2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+i2cVariable.NEXT3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+i2cVariable.NEXT4 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+i2cVariable.SETUP3 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+i2cVariable.RPT_START 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+i2cVariable.SETUP4 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+i2cVariable.NEXT5 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+i2cVariable.NEXT6 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+i2cVariable.NEXT7 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+i2cVariable.NACK 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+i2cVariable.STOP 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

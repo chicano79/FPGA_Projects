@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1'
+HD_PWD='G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

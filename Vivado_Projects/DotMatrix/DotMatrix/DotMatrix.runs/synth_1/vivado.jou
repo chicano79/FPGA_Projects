@@ -2,11 +2,11 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Mon Mar 11 14:40:38 2024
-# Process ID: 17020
-# Current directory: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1
+# Start of session at: Fri Mar 15 23:13:47 2024
+# Process ID: 33956
+# Current directory: G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1
 # Command line: vivado.exe -log dotmatrix.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dotmatrix.tcl
-# Log file: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1/dotmatrix.vds
-# Journal file: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1\vivado.jou
+# Log file: G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1/dotmatrix.vds
+# Journal file: G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source dotmatrix.tcl -notrace

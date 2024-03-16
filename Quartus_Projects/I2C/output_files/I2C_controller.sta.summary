@@ -1,0 +1,77 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'inputOscillator'
+Slack : 17.463
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'oneMHzClock'
+Slack : 993.529
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'oneMHzClock'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'inputOscillator'
+Slack : 0.638
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'inputOscillator'
+Slack : 9.721
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'oneMHzClock'
+Slack : 19.764
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'inputOscillator'
+Slack : 17.660
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'oneMHzClock'
+Slack : 994.038
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'oneMHzClock'
+Slack : 0.305
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'inputOscillator'
+Slack : 0.589
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'inputOscillator'
+Slack : 9.740
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'oneMHzClock'
+Slack : 19.751
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'inputOscillator'
+Slack : 18.981
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'oneMHzClock'
+Slack : 997.248
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'oneMHzClock'
+Slack : 0.147
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'inputOscillator'
+Slack : 0.248
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'inputOscillator'
+Slack : 9.472
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'oneMHzClock'
+Slack : 19.824
+TNS   : 0.000
+
+------------------------------------------------------------

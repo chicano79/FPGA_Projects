@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/impl_1'
+HD_PWD='G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -41,7 +41,7 @@ EAStep()
 }
 
 # pre-commands:
-/bin/touch .write_bitstream.begin.rst
+/bin/touch .init_design.begin.rst
 EAStep vivado -log dotmatrix.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source dotmatrix.tcl -notrace
 
 

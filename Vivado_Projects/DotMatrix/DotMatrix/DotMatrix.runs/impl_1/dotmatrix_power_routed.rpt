@@ -1,8 +1,8 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date             : Mon Mar 11 14:42:49 2024
-| Host             : DESKTOP-7RQ9HLB running 64-bit major release  (build 9200)
+| Date             : Fri Mar 15 23:16:01 2024
+| Host             : CHICANO-79 running 64-bit major release  (build 9200)
 | Command          : report_power -file dotmatrix_power_routed.rpt -pb dotmatrix_power_summary_routed.pb -rpx dotmatrix_power_routed.rpx
 | Design           : dotmatrix
 | Device           : xc7a100tcsg324-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 23.439 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 27.508 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 22.642                           |
+| Dynamic (W)              | 26.711                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.178 |       61 |       --- |             --- |
-|   LUT as Logic |     0.142 |       14 |     63400 |            0.02 |
-|   Register     |     0.020 |       34 |    126800 |            0.03 |
+| Slice Logic    |     0.181 |       65 |       --- |             --- |
+|   LUT as Logic |     0.144 |       14 |     63400 |            0.02 |
+|   Register     |     0.022 |       37 |    126800 |            0.03 |
 |   CARRY4       |     0.010 |        5 |     15850 |            0.03 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |        2 |       --- |             --- |
-| Signals        |     0.235 |       48 |       --- |             --- |
-| I/O            |    22.229 |       17 |       210 |            8.10 |
+| Signals        |     0.294 |       53 |       --- |             --- |
+| I/O            |    26.237 |       17 |       210 |            8.10 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    23.439 |          |           |                 |
+| Total          |    27.508 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +71,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.980 |       0.417 |      0.563 |
-| Vccaux    |       1.800 |     0.907 |       0.814 |      0.093 |
-| Vcco33    |       3.300 |     6.295 |       6.291 |      0.004 |
+| Vccint    |       1.000 |     1.041 |       0.478 |      0.563 |
+| Vccaux    |       1.800 |     1.054 |       0.961 |      0.093 |
+| Vcco33    |       3.300 |     7.429 |       7.425 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -138,7 +138,7 @@ Table of Contents
 +-----------+-----------+
 | Name      | Power (W) |
 +-----------+-----------+
-| dotmatrix |    22.642 |
+| dotmatrix |    26.711 |
 +-----------+-----------+
 
 

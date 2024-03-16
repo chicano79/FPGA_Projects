@@ -17,10 +17,9 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param chipscope.maxJobs 2
-set_param synth.incrementalSynthesisCache C:/Users/desig/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-18228-DESKTOP-7RQ9HLB/incrSyn
+set_param chipscope.maxJobs 4
+set_param synth.incrementalSynthesisCache {C:/Users/Engr. Samuel/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-33824-CHICANO-79/incrSyn}
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
@@ -28,13 +27,13 @@ create_project -in_memory -part xc7a100tcsg324-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.cache/wt [current_project]
-set_property parent.project_path C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.xpr [current_project]
+set_property webtalk.parent_dir G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.cache/wt [current_project]
+set_property parent.project_path G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo c:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.cache/ip [current_project]
+set_property ip_output_repo g:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_vhdl -library xil_defaultlib C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/dotmatrix.vhd
+read_vhdl -library xil_defaultlib G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/dotmatrix.vhd
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
 # design are intentionally left as such for best results. Dcp files will be
@@ -43,8 +42,8 @@ read_vhdl -library xil_defaultlib C:/Users/desig/Documents/GitHub/FPGA_Projects/
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.srcs/constrs_1/new/Dotmatrix.xdc
-set_property used_in_implementation false [get_files C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.srcs/constrs_1/new/Dotmatrix.xdc]
+read_xdc G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.srcs/constrs_1/new/Dotmatrix.xdc
+set_property used_in_implementation false [get_files G:/GITHUB/FPGA_projects/Vivado_Projects/DotMatrix/DotMatrix/DotMatrix.srcs/constrs_1/new/Dotmatrix.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

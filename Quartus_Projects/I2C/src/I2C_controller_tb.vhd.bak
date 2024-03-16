@@ -1,0 +1,145 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+
+entity I2C_controller_tb is
+end entity;
+
+
+architecture rtl of I2C_controller_tb is
+
+constant FREQ: integer := 50e6;
+constant FREQ_period: time := 1 sec / FREQ; 
+
+constant WR: std_logic := '0';
+constant RD: std_logic := '1';
+
+signal source_clk, rst, SQ_in: std_logic := '0';
+signal W_ADDRESS, I2C_data: std_logic_vector(7 downto 0) := x"01";
+signal info_data: std_logic_vector(7 downto 0) := x"AA";
+
+
+
+begin
+
+source_clk <= not source_clk after 10 ns; --main clock
+
+DUT: entity work.I2C_controller(rtl)
+	generic map(
+		FREQ => FREQ,
+		DEVICE_ID => "1010",
+		CHIP_SELECT_BITS => "111",
+		WR => WR, 
+		RD => RD
+	),
+	
+	port map(
+		clk_MAIN => source_clk,
+		rst => rst,
+		SQ_in => SQ_in,
+		SCL => SCL,
+		SDA => SDA,
+		W_ADDRESS => W_ADDRESS
+	);
+	
+
+process
+
+
+
+begin
+	rst <= '0';
+	wait for FREQ_period * 2; --initiate a reset
+	rst <= '1';
+	
+	if SCL = '1' and SDA = '1' then
+		wait for 2 us;
+		if SCL = '1' and SDA = '0' then
+			wait for 4 us;
+			if SCL = '0' and SDA = '0' then --start condition detected
+				
+				for i in 7 downto 0 loop  --read in the device address byte
+					wait until rising_edge(SCL);
+					I2C_data(i) <= SDA;				
+				end loop;
+				
+				if I2C_data /= DEVICE_ID & CHIP_SELECT_BITS & WR then
+					assert I2C_data = DEVICE_ID & CHIP_SELECT_BITS & WR
+					report "Wrong Slave address."
+					severity error;
+				else	
+					if SCL = '0' then 
+						wait for 1 us; 
+						SDA <= '0';  --generate the ACK bit
+						wait for 8 us;
+						SDA <= '1';					
+					end if;
+					
+					for i in 7 downto 0 loop --read in the word address byte
+						wait until rising_edge(SCL);
+						I2C_data(i) <= SDA;				
+					end loop;
+					
+					if I2C_data /= x"01" then
+						assert I2C_data = x"01"
+						report "Wrong Word address."
+						severity error;
+					else	
+						if SCL = '0' then 
+							wait for 1 us; 
+							SDA <= '0';  --generate the ACK bit
+							wait for 8 us;
+							SDA <= '1';					
+						end if;
+						
+						wait for 3 us; --wait to detect the repeated condition
+						
+						if SCL = '1' and SDA = '1' then
+							wait for 2 us;
+							if SCL = '1' and SDA = '0' then
+								wait for 4 us;
+								if SCL = '0' and SDA = '0' then --start condition detected
+								
+									for i in 7 downto 0 loop  --read in the device address byte
+										wait until rising_edge(SCL);
+										I2C_data(i) <= SDA;				
+									end loop;
+									
+									if I2C_data /= DEVICE_ID & CHIP_SELECT_BITS & RD then
+										assert I2C_data = DEVICE_ID & CHIP_SELECT_BITS & RD
+										report "Wrong Slave address."
+										severity error;
+									else	
+										if SCL = '0' then 
+											wait for 1 us; 
+											SDA <= '0';  --generate the ACK bit
+											wait for 8 us;
+											SDA <= '1';					
+										end if;
+										
+										for i in 7 downto 0 loop --send out data byte	
+											wait until falling_edge(SCL);
+											wait for 2 us;
+											SDA <= info_data(i);
+											wait until rising_edge(SCL);
+											wait for 2 us;											
+										end loop;
+										
+										wait;  --TODO check for NACK and stop bits
+										
+									end if;
+								end if;										
+							end if;								
+						end if;	
+					end if;
+				end if;
+			end if;
+		end if;
+	end if;
+end process;
+
+
+
+
+end architecture;
