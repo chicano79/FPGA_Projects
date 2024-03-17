@@ -45,8 +45,6 @@ signal i2c_data_en, i2c_clk_en: std_logic := '0';
 signal clk_I2C: std_logic;
 signal i2c_ack: std_logic;
 
---signal I2C_Data: std_logic_vector(7 downto 0);
-
 
 begin
 

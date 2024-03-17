@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 
-entity I2C_controller is
+entity I2C_controllerTest is
 	generic(
 		FREQ: integer;
 		I2C_FREQ: integer
@@ -38,7 +38,7 @@ entity I2C_controller is
 end entity;
 
 
-architecture rtl of I2C_controller is
+architecture rtl of I2C_controllerTest is
 signal i2c_dataToSend: std_logic_vector(7 downto 0);
 signal i2c_data_bit, i2c_clk: std_logic := '0';--always low
 signal i2c_data_en, i2c_clk_en: std_logic := '0';
@@ -86,39 +86,39 @@ I2C_ENGINE_PROC:
 			
 		elsif rising_edge(clk_I2C) then
 		
-STATE1:
+--STATE1:
 			if initiateStart = '1' then		--check for START condition initiation		
 				if counter = 0 then	
-					I2CeventComplete <= '0'; --i2c event not completed yet
-					I2CcmdProcessing <= '1'; --i2c command started processing					
+					I2CeventComplete <= '0'; --i2c event not completed yet										
 					i2c_data_en <= '0';	--pull the SDA line high
 					i2c_clk_en <= '0'; --pull the SCL line high				
 					counter := counter + 1;
-				elsif counter < 3 then	
-					counter := counter + 1;
-				elsif counter = 3 then
+				elsif counter = 1 then
+					I2CcmdProcessing <= '1'; --i2c command started processing
 					i2c_data_bit <= '0';
 					i2c_data_en <= '1';  --falling edge of the sda line
-					counter := counter + 1;
-				elsif counter < 8 then	
+					counter := counter + 1;					
+				elsif counter < 6 then	
 					counter := counter + 1;	
 				else
-					counter = 0;
+					counter := 0;
 					i2c_clk <= '0';
 					i2c_clk_en <= '1'; --falling edge of the scl line
 					I2CcmdProcessing <= '0'; --i2c command finished processing
 					I2CeventComplete <= '1'; --i2c event has now completed					
 				end if;
 		
-STATE2:		
+--STATE2:		
 			elsif initiate8bitDataTransfer = '1' then --check for Data Transfer initiation
 				if counter = 0 then
+					data_bits := 0;
 					i2c_dataToSend <= I2C_Input_Data;--get the 8 bits of data to send to slave
 					ACKready <= '0'; --acknowledgement bit not ready yet
 					I2CeventComplete <= '0'; --i2c event not completed yet
-					I2CcmdProcessing <= '1'; --i2c command started processing
-					counter := counter + 1
+					--I2CcmdProcessing <= '1'; --i2c command started processing
+					counter := counter + 1;
 				elsif counter = 1 then 
+					I2CcmdProcessing <= '1'; --i2c command started processing
 					i2c_dataToSend <= i2c_dataToSend(6 downto 0) & '0'; --shift the bits
 					i2c_data_bit <= i2c_dataToSend(7);
 					counter := counter + 1; 
@@ -129,7 +129,7 @@ STATE2:
 					counter := counter + 1;
 				elsif counter < 10 then 
 					counter := counter + 1;
-				elsif counter := 10;
+				elsif counter = 10 then
 					i2c_clk <= '0';
 					i2c_clk_en <= '1'; --falling edge of the scl line			
 						
@@ -139,6 +139,8 @@ STATE2:
 					else
 						data_bits := 0;
 						i2c_data_en <= '0'; --float the sda line to read the ACK bit
+						I2CcmdProcessing <= '0'; --i2c command finished processing
+						I2CeventComplete <= '1'; --i2c event has now completed
 						counter := counter + 1;
 					end if;
 				elsif counter < 15 then --delay for 5us for the low period of i2c clk			
@@ -155,24 +157,24 @@ STATE2:
 					i2c_clk_en <= '1'; --falling edge of the scl line
 					ACKfromSlave <= i2c_ack; --send out the acknowledge value
 					ACKready <= '1';					
-					I2CcmdProcessing <= '0'; --i2c command finished processing
-					I2CeventComplete <= '1'; --i2c event has now completed
+					--I2CcmdProcessing <= '0'; --i2c command finished processing
+					--I2CeventComplete <= '1'; --i2c event has now completed
 				end if;	
 				
 
-STATE3:
+--STATE3:
 			elsif fetchI2Cdata = '1' then  --get the i2c data from slave
 				if counter = 0 then
 					i2c_data_en <= '0'; --float the sda line to allow slave send data
 					I2CeventComplete <= '0'; --i2c event not completed yet
 					I2CcmdProcessing <= '1'; --i2c command started processing
 					dataAvailable <= '0'; --i2c data not available yet
-					counter := counter + 1
+					counter := counter + 1;
 				elsif counter < 5 then  --delay for 5us for the low period of i2c clk
 					counter := counter + 1;
 				elsif counter = 5 then						
-					i2c_clk_en <= '0'; --rising edge of the scl line
-					I2C_Output_Data <= I2C_Output_Data(6 downto 0) & SDA; --clock in data from slave bit by bit
+					i2c_clk_en <= '0'; --rising edge of the scl line					
+					i2c_dataToSend <= i2c_dataToSend(6 downto 0) & SDA; --clock in data from slave bit by bit
 					counter := counter + 1;	
 				elsif counter < 10 then --wait for another 5us for the high period of i2c clk 
 					counter := counter + 1;
@@ -185,13 +187,14 @@ STATE3:
 					else
 						data_bits := 0;
 						counter := 0;
+						I2C_Output_Data <= i2c_dataToSend;
 						I2CcmdProcessing <= '0'; --i2c command finished processing
 						I2CeventComplete <= '1'; --i2c event has now completed
 						dataAvailable <= '1'; --i2c data available now
 					end if;						
 				end if;
 
-STATE4:
+--STATE4:
 			elsif initiateACKfromMaster = '1' then
 				if counter = 0 then
 					i2c_data_en <= not ACKtype;  --set the ack type on the sda line
@@ -213,7 +216,7 @@ STATE4:
 					I2CeventComplete <= '1'; --i2c event has now completed
 				end if;
 				
-STATE5:				
+--STATE5:				
 				
 			elsif initiateStop = '1' then
 				if counter = 0 then
@@ -222,17 +225,24 @@ STATE5:
 					i2c_data_bit <= '0';
 					i2c_data_en <= '1';  --pull the sda line low
 					I2CeventComplete <= '0'; --i2c event not completed yet
-					I2CcmdProcessing <= '1'; --i2c command started processing
 					counter := counter + 1;
-				elsif counter < 5 then --delay for 5us for the stop condition setup time
+				elsif counter = 1 then --
+					I2CcmdProcessing <= '1'; --i2c command started processing
 					i2c_clk_en <= '0'; --rising edge of the scl line
+					counter := counter + 1;
+				elsif counter < 6 then --delay for 5us for the stop condition setup time
 					counter := counter + 1;
 				else	
 					counter := 0;
 					i2c_data_en <= '0';	--pull the SDA line high
 					I2CcmdProcessing <= '0'; --i2c command finished processing
 					I2CeventComplete <= '1'; --i2c event has now completed
-				end if;	
+				end if;
+					
+			else 
+				counter := 0;
+				data_bits := 0;
+				
 			end if;
 		end if;	
 	end process;
