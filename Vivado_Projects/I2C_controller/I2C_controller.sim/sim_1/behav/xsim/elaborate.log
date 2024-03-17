@@ -1,0 +1,5 @@
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 6176b5620dad4da78db2b14c0ed41b80 --incr --debug typical --relax --mt 2 -L work -L secureip --snapshot I2C_controller.vhd_behav work.I2C_controller.vhd -log elaborate.log 
+Using 2 slave threads.
+ERROR: [XSIM 43-3225] Cannot find design unit work.I2C_controller.vhd in library work located at xsim.dir/work.

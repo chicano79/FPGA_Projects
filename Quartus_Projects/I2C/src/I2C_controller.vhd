@@ -59,7 +59,7 @@ HUNDRED_KHZ_PROC:
 		if rst = '0' then
 			counter:= 0;
 			clk_I2C_engine <= '0';		 	
-		elsif clk_MAIN'event and clk_MAIN = '1' then 
+		elsif rising_edge(clk_MAIN) then 
 			if counter < (count_range-1) then
 				counter := counter + 1;
 				clk_I2C_engine <= '0';

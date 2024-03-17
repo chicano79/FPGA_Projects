@@ -1,7 +1,7 @@
-Analysis & Synthesis Status : Failed - Sat Mar 16 15:43:30 2024
+Analysis & Synthesis Status : Failed - Sun Mar 17 12:32:56 2024
 Quartus Prime Version : 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 Revision Name : I2C_controller
-Top-level Entity Name : I2C_controller_tb
+Top-level Entity Name : I2C_controllerNewTest
 Family : MAX 10
 Total logic elements : N/A until Partition Merge
     Total combinational functions : N/A until Partition Merge
