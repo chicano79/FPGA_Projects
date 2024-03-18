@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1710779653">
+  <File Type="BITSTR-BMM" Name="eightDigitBCDcounter_bd.bmm"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="eightDigitBCDcounter_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="eightDigitBCDcounter_timing_summary_init.rpt"/>
+  <File Type="ROUTE-PWR" Name="eightDigitBCDcounter_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="eightDigitBCDcounter.tcl"/>
+  <File Type="OPT-TIMING" Name="eightDigitBCDcounter_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="eightDigitBCDcounter_opt.dcp"/>
+  <File Type="ROUTE-PWR-SUM" Name="eightDigitBCDcounter_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="eightDigitBCDcounter_reports.tcl"/>
+  <File Type="OPT-DRC" Name="eightDigitBCDcounter_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="eightDigitBCDcounter.hwdef"/>
+  <File Type="PWROPT-DCP" Name="eightDigitBCDcounter_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="eightDigitBCDcounter_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="eightDigitBCDcounter_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="eightDigitBCDcounter_placed.dcp"/>
+  <File Type="PLACE-IO" Name="eightDigitBCDcounter_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="eightDigitBCDcounter_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="eightDigitBCDcounter_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="eightDigitBCDcounter_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="eightDigitBCDcounter_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="eightDigitBCDcounter_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="eightDigitBCDcounter_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="eightDigitBCDcounter_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="eightDigitBCDcounter_postplace_pwropt.dcp"/>
+  <File Type="BG-BIN" Name="eightDigitBCDcounter.bin"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="eightDigitBCDcounter_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="eightDigitBCDcounter_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="eightDigitBCDcounter_drc_physopted.rpt"/>
+  <File Type="BITSTR-MSK" Name="eightDigitBCDcounter.msk"/>
+  <File Type="PHYSOPT-TIMING" Name="eightDigitBCDcounter_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="eightDigitBCDcounter_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="eightDigitBCDcounter_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="eightDigitBCDcounter_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="eightDigitBCDcounter_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="eightDigitBCDcounter_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="eightDigitBCDcounter_drc_routed.rpx"/>
+  <File Type="BITSTR-MMI" Name="eightDigitBCDcounter.mmi"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="eightDigitBCDcounter_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="eightDigitBCDcounter_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="eightDigitBCDcounter_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="eightDigitBCDcounter_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="eightDigitBCDcounter_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="eightDigitBCDcounter_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="eightDigitBCDcounter_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="eightDigitBCDcounter_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="eightDigitBCDcounter_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="eightDigitBCDcounter_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="eightDigitBCDcounter_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="eightDigitBCDcounter_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="eightDigitBCDcounter_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="eightDigitBCDcounter_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="eightDigitBCDcounter_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="eightDigitBCDcounter_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="eightDigitBCDcounter_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="eightDigitBCDcounter_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="eightDigitBCDcounter_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="eightDigitBCDcounter_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="eightDigitBCDcounter_bus_skew_postroute_physopted.pb"/>
+  <File Type="BG-BIT" Name="eightDigitBCDcounter.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="eightDigitBCDcounter_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BITSTR-RBT" Name="eightDigitBCDcounter.rbt"/>
+  <File Type="BITSTR-NKY" Name="eightDigitBCDcounter.nky"/>
+  <File Type="PDI-FILE" Name="eightDigitBCDcounter.pdi"/>
+  <File Type="RCFI_FILE" Name="eightDigitBCDcounter.rcfi"/>
+  <File Type="CFI_FILE" Name="eightDigitBCDcounter.cfi"/>
+  <File Type="RNPI_FILE" Name="eightDigitBCDcounter.rnpi"/>
+  <File Type="NPI_FILE" Name="eightDigitBCDcounter.npi"/>
+  <File Type="RBD_FILE" Name="eightDigitBCDcounter.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="eightDigitBCDcounter.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="eightDigitBCDcounter.sysdef"/>
+  <File Type="BG-BGN" Name="eightDigitBCDcounter.bgn"/>
+  <File Type="BG-DRC" Name="eightDigitBCDcounter.drc"/>
+  <File Type="RDI-RDI" Name="eightDigitBCDcounter.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../src/bcdCounter.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="eightDigitBCDcounter"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/COUNTER.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/COUNTER.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design" EnableStepBool="1"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>
