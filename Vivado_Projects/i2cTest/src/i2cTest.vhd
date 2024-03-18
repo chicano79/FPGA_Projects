@@ -9,7 +9,7 @@ entity i2cTest is
 	generic(
 		FREQ: integer := 100e6;
 		I2C_FREQ: integer := 100e3;
-		DEVICE_ID: std_logic_vector(3 downto 0) := "1010";
+		DEVICE_ID: std_logic_vector(3 downto 0) := "1101";
 		CHIP_SELECT_BITS: std_logic_vector(2 downto 0) := "111";
 		WR: std_logic := '0';
 		RD: std_logic := '1'
@@ -19,13 +19,11 @@ entity i2cTest is
 		clk_MAIN: in std_logic;
 		rst: in std_logic;
 		
-		led: out std_logic;
-		
 		SEG_7: buffer std_logic_vector(0 to 6);
 		ANODE: buffer std_logic_vector(0 to 7) := (others => '1');
 		
 		--SQ_in: in std_logic;
-		SCL: inout std_logic;
+		SCL: out std_logic;
 		SDA: inout std_logic
 	);	
 end i2cTest;
@@ -100,13 +98,10 @@ entity work.I2C_controllerNew(rtl)
 	port map(
 		clk_MAIN => clk_MAIN,
 		rst => rst,
-		
-		led => led,
-		
+				
 		initiateStart => initiateStart,
 		initiateStop => initiateStop,
 		initiateACKfromMaster => initiateACKfromMaster,
-		resetCounter => resetCounter,
 		
 		ACKtype => ACKtype,  --master can send either a ACK('0') or a NACK('1')
 		
@@ -217,7 +212,6 @@ FETCH_RTCC:
 			initiate8bitDataTransfer <= '0';
 			fetchI2Cdata <= '0';
 			initiateACKfromMaster <= '0';
-			resetCounter <= '0';
 			initiateStop <= '0';
 			
 		elsif rising_edge(clk_MAIN) then 
@@ -229,14 +223,14 @@ FETCH_RTCC:
 				when 1 =>
 					if I2CeventComplete = '1' then
 						initiateStart <= '0';
-						fetchStateVariable <= 2;					
+						fetchStateVariable <= 3;					
 					end if;
 					
-				when 2 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
-						fetchStateVariable <= 3;					
-					end if; 
+				-- when 2 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 3;					
+					-- end if; 
 					
 				--send in control Byte with write
 				when 3 =>
@@ -254,16 +248,16 @@ FETCH_RTCC:
 					end if;
 				when 6 =>
 					if ACKfromSlave = '0' then
-						fetchStateVariable <= 7;
+						fetchStateVariable <= 8;
 					else
 						fetchStateVariable <= 0;  --error restart
 					end if;
 					
-				when 7 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
-						fetchStateVariable <= 8;					
-					end if;
+				-- when 7 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 8;					
+					-- end if;
 					
 				--send in word address
 				when 8 =>
@@ -281,16 +275,16 @@ FETCH_RTCC:
 					end if;
 				when 11 =>
 					if ACKfromSlave = '0' then
-						fetchStateVariable <= 12;
+						fetchStateVariable <= 13;
 					else
 						fetchStateVariable <= 0;  --error restart
 					end if;
 					
-				when 12 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
-						fetchStateVariable <= 13;					
-					end if;
+				-- when 12 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 13;					
+					-- end if;
 					
 				--initiate a repeated start condition
 				when 13 =>
@@ -299,13 +293,13 @@ FETCH_RTCC:
 				when 14 =>
 					if I2CeventComplete = '1' then
 						initiateStart <= '0';
-						fetchStateVariable <= 15;					
-					end if;
-				when 15 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
 						fetchStateVariable <= 16;					
 					end if;
+				-- when 15 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 16;					
+					-- end if;
 					
 				--send in control Byte with read
 				when 16 =>
@@ -323,15 +317,15 @@ FETCH_RTCC:
 					end if;
 				when 19 =>
 					if ACKfromSlave = '0' then
-						fetchStateVariable <= 20;
+						fetchStateVariable <= 21;
 					else
 						fetchStateVariable <= 0;  --error restart
 					end if;
-				when 20 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
-						fetchStateVariable <= 21;					
-					end if;
+				-- when 20 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 21;					
+					-- end if;
 					
 				--get serial data from device (first timing register)
 				when 21 =>
@@ -341,13 +335,13 @@ FETCH_RTCC:
 					if dataAvailable = '1' then
 						fetchI2Cdata <= '0';
 						secondsRegister <= I2C_Output_Data;
-						fetchStateVariable <= 23;
+						fetchStateVariable <= 24;
 					end if;
-				when 23 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
-						fetchStateVariable <= 24;					
-					end if;
+				-- when 23 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 24;					
+					-- end if;
 						
 				--send a ACK to fetch the next register
 				when 24 =>
@@ -357,13 +351,13 @@ FETCH_RTCC:
 				when 25 =>
 					if I2CeventComplete = '1' then
 						initiateACKfromMaster <= '0';
-						fetchStateVariable <= 26;					
-					end if;
-				when 26 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
 						fetchStateVariable <= 27;					
 					end if;
+				-- when 26 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 27;					
+					-- end if;
 					
 				--get the second time register
 				when 27 =>
@@ -373,13 +367,13 @@ FETCH_RTCC:
 					if dataAvailable = '1' then
 						fetchI2Cdata <= '0';
 						minutesRegister <= I2C_Output_Data;
-						fetchStateVariable <= 29;
+						fetchStateVariable <= 30;
 					end if;
-				when 29 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
-						fetchStateVariable <= 30;					
-					end if;
+				-- when 29 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 30;					
+					-- end if;
 						
 				--send a ACK to fetch the next register
 				when 30 =>
@@ -389,13 +383,13 @@ FETCH_RTCC:
 				when 31 =>
 					if I2CeventComplete = '1' then
 						initiateACKfromMaster <= '0';
-						fetchStateVariable <= 32;					
-					end if;
-				when 32 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
 						fetchStateVariable <= 33;					
 					end if;
+				-- when 32 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 33;					
+					-- end if;
 					
 				--get the hours register				
 				when 33 =>
@@ -405,13 +399,13 @@ FETCH_RTCC:
 					if dataAvailable = '1' then
 						fetchI2Cdata <= '0';
 						hoursRegister <= I2C_Output_Data;
-						fetchStateVariable <= 35;
+						fetchStateVariable <= 36;
 					end if;
-				when 35 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
-						fetchStateVariable <= 36;					
-					end if;
+				-- when 35 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 36;					
+					-- end if;
 						
 				--send a NACK to terminate transfers
 				when 36 =>
@@ -422,13 +416,13 @@ FETCH_RTCC:
 				when 37 =>
 					if I2CeventComplete = '1' then
 						initiateACKfromMaster <= '0';
-						fetchStateVariable <= 38;					
-					end if;
-				when 38 =>
-					resetCounter <= '1';
-					if I2CeventComplete = '1' then
 						fetchStateVariable <= 39;					
 					end if;
+				-- when 38 =>
+					-- resetCounter <= '1';
+					-- if I2CeventComplete = '1' then
+						-- fetchStateVariable <= 39;					
+					-- end if;
 
 				--send the stop condition
 				when 39 =>
