@@ -42,15 +42,15 @@ with selector select
 			   seg(7) when 7;		  
 
 BLOCK_AA:
-	process(clk_main, rst)
+	process(clk_main)
 		constant count_range: integer range 0 to FREQ := FREQ/500;
 		variable counter: integer range 0 to count_range := 0;
 	begin
-		if rst = '0' then
-			counter := 0;
-			internal_anode <= (0 => '0', others => '1');
-			selector <= 0;
-		elsif rising_edge(clk_main) then
+		-- if rst = '0' then
+			-- counter := 0;
+			-- internal_anode <= (0 => '0', others => '1');
+			-- selector <= 0;
+		if rising_edge(clk_main) then
 			if counter < count_range then
 				counter := counter + 1;			
 			else	

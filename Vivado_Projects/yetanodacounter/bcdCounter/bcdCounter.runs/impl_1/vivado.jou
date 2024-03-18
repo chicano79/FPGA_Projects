@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Mon Mar 18 16:35:22 2024
-# Process ID: 20740
+# Start of session at: Mon Mar 18 17:18:13 2024
+# Process ID: 28856
 # Current directory: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/yetanodacounter/bcdCounter/bcdCounter.runs/impl_1
 # Command line: vivado.exe -log eightDigitBCDcounter.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source eightDigitBCDcounter.tcl -notrace
 # Log file: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/yetanodacounter/bcdCounter/bcdCounter.runs/impl_1/eightDigitBCDcounter.vdi
