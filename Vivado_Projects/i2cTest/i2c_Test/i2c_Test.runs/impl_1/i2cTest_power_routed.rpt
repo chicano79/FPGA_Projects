@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date             : Mon Mar 18 01:27:36 2024
+| Date             : Tue Mar 19 06:41:30 2024
 | Host             : DESKTOP-7RQ9HLB running 64-bit major release  (build 9200)
 | Command          : report_power -file i2cTest_power_routed.rpt -pb i2cTest_power_summary_routed.pb -rpx i2cTest_power_routed.rpx
 | Design           : i2cTest
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 30.076 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 34.436 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 29.279                           |
+| Dynamic (W)              | 33.639                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -52,17 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.213 |      486 |       --- |             --- |
-|   LUT as Logic |     1.146 |      222 |     63400 |            0.35 |
-|   Register     |     0.024 |      171 |    126800 |            0.13 |
+| Slice Logic    |     0.787 |      409 |       --- |             --- |
+|   LUT as Logic |     0.719 |      200 |     63400 |            0.32 |
+|   Register     |     0.037 |      146 |    126800 |            0.12 |
 |   CARRY4       |     0.022 |       11 |     15850 |            0.07 |
-|   F7/F8 Muxes  |     0.016 |        7 |     63400 |            0.01 |
-|   BUFG         |     0.006 |        2 |        32 |            6.25 |
+|   BUFG         |     0.008 |        2 |        32 |            6.25 |
 |   Others       |     0.000 |        5 |       --- |             --- |
-| Signals        |     1.122 |      371 |       --- |             --- |
-| I/O            |    26.944 |       20 |       210 |            9.52 |
+| Signals        |     0.733 |      307 |       --- |             --- |
+| I/O            |    32.120 |       19 |       210 |            9.05 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    30.076 |          |           |                 |
+| Total          |    34.436 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,9 +71,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     2.902 |       2.339 |      0.563 |
-| Vccaux    |       1.800 |     1.080 |       0.987 |      0.093 |
-| Vcco33    |       3.300 |     7.629 |       7.625 |      0.004 |
+| Vccint    |       1.000 |     2.087 |       1.524 |      0.563 |
+| Vccaux    |       1.800 |     1.270 |       1.177 |      0.093 |
+| Vcco33    |       3.300 |     9.094 |       9.090 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -139,9 +138,8 @@ Table of Contents
 +------------------+-----------+
 | Name             | Power (W) |
 +------------------+-----------+
-| i2cTest          |    29.279 |
-|   I2C_CONTROLLER |     0.655 |
-|   SDA_IOBUF_inst |     0.005 |
+| i2cTest          |    33.639 |
+|   I2C_CONTROLLER |     0.524 |
 +------------------+-----------+
 
 

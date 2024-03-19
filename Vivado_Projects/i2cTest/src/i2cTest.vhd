@@ -35,7 +35,7 @@ constant startingTimeRegister: std_logic_vector(7 downto 0) := x"00";
 signal initiateStart: std_logic;
 signal initiateStop: std_logic;
 signal initiateACKfromMaster: std_logic;
-signal resetCounter: std_logic;
+signal deviceReady: std_logic;
 
 signal ACKtype: std_logic;  --master can send either a ACK('0') or a NACK('1')
 
@@ -102,6 +102,8 @@ entity work.I2C_controllerNew(rtl)
 		initiateStart => initiateStart,
 		initiateStop => initiateStop,
 		initiateACKfromMaster => initiateACKfromMaster,
+		
+		deviceReady => deviceReady,
 		
 		ACKtype => ACKtype,  --master can send either a ACK('0') or a NACK('1')
 		
@@ -218,19 +220,18 @@ FETCH_RTCC:
 			case fetchStateVariable is
 				--initiate start condition
 				when 0 =>
-					initiateStart <= '1';
+					initiateStart <= '1';					
 					fetchStateVariable <= 2;
 				when 1 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						initiateStart <= '0';
-						fetchStateVariable <= 3;					
+						fetchStateVariable <= 2;					
 					end if;
 					
-				-- when 2 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 3;					
-					-- end if; 
+				when 2 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 3;
 					
 				--send in control Byte with write
 				when 3 =>
@@ -238,6 +239,7 @@ FETCH_RTCC:
 					initiate8bitDataTransfer <= '1';
 					fetchStateVariable <= 4;				
 				when 4 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						fetchStateVariable <= 5;					
 					end if;
@@ -248,16 +250,14 @@ FETCH_RTCC:
 					end if;
 				when 6 =>
 					if ACKfromSlave = '0' then
-						fetchStateVariable <= 8;
+						fetchStateVariable <= 7;
 					else
 						fetchStateVariable <= 0;  --error restart
 					end if;
 					
-				-- when 7 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 8;					
-					-- end if;
+				when 7 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 8;
 					
 				--send in word address
 				when 8 =>
@@ -265,6 +265,7 @@ FETCH_RTCC:
 					initiate8bitDataTransfer <= '1';
 					fetchStateVariable <= 9;				
 				when 9 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						fetchStateVariable <= 10;					
 					end if;
@@ -275,31 +276,28 @@ FETCH_RTCC:
 					end if;
 				when 11 =>
 					if ACKfromSlave = '0' then
-						fetchStateVariable <= 13;
+						fetchStateVariable <= 12;
 					else
 						fetchStateVariable <= 0;  --error restart
 					end if;
 					
-				-- when 12 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 13;					
-					-- end if;
+				when 12 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 13;
 					
 				--initiate a repeated start condition
 				when 13 =>
 					initiateStart <= '1';
 					fetchStateVariable <= 14;
 				when 14 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						initiateStart <= '0';
-						fetchStateVariable <= 16;					
+						fetchStateVariable <= 15;					
 					end if;
-				-- when 15 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 16;					
-					-- end if;
+				when 15 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 16;
 					
 				--send in control Byte with read
 				when 16 =>
@@ -307,6 +305,7 @@ FETCH_RTCC:
 					initiate8bitDataTransfer <= '1';
 					fetchStateVariable <= 17;				
 				when 17 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						fetchStateVariable <= 18;					
 					end if;
@@ -317,31 +316,28 @@ FETCH_RTCC:
 					end if;
 				when 19 =>
 					if ACKfromSlave = '0' then
-						fetchStateVariable <= 21;
+						fetchStateVariable <= 20;
 					else
 						fetchStateVariable <= 0;  --error restart
 					end if;
-				-- when 20 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 21;					
-					-- end if;
+				when 20 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 21;
 					
 				--get serial data from device (first timing register)
 				when 21 =>
 					fetchI2Cdata <= '1';
 					fetchStateVariable <= 22;				
 				when 22 =>
+					deviceReady <= '0';
 					if dataAvailable = '1' then
 						fetchI2Cdata <= '0';
 						secondsRegister <= I2C_Output_Data;
-						fetchStateVariable <= 24;
+						fetchStateVariable <= 23;
 					end if;
-				-- when 23 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 24;					
-					-- end if;
+				when 23 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 24;
 						
 				--send a ACK to fetch the next register
 				when 24 =>
@@ -349,31 +345,29 @@ FETCH_RTCC:
 					initiateACKfromMaster <= '1';
 					fetchStateVariable <= 25;
 				when 25 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						initiateACKfromMaster <= '0';
-						fetchStateVariable <= 27;					
+						fetchStateVariable <= 26;					
 					end if;
-				-- when 26 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 27;					
-					-- end if;
+				when 26 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 27;
 					
 				--get the second time register
 				when 27 =>
 					fetchI2Cdata <= '1';
 					fetchStateVariable <= 28;				
 				when 28 =>
+					deviceReady <= '0';
 					if dataAvailable = '1' then
 						fetchI2Cdata <= '0';
 						minutesRegister <= I2C_Output_Data;
-						fetchStateVariable <= 30;
+						fetchStateVariable <= 29;
 					end if;
-				-- when 29 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 30;					
-					-- end if;
+				when 29 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 30;
 						
 				--send a ACK to fetch the next register
 				when 30 =>
@@ -381,31 +375,29 @@ FETCH_RTCC:
 					initiateACKfromMaster <= '1';
 					fetchStateVariable <= 31;
 				when 31 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						initiateACKfromMaster <= '0';
-						fetchStateVariable <= 33;					
+						fetchStateVariable <= 32;					
 					end if;
-				-- when 32 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 33;					
-					-- end if;
-					
+				when 32 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 33;
+			
 				--get the hours register				
 				when 33 =>
 					fetchI2Cdata <= '1';
 					fetchStateVariable <= 34;				
 				when 34 =>
+					deviceReady <= '0';
 					if dataAvailable = '1' then
 						fetchI2Cdata <= '0';
 						hoursRegister <= I2C_Output_Data;
-						fetchStateVariable <= 36;
+						fetchStateVariable <= 35;
 					end if;
-				-- when 35 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 36;					
-					-- end if;
+				when 35 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 36;
 						
 				--send a NACK to terminate transfers
 				when 36 =>
@@ -414,27 +406,30 @@ FETCH_RTCC:
 					fetchStateVariable <= 37;
 
 				when 37 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						initiateACKfromMaster <= '0';
-						fetchStateVariable <= 39;					
+						fetchStateVariable <= 38;					
 					end if;
-				-- when 38 =>
-					-- resetCounter <= '1';
-					-- if I2CeventComplete = '1' then
-						-- fetchStateVariable <= 39;					
-					-- end if;
+				when 38 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 39;
 
 				--send the stop condition
 				when 39 =>
 					initiateStop <= '1';
 					fetchStateVariable <= 40;
 				when 40 =>
+					deviceReady <= '0';
 					if I2CeventComplete = '1' then
 						initiateStop <= '0';
 						fetchStateVariable <= 41;					
 					end if;
-					
 				when 41 =>
+					deviceReady <= '1';
+					fetchStateVariable <= 42;
+					
+				when 42 =>
 					if counter < count_range-1 then
 						counter := counter + 1;
 					else
@@ -442,7 +437,7 @@ FETCH_RTCC:
 						fetchStateVariable <= 0;
 					end if;
 				when others =>
-				    fetchStateVariable <= 41;
+				    fetchStateVariable <= 42;
 			end case;
 		end if;
 	end process;	

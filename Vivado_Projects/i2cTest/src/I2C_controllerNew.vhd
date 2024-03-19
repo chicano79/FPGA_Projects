@@ -16,6 +16,8 @@ entity I2C_controllerNew is
 		initiateStop: in std_logic;
 		initiateACKfromMaster: in std_logic;
 		
+		deviceReady: in std_logic;
+		
 		ACKtype: in std_logic;  --master can send either a ACK('0') or a NACK('1')
 		
 		initiate8bitDataTransfer: in std_logic;
@@ -86,7 +88,7 @@ K_PROC:
 	
 	
 I2C_CLOCK_PROC:
-	process(clk_MAIN, rst)
+	process(clk_MAIN, rst, clk_init, start_stopCond)
 		constant count_range: integer range 0 to (FREQ*2) := (FREQ*2)/I2C_FREQ;
 		variable counter: integer range 0 to count_range := 0;
 	begin
@@ -114,26 +116,27 @@ I2C_CLOCK_PROC:
 		end if;
 	end process;	
 	
-checkin:
-	process(clk_MAIN)
+-- checkin:
+	-- process(clk_MAIN)
 	
 	
-	begin
-		if rising_edge(clk_MAIN) then
-			if initiateStart = '1' then
-				I2C_event_variable <= START1;			
-			elsif initiateStop = '1' then
-				I2C_event_variable <= STOP1;
-			elsif initiate8bitDataTransfer = '1' then
-				I2C_event_variable <= SEND_DATA1;
-			elsif initiateACKfromMaster = '1' then
-				I2C_event_variable <= SEND_ACK1;
-			elsif fetchI2Cdata = '1' then
-				I2C_event_variable <= GET_DATA1;
-			else 
-				I2C_event_variable <= IDLEx;
-		end if;
-	end process;
+	-- begin
+		-- if rising_edge(clk_MAIN) then
+			-- if initiateStart = '1' then
+				-- I2C_event_variable <= START1;			
+			-- elsif initiateStop = '1' then
+				-- I2C_event_variable <= STOP1;
+			-- elsif initiate8bitDataTransfer = '1' then
+				-- I2C_event_variable <= SEND_DATA1;
+			-- elsif initiateACKfromMaster = '1' then
+				-- I2C_event_variable <= SEND_ACK1;
+			-- elsif fetchI2Cdata = '1' then
+				-- I2C_event_variable <= GET_DATA1;
+			-- else 
+				-- I2C_event_variable <= IDLEx;
+			-- end if;
+		-- end if;
+	-- end process;
 	
 	
 I2C_ENGINE_PROC:
@@ -149,6 +152,22 @@ I2C_ENGINE_PROC:
 			data_bit_enable <= '0';	--pull the SDA line high
 			
 		elsif rising_edge(some_clk) then
+		
+			if initiateStart = '1' then
+				I2C_event_variable <= START1;			
+			elsif initiateStop = '1' then
+				I2C_event_variable <= STOP1;
+			elsif initiate8bitDataTransfer = '1' then
+				I2C_event_variable <= SEND_DATA1;
+			elsif initiateACKfromMaster = '1' then
+				I2C_event_variable <= SEND_ACK1;
+			elsif fetchI2Cdata = '1' then
+				I2C_event_variable <= GET_DATA1;
+			else 
+				I2C_event_variable <= IDLEx;
+			end if;		
+		
+		
 			case I2C_event_variable is
 				--idle state
 				when IDLEx =>
@@ -181,7 +200,9 @@ I2C_ENGINE_PROC:
 				when START3 =>
 					clk_init <= '0';
 					I2CeventComplete <= '1'; --i2c event has now completed
-					I2C_event_variable <= IDLEx;
+					if deviceReady = '1' then
+						I2C_event_variable <= IDLEx;
+					end if;
 					
 					
 				--8bit data sent to slave				
@@ -199,29 +220,29 @@ I2C_ENGINE_PROC:
 				when SEND_DATA2 => 
 					i2c_dataToSend <= i2c_dataToSend(6 downto 0) & '0'; --shift the bits
 					data_bit_out <= i2c_dataToSend(7);
-					i2c_clk_enable <= '1'
+					i2c_clk_enable <= '1';
 					I2C_event_variable <= SEND_DATA3;					
 				when SEND_DATA3 =>	
-					if clk_pulsed <= '1'; then
+					if clk_pulsed = '1' then
 						i2c_clk_enable <= '0';
 						clk_init <= '1';
 						I2C_event_variable <= SEND_DATA4;
 					end if;
 				when SEND_DATA4 =>
-					clk_init = '0';
+					clk_init <= '0';
 					if data_bits < 7 then --count the bits shifted out so far. 
 						data_bits := data_bits + 1;-- keep looping until 8bits are out 
 						I2C_event_variable <= SEND_DATA2;
 					else
 						data_bits := 0;
 						data_bit_enable <= '0'; --float the sda line to read the ACK bit
-						i2c_clk_enable <= '1'
+						i2c_clk_enable <= '1';
 						I2CeventComplete <= '1'; --i2c event has now completed
 						I2C_event_variable <= SEND_DATA5;
 						--I2C_event_variable <= IDLEx;
 					end if; 					
 				when SEND_DATA5 =>
-					if clk_pulsed <= '1'; then
+					if clk_pulsed = '1' then
 						i2c_clk_enable <= '0';
 						i2c_ack <= data_bit_in; --read in the ACK bit
 						clk_init <= '1';						
@@ -231,7 +252,9 @@ I2C_ENGINE_PROC:
 					clk_init <= '0';
 					ACKfromSlave <= i2c_ack; --send out the acknowledge value
 					ACKready <= '1';
-					I2C_event_variable <= IDLEx;
+					if deviceReady = '1' then
+						I2C_event_variable <= IDLEx;
+					end if;
 
 					
 				--send acknowledgment bit					
@@ -242,7 +265,7 @@ I2C_ENGINE_PROC:
 					I2CeventComplete <= '0'; --i2c event not completed yet
 					I2C_event_variable <= SEND_ACK2;				
 				when SEND_ACK2 =>
-					if clk_pulsed <= '1'; then
+					if clk_pulsed = '1' then
 						i2c_clk_enable <= '0';
 						clk_init <= '1';						
 						I2C_event_variable <= SEND_ACK3;
@@ -250,7 +273,9 @@ I2C_ENGINE_PROC:
 				when SEND_ACK3 =>
 					clk_init <= '0';
 					I2CeventComplete <= '1'; --i2c event has now completed
-					I2C_event_variable <= IDLEx;
+					if deviceReady = '1' then
+						I2C_event_variable <= IDLEx;
+					end if;
 	
 				
 				--get 8bit data from slave
@@ -258,11 +283,11 @@ I2C_ENGINE_PROC:
 					data_bits := 0;
 					data_bit_enable <= '0'; --float the sda line to allow slave send data					
 					dataAvailable <= '0'; --i2c data not available yet
-					i2c_clk_enable = '1';
+					i2c_clk_enable <= '1';
 					I2CeventComplete <= '0'; --i2c event not completed yet
 					I2C_event_variable <= GET_DATA2;				
 				when GET_DATA2 =>
-					if clk_pulsed <= '1'; then
+					if clk_pulsed = '1' then
 						i2c_dataToSend <= i2c_dataToSend(6 downto 0) & data_bit_in; --clock in data from slave bit by bit
 						if data_bits < 7 then --count the bits shifted out so far. 
 							data_bits := data_bits + 1;
@@ -278,7 +303,9 @@ I2C_ENGINE_PROC:
 					clk_init <= '0';
 					I2CeventComplete <= '1'; --i2c event has now completed
 					dataAvailable <= '1'; --i2c data available now
-					I2C_event_variable <= IDLEx;
+					if deviceReady = '1' then
+						I2C_event_variable <= IDLEx;
+					end if;
 					
 					
 				--initiate stop condition	
@@ -300,7 +327,9 @@ I2C_ENGINE_PROC:
 				when STOP3 =>
 					start_stopCond <= '0';
 					I2CeventComplete <= '1'; --i2c event has now completed					
-					I2C_event_variable <= IDLEx;
+					if deviceReady = '1' then
+						I2C_event_variable <= IDLEx;
+					end if;
 					
 				when others =>
 					I2C_event_variable <= IDLEx;					

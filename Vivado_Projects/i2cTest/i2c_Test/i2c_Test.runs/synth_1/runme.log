@@ -15,26 +15,27 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 19392 
+INFO: Helper process launched with PID 18588 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 852.910 ; gain = 234.902
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 852.699 ; gain = 234.621
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'i2cTest' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/i2cTest.vhd:33]
+INFO: [Synth 8-638] synthesizing module 'i2cTest' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/i2cTest.vhd:31]
 	Parameter FREQ bound to: 100000000 - type: integer 
 	Parameter I2C_FREQ bound to: 100000 - type: integer 
-	Parameter DEVICE_ID bound to: 4'b1010 
+	Parameter DEVICE_ID bound to: 4'b1101 
 	Parameter CHIP_SELECT_BITS bound to: 3'b111 
 	Parameter WR bound to: 1'b0 
 	Parameter RD bound to: 1'b1 
-INFO: [Synth 8-638] synthesizing module 'I2C_controllerNew' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:44]
+INFO: [Synth 8-638] synthesizing module 'I2C_controllerNew' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:43]
 	Parameter FREQ bound to: 100000000 - type: integer 
 	Parameter I2C_FREQ bound to: 100000 - type: integer 
-WARNING: [Synth 8-614] signal 'start_stopCond' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:82]
-WARNING: [Synth 8-614] signal 'startI2Cclock' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:82]
-INFO: [Synth 8-256] done synthesizing module 'I2C_controllerNew' (1#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:44]
-INFO: [Synth 8-256] done synthesizing module 'i2cTest' (2#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/i2cTest.vhd:33]
+WARNING: [Synth 8-614] signal 'i2c_clk_enable' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:90]
+WARNING: [Synth 8-3848] Net I2CcmdProcessing in module/entity I2C_controllerNew does not have driver. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'I2C_controllerNew' (1#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'i2cTest' (2#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/i2cTest.vhd:31]
+WARNING: [Synth 8-3331] design I2C_controllerNew has unconnected port I2CcmdProcessing
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 926.051 ; gain = 308.043
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 926.734 ; gain = 308.656
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -47,97 +48,132 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 926.051 ; gain = 308.043
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 930.906 ; gain = 312.828
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 926.051 ; gain = 308.043
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 930.906 ; gain = 312.828
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 926.051 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 930.906 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.srcs/constrs_1/new/I2C.xdc]
+WARNING: [Vivado 12-584] No ports matched 'led'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.srcs/constrs_1/new/I2C.xdc:43]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.srcs/constrs_1/new/I2C.xdc:43]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.srcs/constrs_1/new/I2C.xdc:44]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.srcs/constrs_1/new/I2C.xdc:44]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.srcs/constrs_1/new/I2C.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.srcs/constrs_1/new/I2C.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/i2cTest_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/i2cTest_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1015.594 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1033.270 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1015.594 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1033.270 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1015.594 ; gain = 397.586
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1033.270 ; gain = 415.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1015.594 ; gain = 397.586
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1033.270 ; gain = 415.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1015.594 ; gain = 397.586
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1033.270 ; gain = 415.191
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'I2C_event_variable_reg' in module 'I2C_controllerNew'
+INFO: [Synth 8-5546] ROM "dataAvailable" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ACKfromSlave" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ACKready" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "counter" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-802] inferred FSM for state register 'fetchStateVariable_reg' in module 'i2cTest'
 INFO: [Synth 8-5545] ROM "counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "ACKtype" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "I2C_Input_Data" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
-INFO: [Synth 8-5545] ROM "resetCounter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
-WARNING: [Synth 8-327] inferring latch for variable 'I2CcmdProcessing_reg' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/I2C_controllerNew.vhd:116]
+INFO: [Synth 8-5545] ROM "deviceReady" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                iSTATE13 | 00000000000000000000000000000000000000001 | 00000000000000000000000000000000
-                iSTATE11 | 00000000000000000000000000000000000000010 | 00000000000000000000000000000010
-                iSTATE10 | 00000000000000000000000000000000000000100 | 00000000000000000000000000000011
-                  iSTATE | 00000000000000000000000000000000000001000 | 00000000000000000000000000000100
-                iSTATE39 | 00000000000000000000000000000000000010000 | 00000000000000000000000000000101
-                iSTATE37 | 00000000000000000000000000000000000100000 | 00000000000000000000000000000110
-                iSTATE34 | 00000000000000000000000000000000001000000 | 00000000000000000000000000000111
-                iSTATE40 | 00000000000000000000000000000000010000000 | 00000000000000000000000000001000
-                iSTATE38 | 00000000000000000000000000000000100000000 | 00000000000000000000000000001001
-                iSTATE35 | 00000000000000000000000000000001000000000 | 00000000000000000000000000001010
-                iSTATE32 | 00000000000000000000000000000010000000000 | 00000000000000000000000000001011
-                iSTATE29 | 00000000000000000000000000000100000000000 | 00000000000000000000000000001100
-                iSTATE28 | 00000000000000000000000000001000000000000 | 00000000000000000000000000001101
-                iSTATE26 | 00000000000000000000000000010000000000000 | 00000000000000000000000000001110
-                iSTATE22 | 00000000000000000000000000100000000000000 | 00000000000000000000000000001111
-                iSTATE36 | 00000000000000000000000001000000000000000 | 00000000000000000000000000010000
-                iSTATE33 | 00000000000000000000000010000000000000000 | 00000000000000000000000000010001
-                iSTATE31 | 00000000000000000000000100000000000000000 | 00000000000000000000000000010010
-                iSTATE30 | 00000000000000000000001000000000000000000 | 00000000000000000000000000010011
-                iSTATE27 | 00000000000000000000010000000000000000000 | 00000000000000000000000000010100
-                iSTATE23 | 00000000000000000000100000000000000000000 | 00000000000000000000000000010101
-                iSTATE19 | 00000000000000000001000000000000000000000 | 00000000000000000000000000010110
-                iSTATE16 | 00000000000000000010000000000000000000000 | 00000000000000000000000000010111
-                iSTATE24 | 00000000000000000100000000000000000000000 | 00000000000000000000000000011000
-                iSTATE20 | 00000000000000001000000000000000000000000 | 00000000000000000000000000011001
-                iSTATE17 | 00000000000000010000000000000000000000000 | 00000000000000000000000000011010
-                iSTATE14 | 00000000000000100000000000000000000000000 | 00000000000000000000000000011011
-                 iSTATE8 | 00000000000001000000000000000000000000000 | 00000000000000000000000000011100
-                 iSTATE5 | 00000000000010000000000000000000000000000 | 00000000000000000000000000011101
-                 iSTATE2 | 00000000000100000000000000000000000000000 | 00000000000000000000000000011110
-                 iSTATE0 | 00000000001000000000000000000000000000000 | 00000000000000000000000000011111
-                iSTATE25 | 00000000010000000000000000000000000000000 | 00000000000000000000000000100000
-                iSTATE21 | 00000000100000000000000000000000000000000 | 00000000000000000000000000100001
-                iSTATE18 | 00000001000000000000000000000000000000000 | 00000000000000000000000000100010
-                iSTATE15 | 00000010000000000000000000000000000000000 | 00000000000000000000000000100011
-                 iSTATE9 | 00000100000000000000000000000000000000000 | 00000000000000000000000000100100
-                 iSTATE7 | 00001000000000000000000000000000000000000 | 00000000000000000000000000100101
-                 iSTATE3 | 00010000000000000000000000000000000000000 | 00000000000000000000000000100110
-                 iSTATE1 | 00100000000000000000000000000000000000000 | 00000000000000000000000000100111
-                 iSTATE6 | 01000000000000000000000000000000000000000 | 00000000000000000000000000101000
-                 iSTATE4 | 10000000000000000000000000000000000000000 | 00000000000000000000000000101001
+                   idlex |                            00000 |                            00000
+               get_data1 |                            00001 |                            01101
+               get_data2 |                            00010 |                            01110
+               get_data3 |                            00011 |                            01111
+               send_ack1 |                            00100 |                            01010
+               send_ack2 |                            00101 |                            01011
+               send_ack3 |                            00110 |                            01100
+              send_data1 |                            00111 |                            00100
+              send_data2 |                            01000 |                            00101
+              send_data3 |                            01001 |                            00110
+              send_data4 |                            01010 |                            00111
+              send_data5 |                            01011 |                            01000
+              send_data6 |                            01100 |                            01001
+                   stop1 |                            01101 |                            10000
+                   stop2 |                            01110 |                            10001
+                   stop3 |                            01111 |                            10010
+                  start1 |                            10000 |                            00001
+                  start2 |                            10001 |                            00010
+                  start3 |                            10010 |                            00011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'I2C_event_variable_reg' using encoding 'sequential' in module 'I2C_controllerNew'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                iSTATE14 | 000000000000000000000000000000000000000001 | 00000000000000000000000000000000
+                iSTATE12 | 000000000000000000000000000000000000000010 | 00000000000000000000000000000010
+                iSTATE11 | 000000000000000000000000000000000000000100 | 00000000000000000000000000000011
+                  iSTATE | 000000000000000000000000000000000000001000 | 00000000000000000000000000000100
+                iSTATE40 | 000000000000000000000000000000000000010000 | 00000000000000000000000000000101
+                iSTATE38 | 000000000000000000000000000000000000100000 | 00000000000000000000000000000110
+                iSTATE35 | 000000000000000000000000000000000001000000 | 00000000000000000000000000000111
+                iSTATE41 | 000000000000000000000000000000000010000000 | 00000000000000000000000000001000
+                iSTATE39 | 000000000000000000000000000000000100000000 | 00000000000000000000000000001001
+                iSTATE36 | 000000000000000000000000000000001000000000 | 00000000000000000000000000001010
+                iSTATE33 | 000000000000000000000000000000010000000000 | 00000000000000000000000000001011
+                iSTATE30 | 000000000000000000000000000000100000000000 | 00000000000000000000000000001100
+                iSTATE29 | 000000000000000000000000000001000000000000 | 00000000000000000000000000001101
+                iSTATE27 | 000000000000000000000000000010000000000000 | 00000000000000000000000000001110
+                iSTATE23 | 000000000000000000000000000100000000000000 | 00000000000000000000000000001111
+                iSTATE37 | 000000000000000000000000001000000000000000 | 00000000000000000000000000010000
+                iSTATE34 | 000000000000000000000000010000000000000000 | 00000000000000000000000000010001
+                iSTATE32 | 000000000000000000000000100000000000000000 | 00000000000000000000000000010010
+                iSTATE31 | 000000000000000000000001000000000000000000 | 00000000000000000000000000010011
+                iSTATE28 | 000000000000000000000010000000000000000000 | 00000000000000000000000000010100
+                iSTATE24 | 000000000000000000000100000000000000000000 | 00000000000000000000000000010101
+                iSTATE20 | 000000000000000000001000000000000000000000 | 00000000000000000000000000010110
+                iSTATE17 | 000000000000000000010000000000000000000000 | 00000000000000000000000000010111
+                iSTATE25 | 000000000000000000100000000000000000000000 | 00000000000000000000000000011000
+                iSTATE21 | 000000000000000001000000000000000000000000 | 00000000000000000000000000011001
+                iSTATE18 | 000000000000000010000000000000000000000000 | 00000000000000000000000000011010
+                iSTATE15 | 000000000000000100000000000000000000000000 | 00000000000000000000000000011011
+                 iSTATE9 | 000000000000001000000000000000000000000000 | 00000000000000000000000000011100
+                 iSTATE6 | 000000000000010000000000000000000000000000 | 00000000000000000000000000011101
+                 iSTATE3 | 000000000000100000000000000000000000000000 | 00000000000000000000000000011110
+                 iSTATE0 | 000000000001000000000000000000000000000000 | 00000000000000000000000000011111
+                iSTATE26 | 000000000010000000000000000000000000000000 | 00000000000000000000000000100000
+                iSTATE22 | 000000000100000000000000000000000000000000 | 00000000000000000000000000100001
+                iSTATE19 | 000000001000000000000000000000000000000000 | 00000000000000000000000000100010
+                iSTATE16 | 000000010000000000000000000000000000000000 | 00000000000000000000000000100011
+                iSTATE10 | 000000100000000000000000000000000000000000 | 00000000000000000000000000100100
+                 iSTATE8 | 000001000000000000000000000000000000000000 | 00000000000000000000000000100101
+                 iSTATE4 | 000010000000000000000000000000000000000000 | 00000000000000000000000000100110
+                 iSTATE2 | 000100000000000000000000000000000000000000 | 00000000000000000000000000100111
+                 iSTATE7 | 001000000000000000000000000000000000000000 | 00000000000000000000000000101000
+                 iSTATE5 | 010000000000000000000000000000000000000000 | 00000000000000000000000000101001
+                 iSTATE1 | 100000000000000000000000000000000000000000 | 00000000000000000000000000101010
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'fetchStateVariable_reg' using encoding 'one-hot' in module 'i2cTest'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1015.594 ; gain = 397.586
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1033.270 ; gain = 415.191
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -152,33 +188,29 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input     11 Bit       Adders := 1     
 	   2 Input      7 Bit       Adders := 1     
-	   2 Input      5 Bit       Adders := 1     
-	   2 Input      4 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 2     
 	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	               11 Bit    Registers := 1     
 	                8 Bit    Registers := 6     
 	                7 Bit    Registers := 1     
 	                5 Bit    Registers := 1     
-	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 19    
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 21    
 +---Muxes : 
-	  41 Input     41 Bit        Muxes := 1     
-	   2 Input     41 Bit        Muxes := 3     
-	   2 Input     11 Bit        Muxes := 1     
-	   2 Input      8 Bit        Muxes := 2     
-	  41 Input      8 Bit        Muxes := 1     
+	  42 Input     42 Bit        Muxes := 1     
+	   2 Input     42 Bit        Muxes := 3     
+	  19 Input      8 Bit        Muxes := 1     
+	  42 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
 	   2 Input      7 Bit        Muxes := 2     
-	   2 Input      5 Bit        Muxes := 8     
-	   2 Input      4 Bit        Muxes := 1     
-	   2 Input      3 Bit        Muxes := 2     
-	   6 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 3     
-	   2 Input      1 Bit        Muxes := 70    
-	   4 Input      1 Bit        Muxes := 6     
-	   5 Input      1 Bit        Muxes := 3     
-	   6 Input      1 Bit        Muxes := 1     
-	  41 Input      1 Bit        Muxes := 16    
+	  19 Input      7 Bit        Muxes := 1     
+	 104 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+	  19 Input      4 Bit        Muxes := 1     
+	  19 Input      1 Bit        Muxes := 22    
+	   2 Input      1 Bit        Muxes := 2     
+	  42 Input      1 Bit        Muxes := 17    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -195,38 +227,35 @@ Detailed RTL Component Info :
 	                5 Bit    Registers := 1     
 	                1 Bit    Registers := 8     
 +---Muxes : 
-	  41 Input     41 Bit        Muxes := 1     
-	   2 Input     41 Bit        Muxes := 3     
-	  41 Input      8 Bit        Muxes := 1     
+	  42 Input     42 Bit        Muxes := 1     
+	   2 Input     42 Bit        Muxes := 3     
+	  42 Input      8 Bit        Muxes := 1     
 	   2 Input      8 Bit        Muxes := 1     
 	   2 Input      7 Bit        Muxes := 1     
 	   2 Input      4 Bit        Muxes := 1     
-	  41 Input      1 Bit        Muxes := 16    
+	  42 Input      1 Bit        Muxes := 17    
 Module I2C_controllerNew 
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     11 Bit       Adders := 1     
 	   2 Input      7 Bit       Adders := 1     
-	   2 Input      5 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
 	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	               11 Bit    Registers := 1     
 	                8 Bit    Registers := 2     
 	                7 Bit    Registers := 1     
-	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 11    
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 13    
 +---Muxes : 
-	   2 Input     11 Bit        Muxes := 1     
-	   2 Input      8 Bit        Muxes := 1     
+	  19 Input      8 Bit        Muxes := 1     
 	   2 Input      7 Bit        Muxes := 1     
-	   2 Input      5 Bit        Muxes := 8     
-	   2 Input      3 Bit        Muxes := 2     
-	   6 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 3     
-	   2 Input      1 Bit        Muxes := 70    
-	   4 Input      1 Bit        Muxes := 6     
-	   5 Input      1 Bit        Muxes := 3     
-	   6 Input      1 Bit        Muxes := 1     
+	  19 Input      7 Bit        Muxes := 1     
+	 104 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	  19 Input      4 Bit        Muxes := 1     
+	  19 Input      1 Bit        Muxes := 22    
+	   2 Input      1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -243,17 +272,49 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-INFO: [Synth 8-3886] merging instance 'I2C_Input_Data_reg[5]' (FDE) to 'I2C_Input_Data_reg[1]'
-INFO: [Synth 8-3886] merging instance 'I2C_Input_Data_reg[4]' (FDE) to 'I2C_Input_Data_reg[6]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_Input_Data_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_Input_Data_reg[5] )
+INFO: [Synth 8-3886] merging instance 'I2C_Input_Data_reg[4]' (FDE) to 'I2C_Input_Data_reg[1]'
+INFO: [Synth 8-3886] merging instance 'I2C_Input_Data_reg[6]' (FDE) to 'I2C_Input_Data_reg[1]'
 INFO: [Synth 8-3886] merging instance 'I2C_Input_Data_reg[1]' (FDE) to 'I2C_Input_Data_reg[2]'
 INFO: [Synth 8-3886] merging instance 'I2C_Input_Data_reg[2]' (FDE) to 'I2C_Input_Data_reg[3]'
 INFO: [Synth 8-3886] merging instance 'I2C_Input_Data_reg[3]' (FDE) to 'I2C_Input_Data_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/clk_pulsed_reg )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/data_bits_reg[3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\disp_selector_reg[4] )
-WARNING: [Synth 8-3332] Sequential element (I2C_CONTROLLER/I2CcmdProcessing_reg) is unused and will be removed from module i2cTest.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/i2c_ack_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/I2C_Output_Data_reg[3] )
+INFO: [Synth 8-3886] merging instance 'hoursRegister_reg[4]' (FDCE) to 'hoursRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'hoursRegister_reg[5]' (FDCE) to 'hoursRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'hoursRegister_reg[6]' (FDCE) to 'hoursRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'hoursRegister_reg[7]' (FDCE) to 'hoursRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'hoursRegister_reg[1]' (FDCE) to 'hoursRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'hoursRegister_reg[0]' (FDCE) to 'hoursRegister_reg[2]'
+INFO: [Synth 8-3886] merging instance 'hoursRegister_reg[2]' (FDCE) to 'hoursRegister_reg[3]'
+INFO: [Synth 8-3886] merging instance 'minutesRegister_reg[5]' (FDCE) to 'minutesRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'minutesRegister_reg[4]' (FDCE) to 'minutesRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'minutesRegister_reg[6]' (FDCE) to 'minutesRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'minutesRegister_reg[7]' (FDCE) to 'minutesRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'minutesRegister_reg[1]' (FDCE) to 'minutesRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'minutesRegister_reg[0]' (FDCE) to 'minutesRegister_reg[2]'
+INFO: [Synth 8-3886] merging instance 'minutesRegister_reg[2]' (FDCE) to 'minutesRegister_reg[3]'
+INFO: [Synth 8-3886] merging instance 'secondsRegister_reg[5]' (FDCE) to 'secondsRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'secondsRegister_reg[7]' (FDCE) to 'secondsRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'secondsRegister_reg[4]' (FDCE) to 'secondsRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'secondsRegister_reg[6]' (FDCE) to 'secondsRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'secondsRegister_reg[1]' (FDCE) to 'secondsRegister_reg[0]'
+INFO: [Synth 8-3886] merging instance 'secondsRegister_reg[0]' (FDCE) to 'secondsRegister_reg[2]'
+INFO: [Synth 8-3886] merging instance 'secondsRegister_reg[2]' (FDCE) to 'secondsRegister_reg[3]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/ACKfromSlave_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\I2C_CONTROLLER/counter_reg[6] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1015.594 ; gain = 397.586
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1033.270 ; gain = 415.191
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -265,13 +326,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 1015.594 ; gain = 397.586
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:28 . Memory (MB): peak = 1033.270 ; gain = 415.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 1015.594 ; gain = 397.586
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:28 . Memory (MB): peak = 1033.270 ; gain = 415.191
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -283,7 +344,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 1034.012 ; gain = 416.004
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:29 . Memory (MB): peak = 1033.887 ; gain = 415.809
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -306,15 +367,14 @@ Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6030] Inout pin 'SCL' is read and/or written without using tristate logic. Proper direction of connection may be wrongly inferred. Please use specific direction to avoid any incorrect logic issue [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/src/i2cTest.vhd:8]
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Finished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -333,25 +393,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -367,56 +427,56 @@ Report Cell Usage:
 +------+-------+------+
 |      |Cell   |Count |
 +------+-------+------+
-|1     |BUFG   |     2|
+|1     |BUFG   |     1|
 |2     |CARRY4 |    11|
-|3     |LUT1   |     4|
-|4     |LUT2   |    43|
-|5     |LUT3   |    67|
-|6     |LUT4   |    48|
-|7     |LUT5   |    62|
-|8     |LUT6   |    68|
-|9     |MUXF7  |     7|
-|10    |FDCE   |   118|
-|11    |FDPE   |     3|
-|12    |FDRE   |    49|
+|3     |LUT1   |     6|
+|4     |LUT2   |    31|
+|5     |LUT3   |    28|
+|6     |LUT4   |    45|
+|7     |LUT5   |    38|
+|8     |LUT6   |   100|
+|9     |FDCE   |    96|
+|10    |FDPE   |     3|
+|11    |FDRE   |    40|
+|12    |FDSE   |     6|
 |13    |LDC    |     1|
 |14    |IBUF   |     2|
 |15    |IOBUF  |     1|
-|16    |OBUF   |    17|
+|16    |OBUF   |    16|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+-----------------+------------------+------+
 |      |Instance         |Module            |Cells |
 +------+-----------------+------------------+------+
-|1     |top              |                  |   503|
-|2     |  I2C_CONTROLLER |I2C_controllerNew |   192|
+|1     |top              |                  |   425|
+|2     |  I2C_CONTROLLER |I2C_controllerNew |   187|
 +------+-----------------+------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 1 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:33 . Memory (MB): peak = 1039.781 ; gain = 332.230
-Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 1039.781 ; gain = 421.773
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1039.703 ; gain = 319.262
+Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1039.703 ; gain = 421.625
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1039.781 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 20 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1039.703 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 13 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1048.199 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1043.309 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 2 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
   LDC => LDCE: 1 instance 
 
 INFO: [Common 17-83] Releasing license: Synthesis
-30 Infos, 4 Warnings, 1 Critical Warnings and 0 Errors encountered.
+69 Infos, 5 Warnings, 2 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:00:43 . Memory (MB): peak = 1048.199 ; gain = 742.703
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1048.199 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:43 . Memory (MB): peak = 1043.309 ; gain = 737.742
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1043.309 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/i2cTest/i2c_Test/i2c_Test.runs/synth_1/i2cTest.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file i2cTest_utilization_synth.rpt -pb i2cTest_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Mar 18 01:26:07 2024...
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 19 06:37:38 2024...

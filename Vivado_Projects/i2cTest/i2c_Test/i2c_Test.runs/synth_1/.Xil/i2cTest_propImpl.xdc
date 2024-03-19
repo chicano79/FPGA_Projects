@@ -39,3 +39,5 @@ set_property src_info {type:XDC file:1 line:40 export:INPUT save:INPUT read:READ
 set_property PACKAGE_PIN G17 [get_ports SDA]
 set_property src_info {type:XDC file:1 line:43 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN D14 [get_ports led]
+set_property src_info {type:XDC file:1 line:44 export:INPUT save:INPUT read:READ} [current_design]
+set_property IOSTANDARD LVTTL [get_ports led]
