@@ -60,6 +60,17 @@ begin
         rd_tready => rd_tready,  
         nack => nack        
     );
+    DETECT_START_PROC : process
+    begin
+        wait until scl = 'H' and falling_edge(sda);
+        print("Detected start condition");        
+    end process;
+
+    DETECT_STOP_PROC : process
+    begin
+        wait until scl = 'H' and rising_edge(sda);
+        print("Detected stop condition");        
+    end process;
 
     SEQUENCER_PROC: 
     process
@@ -80,6 +91,19 @@ begin
             end loop;
         end procedure;
 
+        procedure read_byte is
+        begin
+            rd_tready <= '1';
+            loop    
+                wait until rising_edge(clk);
+                if rd_tvalid = '1' and rd_tready = '1' then
+                    print("Received byte from DUT: " & to_string(rd_tdata));
+                    rd_tready <= '0';
+                    exit;
+                end if;
+            end loop;
+        end procedure;
+
     begin
         wait for clk_period * 2;
 
@@ -92,6 +116,18 @@ begin
         send_cmd(x"AA"); --byte to send
         
         send_cmd(x"05"); --CMD_STOP_CONDITION
+
+
+        send_cmd(x"01"); --CMD_START_CONDITION
+
+        send_cmd(x"03"); --CMD_RX_BYTE_ACK
+        read_byte;
+
+        send_cmd(x"04"); --CMD_RX_BYTE_NACK
+        read_byte;
+
+        send_cmd(x"05"); --CMD_STOP_CONDITION
+
 
         wait for clk_period * 2000;
 

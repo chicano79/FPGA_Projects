@@ -47,7 +47,7 @@ architecture rtl of i2c_controller is
     signal scl_i: std_logic := '1';
     signal sda_i: std_logic := '1';
 
-    signal rx_nack_bit_to_send: std_logic;
+    signal rx_ack_bit_to_send: std_logic;
     signal byte_to_send: std_logic_vector(7 downto 0);
 
     --clock cycles per half period of scl rounded to the nearest int
@@ -71,6 +71,7 @@ architecture rtl of i2c_controller is
     constant sda_delay_cycles: integer := integer( (real(clk_hz) / 1.0e9) * real(sda_delay_ns) );    
     signal sda_delay: std_logic_vector(sda_delay_cycles-2 downto 0) := (others => '1');
 
+    signal sda_sampled: std_logic_vector(7 downto 0);
 
 begin
 
@@ -143,6 +144,15 @@ begin
                 return scl_halfperiod_counter = val;
             end if;
         end function;
+
+        impure function read_sda return std_logic is
+        begin
+            if sda = '0' then
+                return '0';
+            else 
+                return '1';
+            end if;
+        end function;
         
     begin
         if rising_edge(clk) then
@@ -152,13 +162,14 @@ begin
                 rd_tdata<= (others => '0');
                 rd_tvalid <= '0';
                 nack <= '0';
-                scl_i <= '1';
-                sda_i <= '1';
+                scl_i <= '1'; --float the scl line (tri-state)
+                sda_i <= '1'; --float the sda line (tri-state)
                 clk_counter <= 0;
                 scl_halfperiod_counter <= 0;
-                rx_nack_bit_to_send <= '0';
+                rx_ack_bit_to_send <= '0';
                 byte_to_send <= (others => '0');
                 sample_ack <= '0';
+                sda_sampled <= (others => '0');
             else
                 
                 --pulsed signal
@@ -167,7 +178,7 @@ begin
                 case state is
     
                     when RST_SEQ =>
-                        sda_i <= '1';
+                        sda_i <= '1'; --float the sda line (tri-state)
                         if scl_half_period(31) then
                             change_state(WAIT_COMMAND);                            
                         end if;
@@ -182,10 +193,10 @@ begin
                                 when CMD_TX_BYTE =>
                                     change_state(WAIT_TX_BYTE);
                                 when CMD_RX_BYTE_ACK =>
-                                    rx_nack_bit_to_send <= '0';
+                                    rx_ack_bit_to_send <= '0';
                                     change_state(RX_BYTE);
                                 when CMD_RX_BYTE_NACK =>
-                                    rx_nack_bit_to_send <= '1';
+                                    rx_ack_bit_to_send <= '1';
                                     change_state(RX_BYTE);
                                 when CMD_STOP_CONDITION =>
                                     change_state(STOP_CONDITION);
@@ -199,7 +210,7 @@ begin
                             change_state(WAIT_COMMAND);  
                             sda_i <= '0';                          
                         end if;
-                        scl_i <= '1';
+                        scl_i <= '1'; --float the scl line (tri-state)
 
                     when STOP_CONDITION =>
                         if scl_half_period(0) then 
@@ -207,8 +218,8 @@ begin
                         end if;
                         if scl_half_period(2) then 
                             change_state(WAIT_COMMAND);
-                            sda_i <= '1';
-                            scl_i <= '1';                          
+                            sda_i <= '1'; --float the sda line (tri-state)
+                            scl_i <= '1'; --float the scl line (tri-state)                          
                         end if;
                         
 
@@ -221,7 +232,6 @@ begin
                         end if;
 
                     when TX_BYTE =>
-
                         for i in 0 to 7 loop
                             if scl_half_period(i*2) then
                                 --report "TX bit " & to_string(i);
@@ -232,7 +242,7 @@ begin
 
                         if scl_half_period(16) then
                             --report "Releasing SDA...";
-                            sda_i <= '1';    
+                            sda_i <= '1'; --float the sda line (tri-state)    
                         end if;
 
                         if scl_half_period(17) then
@@ -243,16 +253,36 @@ begin
 
                     when RX_BYTE =>
 
+                        if scl_half_period(0) then
+                            sda_i <= '1'; --float the sda line (tri-state)    
+                        end if; 
+
+                        for i in 1 to 8 loop
+                            if scl_half_period(i*2) then
+                                --report "RX bit " & to_string(i);
+                                sda_sampled <= sda_sampled(6 downto 0) & read_sda;
+                            end if;
+                        end loop;
+
+                        if scl_half_period(16) then --send acknowledgment bit
+                            --report "Sending ACK or NACK";
+                            --send Ack or Nack
+                            sda_i <= rx_ack_bit_to_send;    
+                        end if;
+
+                        if scl_half_period(17) then
+                            change_state(RETURN_RX_BYTE);   
+                        end if;
+
                     when RETURN_RX_BYTE =>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-    
+                        rd_tdata <= sda_sampled;
+                        rd_tvalid <= '1';
+
+                        if rd_tvalid = '1' and rd_tready = '1' then
+                            change_state(WAIT_COMMAND);
+                            rd_tvalid <= '0';                                         
+                        end if;
+      
                 end case;
     
             end if;
