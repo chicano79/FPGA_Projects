@@ -1,347 +1,292 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.math_real.round;
 
+entity i2c_controller is
+    generic (
+        clk_hz: integer := 100e6;
+        i2c_hz: integer := 100e3
+    );
+    port (
+        clk : in std_logic;
+        rst : in std_logic;
 
+        scl : out std_logic := 'Z';
+        sda: inout std_logic := 'Z';
 
-entity I2C_controller is
-	generic(
-		FREQ: integer := 100e6;
-		DEVICE_ID: std_logic_vector(3 downto 0) := "1010";
-		CHIP_SELECT_BITS: std_logic_vector(2 downto 0) := "111";
-		WR: std_logic := '0';
-		RD: std_logic := '1'
-	);
-	
-	port(
-		clk_100MHz: in std_logic;
-		rst: in std_logic;
-		SQ_in: in std_logic;
-		SCL: inout std_logic;
-		SDA: inout std_logic;
-		W_ADDRESS: in std_logic_vector(7 downto 0) := x"01"
-	);
-	
-end entity;
+        --command/write bus using the AXI bus naming scheme
+        cmd_tdata: in std_logic_vector(7 downto 0);
+        cmd_tvalid: in std_logic;
+        cmd_tready: out std_logic;
 
+        --read Bus
+        rd_tdata: out std_logic_vector(7 downto 0);
+        rd_tvalid: out std_logic;
+        rd_tready: in std_logic;
 
+        --Not acknowledge 
+        nack: out std_logic
+    );
+end i2c_controller;
 
-architecture rtl of I2C_controller is
-signal i2c_dataToSend: std_logic_vector(7 downto 0);
-signal i2c_data, i2c_clk: std_logic := '0';--always low
-signal i2c_data_en, i2c_clk_en: std_logic := '0';
-signal clk_1MHz: std_logic;
-signal i2c_ack: std_logic;
+architecture rtl of i2c_controller is
 
-signal shiftConcluded: boolean := false;
+    constant CMD_BUS_RST : std_logic_vector(7 downto 0) := x"00";
+    constant CMD_START_CONDITION : std_logic_vector(7 downto 0) := x"01";
+    constant CMD_TX_BYTE : std_logic_vector(7 downto 0) := x"02";
+    constant CMD_RX_BYTE_ACK : std_logic_vector(7 downto 0) := x"03";
+    constant CMD_RX_BYTE_NACK : std_logic_vector(7 downto 0) := x"04";
+    constant CMD_STOP_CONDITION : std_logic_vector(7 downto 0) := x"05";
 
-type i2cStates is 
-(INIT, START, SETUP1, NEXT1, NEXT2, SETUP2, NEXT3, NEXT4, SETUP3, RPT_START, SETUP4, NEXT5, NEXT6, NEXT7, NACK, STOP);
+    type state_type is (RST_SEQ, WAIT_COMMAND, START_CONDITION, 
+    STOP_CONDITION, WAIT_TX_BYTE, TX_BYTE, RX_BYTE, RETURN_RX_BYTE);
 
-signal i2cVariable: i2cStates := INIT;
+    signal state : state_type;
+
+    signal scl_i: std_logic := '1';
+    signal sda_i: std_logic := '1';
+
+    signal rx_ack_bit_to_send: std_logic;
+    signal byte_to_send: std_logic_vector(7 downto 0);
+
+    --clock cycles per half period of scl rounded to the nearest int
+    constant cycles_per_half_scl: integer := 
+        integer(round(real(clk_hz) / real(i2c_hz)) / 2.0);
+
+    --clock cycle counter
+    constant clk_count_range: integer := cycles_per_half_scl - 1;
+    signal clk_counter: integer range 0 to clk_count_range;
+
+    --scl half period counter
+    constant scl_halfperiod_count_range: integer := 31;
+    signal scl_halfperiod_counter: integer range 0 to scl_halfperiod_count_range;
+
+    signal sample_ack: std_logic;
+
+    --how many nano seconds to delay sda with respect to scl
+    constant sda_delay_ns: integer := 400;
+
+    --shift register for delaying sda
+    constant sda_delay_cycles: integer := integer( (real(clk_hz) / 1.0e9) * real(sda_delay_ns) );    
+    signal sda_delay: std_logic_vector(sda_delay_cycles-2 downto 0) := (others => '1');
+
+    signal sda_sampled: std_logic_vector(7 downto 0);
 
 begin
 
---clk_100MHz <= not clk_100MHz after 10 ns;
+    -- scl <= '0' when scl_i = '0' else 'Z';
+    -- sda <= '0' when sda_i = '0' else 'Z';
+ 
+    SCL_OUT_PROC : process(scl_i)
+    begin
+        if scl_i = '0' then
+            scl <= '0';  
+        else
+            scl <= 'Z';     
+        end if;
+    end process;
 
-SDA <= i2c_data when i2c_data_en = '1' else 'Z';
-SCL <= i2c_clk when i2c_clk_en = '1' else 'Z';
+    SDA_OUT_PROC : process(clk, rst)
+    begin
+        if rising_edge(clk) then
+          
+            if rst = '1' then
+                sda_delay <= (others => '1');
+            else
+                sda_delay <= sda_i & sda_delay(sda_delay'left downto 1);
+                
+                if sda_delay(0) = '0' then
+                    sda <= '0';  
+                else
+                    sda <= 'Z';     
+                end if;
+            end if;
+        end if;        
+    end process;
+
+    FSM_PROC : process(clk)
+
+        procedure change_state(next_state: state_type) is
+        begin
+            state <= next_state;
+            clk_counter <= 0;
+            scl_halfperiod_counter <= 0;
+        end procedure;
+
+        --an impure function
+        impure function scl_half_period(val: integer) return boolean is
+        begin
+            if clk_counter < clk_count_range then
+                clk_counter <= clk_counter + 1; 
+                return false;             
+            else
+                clk_counter <= 0;
+                scl_i <= not scl_i;
+
+                --if we could check the target's ACK on the next falling scl
+                if sample_ack = '1' and scl_i = '1' then
+                    sample_ack <= '0';
+                    --report "checking ACK bit";
+                    
+                    if sda  = '0' then
+                        nack <= '0';
+                    else
+                        nack <= '1';                    
+                    end if;
+                end if;
+
+                if scl_halfperiod_counter < scl_halfperiod_count_range then
+                    scl_halfperiod_counter <= scl_halfperiod_counter + 1;
+                else
+                    scl_halfperiod_counter <= 0;                    
+                end if;
+                return scl_halfperiod_counter = val;
+            end if;
+        end function;
+
+        impure function read_sda return std_logic is
+        begin
+            if sda = '0' then
+                return '0';
+            else 
+                return '1';
+            end if;
+        end function;
+        
+    begin
+        if rising_edge(clk) then
+            if rst = '1' then
+                state <= RST_SEQ;
+                cmd_tready <= '0';
+                rd_tdata<= (others => '0');
+                rd_tvalid <= '0';
+                nack <= '0';
+                scl_i <= '1'; --float the scl line (tri-state)
+                sda_i <= '1'; --float the sda line (tri-state)
+                clk_counter <= 0;
+                scl_halfperiod_counter <= 0;
+                rx_ack_bit_to_send <= '0';
+                byte_to_send <= (others => '0');
+                sample_ack <= '0';
+                sda_sampled <= (others => '0');
+            else
+                
+                --pulsed signal
+                nack <= '0';
+                
+                case state is
+    
+                    when RST_SEQ =>
+                        sda_i <= '1'; --float the sda line (tri-state)
+                        if scl_half_period(31) then
+                            change_state(WAIT_COMMAND);                            
+                        end if;
+
+                    when WAIT_COMMAND =>
+                        cmd_tready <=  '1';
+                        if cmd_tvalid = '1' and cmd_tready = '1' then
+                            cmd_tready <=  '0';
+                            case cmd_tdata is
+                                when CMD_START_CONDITION =>
+                                    change_state(START_CONDITION);
+                                when CMD_TX_BYTE =>
+                                    change_state(WAIT_TX_BYTE);
+                                when CMD_RX_BYTE_ACK =>
+                                    rx_ack_bit_to_send <= '0';
+                                    change_state(RX_BYTE);
+                                when CMD_RX_BYTE_NACK =>
+                                    rx_ack_bit_to_send <= '1';
+                                    change_state(RX_BYTE);
+                                when CMD_STOP_CONDITION =>
+                                    change_state(STOP_CONDITION);
+                                when others =>  --CMD_BUS_RST
+                                    change_state(RST_SEQ);
+                            end case;
+                        end if;
+
+                    when START_CONDITION =>
+                        if scl_half_period(0) then
+                            change_state(WAIT_COMMAND);  
+                            sda_i <= '0';                          
+                        end if;
+                        scl_i <= '1'; --float the scl line (tri-state)
+
+                    when STOP_CONDITION =>
+                        if scl_half_period(0) then 
+                            sda_i <= '0';                          
+                        end if;
+                        if scl_half_period(2) then 
+                            change_state(WAIT_COMMAND);
+                            sda_i <= '1'; --float the sda line (tri-state)
+                            scl_i <= '1'; --float the scl line (tri-state)                          
+                        end if;
+                        
+
+                    when WAIT_TX_BYTE =>
+                        cmd_tready <=  '1';
+                        if cmd_tvalid = '1' and cmd_tready = '1' then
+                            change_state(TX_BYTE);
+                            cmd_tready <=  '0';
+                            byte_to_send <= cmd_tdata;
+                        end if;
+
+                    when TX_BYTE =>
+                        for i in 0 to 7 loop
+                            if scl_half_period(i*2) then
+                                --report "TX bit " & to_string(i);
+                                byte_to_send <= byte_to_send(6 downto 0) & '0';                                 
+                                sda_i <= byte_to_send(7);                         
+                            end if;
+                        end loop;
+
+                        if scl_half_period(16) then
+                            --report "Releasing SDA...";
+                            sda_i <= '1'; --float the sda line (tri-state)    
+                        end if;
+
+                        if scl_half_period(17) then
+                            change_state(WAIT_COMMAND);
+                            sample_ack <= '1';    
+                        end if;
 
 
-HUNDRED_KHZ_PROC:
-	process(clk_100MHz)
-		constant count_range: integer range 0 to FREQ := FREQ/1e6;
-		variable counter: integer range 0 to count_range := 0;
-	begin
-		if rst = '0' then
-			counter:= 0;
-			clk_1MHz <= '0';		 	
-		elsif clk_100MHz'event and clk_100MHz = '1' then 
-			if counter < (count_range-1) then
-				counter := counter + 1;
-				clk_1MHz <= '0';
-			else	
-				counter := 0;
-				clk_1MHz <= '1';
-			end if;
-		end if;
-	end process;
-	
-	
-I2C_ENGINE_PROC:
-	process(clk_1MHz)
-		variable counter: integer range 0 to 20 := 0;
-		variable data_bits: integer range 0 to 10 := 0;
-	begin
-		if rst = '0' then
-			counter:= 0;
-			i2c_data_en <= '0';	
-			i2c_clk_en <= '0';
-		elsif rising_edge(clk_1MHz) then
-			case i2cVariable is
-				when INIT =>
-					i2c_data_en <= '0';
-					i2c_clk_en <= '0';
-					i2c_clk <= '0';	--always low.... logic '1' is supplied by external pullup resistor on tristate
-					counter:= 0;
-					i2cVariable <= START;
-		
-				when START =>
-					i2c_data <= '0';
-					i2c_data_en <= '1';  --pull the sda line low to initiate the start condition
-					
-					if counter < 4 then  --delay for 5us to satisfy the start condition hold time
-						counter := counter + 1;
-					else
-						counter := 0;
-						i2c_clk_en <= '1'; -- pull the scl line low to finally finish the start condition
-						i2c_dataToSend <= DEVICE_ID & CHIP_SELECT_BITS & WR; --slave address & R/W-bit set to write
-						i2cVariable <= SETUP1;
-					end if;
-					
-				when SETUP1 =>			 --use 1us for the data input hold time
-					i2c_data <= i2c_dataToSend(7); --load the serial data to be sent into the i2c data register
-												--this also places bit7 (MSB first) of the data on the SDA line 
-					i2cVariable <= NEXT1; 					
+                    when RX_BYTE =>
 
-				
-				--clock in 8 bits of data to the slave
-				when NEXT1 =>		
-					if counter < 3 then --wait for another 4us for the data input setup time. 
-						counter := counter + 1; --this added to the 1us from previous state gives a total of 5us	
-					else						--for the low period of the i2c clock.
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						
-						if counter < 7 then --wait for another 5us for the high period of i2c clk 
-							counter := counter + 1;
-						else
-							counter := 0;
-							i2c_clk <= '0';
-							i2c_clk_en <= '1'; -- pull the scl line low
-							i2c_dataToSend <= i2c_dataToSend(6 downto 0) & '0'; --shift to the next bit							
-							
-							if data_bits < 7 then --count the bits shifted out so far. 
-								data_bits := data_bits + 1;
-								i2cVariable <= SETUP1;  -- keep looping until 8bits are out 
-							else
-								data_bits := 0;
-								i2c_data_en <= '0'; --release the sda line to read the ACK bit
-								i2cVariable <= NEXT2;  --go to next state if 8bits have been shifted out
-							end if;
-						end if;
-					end if;
-				
-				--read the acknowledge bit
-				when NEXT2 =>
-					if counter < 4 then --delay for 5us for the low period of i2c clk
-						counter := counter + 1;
-					else	
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						i2c_ack <= SDA; --read in the ACK bit	
-							if counter < 8 then --wait for another 5us for the high period of i2c clk 
-								counter := counter + 1;
-							else
-								counter := 0;
-								if i2c_ack = '0' then --check the ACK bit
-									i2c_clk <= '0';
-									i2c_clk_en <= '1'; -- pull the scl line low
-									i2c_dataToSend <= W_ADDRESS; --now ready to load the word address
-									i2cVariable <= SETUP2;
-								else	
-									i2cVariable <= INIT; --if no ACK, no device detected. So go back to init								
-								end if;
-							end if;					
-					end if;	
+                        if scl_half_period(0) then
+                            sda_i <= '1'; --float the sda line (tri-state)    
+                        end if; 
 
-				when SETUP2 =>			 --use 1us for the data input hold time
-					i2c_data <= i2c_dataToSend(7); --load the serial data to be sent into the i2c data register
-												--this also places bit7 (MSB first) of the data on the SDA line 
-					i2cVariable <= NEXT3;
-				
-				--clock in 8 bits of data to the slave
-				when NEXT3 =>		
-					if counter < 3 then --wait for another 4us for the data input setup time. 
-						counter := counter + 1; --this added to the 1us from previous state gives a total of 5us	
-					else						--for the low period of the i2c clock.
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						
-						if counter < 7 then --wait for another 5us for the high period of i2c clk 
-							counter := counter + 1;
-						else
-							counter := 0;
-							i2c_clk <= '0';
-							i2c_clk_en <= '1'; -- pull the scl line low
-							i2c_dataToSend <= i2c_dataToSend(6 downto 0) & '0'; --shift to the next bit							
-							
-							if data_bits < 7 then --count the bits shifted out so far. 
-								data_bits := data_bits + 1;
-								i2cVariable <= SETUP2;  -- keep looping until 8bits are out 
-							else
-								data_bits := 0;
-								i2c_data_en <= '0'; --release the sda line to read the ACK bit
-								i2cVariable <= NEXT4;  --go to next state if 8bits have been shifted out
-							end if;
-						end if;
-					end if;
-				
-				--read the acknowledge bit
-				when NEXT4 =>
-					if counter < 4 then --delay for 5us for the low period of i2c clk
-						counter := counter + 1;
-					else	
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						i2c_ack <= SDA; --read in the ACK bit	
-							if counter < 8 then --wait for another 5us for the high period of i2c clk 
-								counter := counter + 1;
-							else
-								counter := 0;
-								if i2c_ack = '0' then --check the ACK bit
-									i2c_clk <= '0';
-									i2c_clk_en <= '1'; -- pull the scl line low
-									i2cVariable <= SETUP3;
-								else	
-									i2cVariable <= INIT; --if no ACK, no device detected. So go back to init								
-								end if;
-							end if;					
-					end if;
-					
-				--generate the repeated start condition	
-				when SETUP3 =>	
-					i2c_data_en <= '0'; --first set both lines high
-					i2c_clk_en <= '0';
-					i2cVariable <= RPT_START;
-				
-				when RPT_START =>
-					i2c_data <= '0';
-					i2c_data_en <= '1';  --pull the sda line low to initiate the start condition
-					
-					if counter < 4 then  --delay for 5us to satisfy the start condition hold time
-						counter := counter + 1;
-					else
-						counter := 0;
-						i2c_clk <= '0';
-						i2c_clk_en <= '1'; -- pull the scl line low to finally finish the rpt_start condition
-						i2c_dataToSend <= DEVICE_ID & CHIP_SELECT_BITS & RD; --slave address & R/W-bit set to read
-						i2cVariable <= SETUP4;
-					end if;	
-					
-					
-				when SETUP4 =>			 --use 1us for the data input hold time
-					i2c_data <= i2c_dataToSend(7); --load the serial data to be sent into the i2c data register
-												--this also places bit7 (MSB first) of the data on the SDA line 
-					i2cVariable <= NEXT5; 					
+                        for i in 1 to 8 loop
+                            if scl_half_period(i*2) then
+                                --report "RX bit " & to_string(i);
+                                sda_sampled <= sda_sampled(6 downto 0) & read_sda;
+                            end if;
+                        end loop;
 
-				
-				--clock in 8 bits of data to the slave
-				when NEXT5 =>		
-					if counter < 3 then --wait for another 4us for the data input setup time. 
-						counter := counter + 1; --this added to the 1us from previous state gives a total of 5us	
-					else						--for the low period of the i2c clock.
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						
-						if counter < 7 then --wait for another 5us for the high period of i2c clk 
-							counter := counter + 1;
-						else
-							counter := 0;
-							i2c_clk <= '0';
-							i2c_clk_en <= '1'; -- pull the scl line low
-							i2c_dataToSend <= i2c_dataToSend(6 downto 0) & '0'; --shift to the next bit							
-							
-							if data_bits < 7 then --count the bits shifted out so far. 
-								data_bits := data_bits + 1;
-								i2cVariable <= SETUP4;  -- keep looping until 8bits are out 
-							else
-								data_bits := 0;
-								i2c_data_en <= '0'; --release the sda line to read the ACK bit
-								i2cVariable <= NEXT6;  --go to next state if 8bits have been shifted out
-							end if;
-						end if;
-					end if;
-				
-				--read the acknowledge bit
-				when NEXT6 =>
-					if counter < 4 then --delay for 5us for the low period of i2c clk
-						counter := counter + 1;
-					else	
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						i2c_ack <= SDA; --read in the ACK bit	
-						if counter < 8 then --wait for another 5us for the high period of i2c clk 
-							counter := counter + 1;
-						else
-							counter := 0;
-							if i2c_ack = '0' then --check the ACK bit
-								i2c_clk <= '0';
-								i2c_clk_en <= '1'; -- pull the scl line low
-								i2cVariable <= NEXT7;
-							else	
-								i2cVariable <= INIT; --if no ACK, something wrong. So go back to init								
-							end if;
-						end if;					
-					end if;					
-					
-					
-				--read in 8bits of serial data	
-				when NEXT7 =>
-					if counter < 4 then --delay for 5us for the low period of i2c clk
-						counter := counter + 1;
-					elsif counter = 4 then	
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						i2c_dataToSend <= i2c_dataToSend(6 downto 0) & SDA; --clock in data from slave bit by bit
-						counter := counter + 1;
-						
-					elsif counter < 9 then --wait for another 5us for the high period of i2c clk 
-						counter := counter + 1;
-					else
-						counter := 0;
-						i2c_clk <= '0';
-						i2c_clk_en <= '1'; -- pull the scl line low
-						if data_bits < 7 then --count the bits shifted out so far. 
-							data_bits := data_bits + 1;
-							--i2cVariable <= NEXT7;
-						else
-							data_bits := 0;
-							--i2c_data_en <= '0'; --release the sda line to generate a NACK
-							i2cVariable <= NACK;  --go to next state if 8bits have been shifted out
-						end if;						
-					end if;
-					
-				when NACK =>
-					i2c_data_en <= '0'; --disable the tri-state control to release the sda line to generate a NACK
-					if counter < 4 then --delay for 5us for the low period of i2c clk
-						counter := counter + 1;
-					elsif counter = 4 then	
-						i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-						counter := counter + 1;
-						
-					elsif counter < 9 then --wait for another 5us for the high period of i2c clk 
-						counter := counter + 1;
-					else
-						counter := 0;
-						i2c_clk <= '0';
-						i2c_clk_en <= '1'; -- pull the scl line low
-						i2c_data <= '0';
-						i2c_data_en <= '1';  --pull the sda line low
-						i2cVariable <= STOP; --generate the stop condition
-					end if;
-					
-				when STOP =>
-					i2c_clk_en <= '0'; -- set scl high by the pullup resistor by disabling the tri-state control
-					if counter < 4 then --delay for 5us for the stop condition setup time
-						counter := counter + 1;
-					else	
-						counter := 0;
-						i2c_data_en <= '0'; --set sda high by disabling the tri-state control
-					end if;
-					
-				when others =>
-					i2cVariable <= INIT;
-						
+                        if scl_half_period(16) then --send acknowledgment bit
+                            --report "Sending ACK or NACK";
+                            --send Ack or Nack
+                            sda_i <= rx_ack_bit_to_send;    
+                        end if;
 
-			end case;
-		
-		end if;
-		
-	
-	
-	end process;
+                        if scl_half_period(17) then
+                            change_state(RETURN_RX_BYTE);   
+                        end if;
+
+                    when RETURN_RX_BYTE =>
+                        rd_tdata <= sda_sampled;
+                        rd_tvalid <= '1';
+
+                        if rd_tvalid = '1' and rd_tready = '1' then
+                            change_state(WAIT_COMMAND);
+                            rd_tvalid <= '0';                                         
+                        end if;
+      
+                end case;
+    
+            end if;
+        end if;
+    end process;
 
 end architecture;

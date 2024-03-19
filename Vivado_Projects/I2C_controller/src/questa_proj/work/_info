@@ -1,0 +1,131 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11e vcom 2021.1 2021.01, Jan 19 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dG:/GITHUB/FPGA_projects/Quartus_Projects/I2C
+T_opt
+!s110 1710875528
+VOEW4Fld4S4?>K@iljMQld2
+04 6 3 work i2c_tb sim 1
+=23-2c3b709306f1-65f9e388-2ea-1480
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+tCvgOpt 0
+n@_opt
+OL;O;2021.1;73
+Ei2c_controller
+Z1 w1710875514
+Z2 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+Z3 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 54
+Z6 dG:/GITHUB/FPGA_projects/Vivado_Projects/I2C_controller/src/questa_proj
+Z7 8G:\GITHUB\FPGA_projects\Vivado_Projects\I2C_controller\src\i2c_controller.vhd
+Z8 FG:\GITHUB\FPGA_projects\Vivado_Projects\I2C_controller\src\i2c_controller.vhd
+l0
+L6 1
+VA59RUlQh?m>jT2B3@g`?]3
+!s100 Q^6C`1f@A_L0`^IO7LOi`2
+Z9 OL;C;2021.1;73
+33
+Z10 !s110 1710875521
+!i10b 1
+Z11 !s108 1710875521.000000
+Z12 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:\GITHUB\FPGA_projects\Vivado_Projects\I2C_controller\src\i2c_controller.vhd|
+Z13 !s107 G:\GITHUB\FPGA_projects\Vivado_Projects\I2C_controller\src\i2c_controller.vhd|
+!i113 0
+Z14 o-work work -2008 -explicit
+Z15 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+R5
+Z16 DEx4 work 14 i2c_controller 0 22 A59RUlQh?m>jT2B3@g`?]3
+!i122 54
+l76
+L33 260
+V9=D=lmQ=zOIX2lTK8=<0a1
+!s100 ?ldlm`9L8@_2h9e@1:EJa1
+R9
+33
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 0
+R14
+R15
+Ei2c_tb
+Z17 w1710873679
+Z18 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
+R3
+R4
+R5
+!i122 53
+R6
+Z19 8G:/GITHUB/FPGA_projects/Vivado_Projects/I2C_controller/src/i2c_tb.vhd
+Z20 FG:/GITHUB/FPGA_projects/Vivado_Projects/I2C_controller/src/i2c_tb.vhd
+l0
+L8 1
+VJeQo:a?2cSJ5l5TooNb^a3
+!s100 El7E1866<^dc[mL[dQ1DZ2
+R9
+33
+Z21 !s110 1710873686
+!i10b 1
+Z22 !s108 1710873686.000000
+Z23 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Vivado_Projects/I2C_controller/src/i2c_tb.vhd|
+Z24 !s107 G:/GITHUB/FPGA_projects/Vivado_Projects/I2C_controller/src/i2c_tb.vhd|
+!i113 0
+R14
+R15
+Asim
+R2
+R16
+R18
+R3
+R4
+R5
+DEx4 work 6 i2c_tb 0 22 JeQo:a?2cSJ5l5TooNb^a3
+!i122 53
+l37
+L11 127
+Vg1M:[6[ZHN0]L6G7WkD;<1
+!s100 cz[ongMHPVQg8Kzc]G=W?0
+R9
+33
+R21
+!i10b 1
+R22
+R23
+R24
+!i113 0
+R14
+R15
