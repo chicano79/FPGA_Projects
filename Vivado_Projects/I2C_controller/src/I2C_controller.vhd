@@ -5,8 +5,9 @@ use ieee.math_real.round;
 
 entity i2c_controller is
     generic (
-        clk_hz: integer := 100e6;
-        i2c_hz: integer := 100e3
+        clk_hz: integer;
+        i2c_hz: integer;
+		reset_logic: std_logic --:= '0'
     );
     port (
         clk : in std_logic;
@@ -91,7 +92,7 @@ begin
     begin
         if rising_edge(clk) then
           
-            if rst = '1' then
+            if rst = reset_logic then
                 sda_delay <= (others => '1');
             else
                 sda_delay <= sda_i & sda_delay(sda_delay'left downto 1);
@@ -104,6 +105,10 @@ begin
             end if;
         end if;        
     end process;
+	
+	
+	-----------------------------------------------------------
+	-----------------------------------------------------------
 
     FSM_PROC : process(clk)
 
@@ -156,7 +161,7 @@ begin
         
     begin
         if rising_edge(clk) then
-            if rst = '1' then
+            if rst = reset_logic then
                 state <= RST_SEQ;
                 cmd_tready <= '0';
                 rd_tdata<= (others => '0');
