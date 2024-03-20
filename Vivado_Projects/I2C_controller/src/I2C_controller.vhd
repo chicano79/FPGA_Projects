@@ -7,7 +7,7 @@ entity i2c_controller is
     generic (
         clk_hz: integer;
         i2c_hz: integer;
-		reset_logic: std_logic --:= '0'
+		reset_logic: std_logic := '1'
     );
     port (
         clk : in std_logic;
@@ -95,7 +95,7 @@ begin
             if rst = reset_logic then
                 sda_delay <= (others => '1');
             else
-                sda_delay <= sda_i & sda_delay(sda_delay'left downto 1);
+                sda_delay <= sda_i & sda_delay(sda_delay'high downto 1);
                 
                 if sda_delay(0) = '0' then
                     sda <= '0';  
@@ -120,7 +120,7 @@ begin
         end procedure;
 
         --an impure function
-        impure function scl_half_period(val: integer) return boolean is
+        impure function scl_half_period(cnt: integer) return boolean is
         begin
             if clk_counter < clk_count_range then
                 clk_counter <= clk_counter + 1; 
@@ -146,7 +146,7 @@ begin
                 else
                     scl_halfperiod_counter <= 0;                    
                 end if;
-                return scl_halfperiod_counter = val;
+                return scl_halfperiod_counter = cnt;
             end if;
         end function;
 

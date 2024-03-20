@@ -8,11 +8,12 @@ use IEEE.NUMERIC_STD.ALL;
 entity RTCC is
 	generic(
 		FREQ: integer := 100e6;
-		I2C_FREQ: integer := 100e3;
+		I2C_FREQ: integer := 10e3;
 		DEVICE_ID: std_logic_vector(3 downto 0) := "1101";
 		CHIP_SELECT_BITS: std_logic_vector(2 downto 0) := "111";
 		WR: std_logic := '0';
-		RD: std_logic := '1'
+		RD: std_logic := '1';
+		reset_logic: std_logic := '1'
 	);
 	
 	port(
@@ -50,7 +51,7 @@ signal byte_to_send: std_logic_vector(7 downto 0);
 
 signal secondsRegister, minutesRegister, hoursRegister: std_logic_vector(7 downto 0);
 
-signal clk_DISPLAYscan, rst_out: std_logic;
+signal clk_DISPLAYscan, rst: std_logic;
 
 signal display_segments: std_logic_vector(0 to 55) := (others => '0');
 signal disp_selector: integer range 0 to 20 := 0;
@@ -90,20 +91,10 @@ ANODE <= internal_anode;
 
 RESET_SYNC:
 entity work.reset_sync(rtl)
-  generic map(
-    -- Clock cycles to hold rst_out for after rst_in is released
-    rst_strobe_cycles => 128,
-
-    -- The polarity of rst_in when reset is active
-    rst_in_active_value => '0',
-
-    -- The desired polarity of rst_out when active
-    rst_out_active_value => '0'
-  )
   port map(
     clk => clk_MAIN, -- Slowest clock that uses rst_out
-    rst_in => rst_in,
-    rst_out => rst_out
+    rst_in => not rst_in,
+    rst_out => rst
   );
 
 I2C_CONTROLLER:
@@ -111,21 +102,21 @@ entity work.i2c_controller(rtl)
 	generic map(
 		clk_hz => FREQ,
 		i2c_hz => I2C_FREQ,
-		reset_logic => '0'
+		reset_logic => '1'
 	)
 	
 	port map(
 		clk => clk_MAIN,
-		rst => rst_out,	
+		rst => rst,	
+		scl => SCL,
+		sda => SDA,
         cmd_tdata => cmd_tdata,  
         cmd_tvalid => cmd_tvalid,
         cmd_tready => cmd_tready,
         rd_tdata => rd_tdata,
         rd_tvalid => rd_tvalid,  
         rd_tready => rd_tready,  
-        nack => nack,
-		scl => SCL,
-		sda => SDA
+        nack => open		
 	);
 	
 MUX_TO_DISPLAY:
@@ -162,7 +153,7 @@ CLOCK_1KHz_GEN:
 	end process;
 	
 FETCH_RTCC:
-	process(clk_MAIN, rst_out)
+	process(clk_MAIN, rst)
 	
         procedure send_cmd(cmd: std_logic_vector(7 downto 0)) is        
         begin            
@@ -187,7 +178,7 @@ FETCH_RTCC:
 		constant count_range: integer range 0 to FREQ := (FREQ/10) - 1;
 		variable counter: integer range 0 to count_range := 0;
 	begin
-		if rst_out = '0' then
+		if rst = reset_logic then
 			--send_cmd(CMD_BUS_RST);
 			i2c_state_variable <= 0;
 		elsif counter < count_range then

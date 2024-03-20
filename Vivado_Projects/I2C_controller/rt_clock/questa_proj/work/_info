@@ -1,0 +1,450 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11e vcom 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 dC:/intelFPGA/22.1std
+T_opt
+!s110 1669523507
+V=Nh06o@4aSZg=3VicNn[n1
+04 6 3 work i2c_tb sim 1
+=5-000c29308d6a-6382e832-29b-1cb4
+!s124 OEM10U2 
+Z2 o-quiet -auto_acc_if_foreign -work work +acc
+Z3 tCvgOpt 0
+n@_opt
+Z4 OL;O;2021.2;73
+R1
+T_opt1
+!s110 1669537451
+VKY]L7`]kc0=nHPLj4fAGC0
+04 6 3 work top_tb sim 1
+=1-000c29308d6a-63831eaa-168-117c
+!s124 OEM10U14 
+R2
+R3
+n@_opt1
+R4
+Eaxi_fifo
+Z5 w1642407606
+Z6 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z7 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z8 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 51
+Z9 dC:/Users/Jonas/Documents/rt_clock/questa_proj
+Z10 8C:/Users/Jonas/Documents/rt_clock/uart/uart_src/axi_fifo.vhd
+Z11 FC:/Users/Jonas/Documents/rt_clock/uart/uart_src/axi_fifo.vhd
+l0
+L5 1
+V6jFQoc:C0Z4Qg48BeFlH@1
+!s100 aA29Y6R5RFICQnhYzBh_U3
+Z12 OL;C;2021.2;73
+32
+Z13 !s110 1669537426
+!i10b 1
+Z14 !s108 1669537426.000000
+Z15 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/uart/uart_src/axi_fifo.vhd|
+Z16 !s107 C:/Users/Jonas/Documents/rt_clock/uart/uart_src/axi_fifo.vhd|
+!i113 0
+Z17 o-work work -2002 -explicit
+Z18 tExplicit 1 CvgOpt 0
+Artl
+R6
+R7
+R8
+Z19 DEx4 work 8 axi_fifo 0 22 6jFQoc:C0Z4Qg48BeFlH@1
+!i122 51
+l80
+L26 142
+VnoGmKnHFbcZNGW^okY2i?1
+!s100 2WI2MMK_oGaVfnl9d2`5I1
+R12
+32
+R13
+!i10b 1
+R14
+R15
+R16
+!i113 0
+R17
+R18
+Ei2c_controller
+Z20 w1669523733
+Z21 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+R6
+R7
+R8
+!i122 48
+R9
+Z22 8C:/Users/Jonas/Documents/rt_clock/i2c/i2c_controller.vhd
+Z23 FC:/Users/Jonas/Documents/rt_clock/i2c/i2c_controller.vhd
+l0
+L6 1
+V?8[=Yj:ehLa]2z`S0SIMJ0
+!s100 64fWU=U;Dh<G>JjaD7Y<l2
+R12
+33
+Z24 !s110 1669537425
+!i10b 1
+Z25 !s108 1669537424.000000
+Z26 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/i2c/i2c_controller.vhd|
+Z27 !s107 C:/Users/Jonas/Documents/rt_clock/i2c/i2c_controller.vhd|
+!i113 0
+Z28 o-work work -2008 -explicit
+R18
+Artl
+R21
+R6
+R7
+R8
+Z29 DEx4 work 14 i2c_controller 0 22 ?8[=Yj:ehLa]2z`S0SIMJ0
+!i122 48
+l75
+L33 275
+VPkTUC]2:lKKW3[PML>>Bg2
+!s100 YI_1YWa_Gi5agj9zNH1n<3
+R12
+33
+R24
+!i10b 1
+R25
+R26
+R27
+!i113 0
+R28
+R18
+Ei2c_tb
+Z30 w1669521974
+Z31 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
+R6
+R7
+R8
+!i122 49
+R9
+Z32 8C:/Users/Jonas/Documents/rt_clock/i2c/i2c_tb.vhd
+Z33 FC:/Users/Jonas/Documents/rt_clock/i2c/i2c_tb.vhd
+l0
+L8 1
+VJeQo:a?2cSJ5l5TooNb^a3
+!s100 El7E1866<^dc[mL[dQ1DZ2
+R12
+33
+R24
+!i10b 1
+Z34 !s108 1669537425.000000
+Z35 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/i2c/i2c_tb.vhd|
+Z36 !s107 C:/Users/Jonas/Documents/rt_clock/i2c/i2c_tb.vhd|
+!i113 0
+R28
+R18
+Asim
+R21
+R29
+R31
+R6
+R7
+R8
+DEx4 work 6 i2c_tb 0 22 JeQo:a?2cSJ5l5TooNb^a3
+!i122 49
+l37
+L11 126
+Vk::2e7>P7i9QC__]o3Xn:1
+!s100 12=CFfUg2GE9j`0gm^6ek3
+R12
+33
+R24
+!i10b 1
+R34
+R35
+R36
+!i113 0
+R28
+R18
+Ereset_sync
+Z37 w1645085420
+R7
+R8
+!i122 50
+R9
+Z38 8C:/Users/Jonas/Documents/rt_clock/reset_sync/reset_sync.vhd
+Z39 FC:/Users/Jonas/Documents/rt_clock/reset_sync/reset_sync.vhd
+l0
+L4 1
+V_S4@iPz<z5o?89;OLF;3E0
+!s100 ^_ee:;GTHE2=OmFTai3]_1
+R12
+32
+R13
+!i10b 1
+R34
+Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/reset_sync/reset_sync.vhd|
+Z41 !s107 C:/Users/Jonas/Documents/rt_clock/reset_sync/reset_sync.vhd|
+!i113 0
+R17
+R18
+Artl
+R7
+R8
+Z42 DEx4 work 10 reset_sync 0 22 _S4@iPz<z5o?89;OLF;3E0
+!i122 50
+l35
+L22 48
+VYh]=5X>AP0WaOLO46=Y2:2
+!s100 QYMzN5jgMOR3;A8z[9Ci42
+R12
+32
+R13
+!i10b 1
+R34
+R40
+R41
+!i113 0
+R17
+R18
+Etop
+Z43 w1669213004
+R6
+R7
+R8
+!i122 55
+R9
+Z44 8C:/Users/Jonas/Documents/rt_clock/top/top.vhd
+Z45 FC:/Users/Jonas/Documents/rt_clock/top/top.vhd
+l0
+L5 1
+VUoM98LK?6Db>bXG:eTgR`3
+!s100 3P9A12AVAkHe=;lkoo5_f0
+R12
+32
+Z46 !s110 1669537427
+!i10b 1
+Z47 !s108 1669537427.000000
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/top/top.vhd|
+Z49 !s107 C:/Users/Jonas/Documents/rt_clock/top/top.vhd|
+!i113 0
+R17
+R18
+Astr
+R21
+R29
+Z50 DEx4 work 13 uart_buffered 0 22 G=SYfDZS:G29z]KKnV6jP1
+R42
+R6
+R7
+R8
+Z51 DEx4 work 3 top 0 22 UoM98LK?6Db>bXG:eTgR`3
+!i122 55
+l38
+L25 62
+V8IXG2H;WTWbM:H_nkV3OY0
+!s100 ^P;H4H:;A8jW[jBzzZG7e0
+R12
+32
+R46
+!i10b 1
+R47
+R48
+R49
+!i113 0
+R17
+R18
+Etop_tb
+Z52 w1669528758
+R31
+R6
+R7
+R8
+!i122 56
+R9
+Z53 8C:/Users/Jonas/Documents/rt_clock/top/top_tb.vhd
+Z54 FC:/Users/Jonas/Documents/rt_clock/top/top_tb.vhd
+l0
+L8 1
+Va7F?0`GAE]^Z:I3B^hTb13
+!s100 1nfN:Xdj?6[[Yj^6lA`[]2
+R12
+33
+R46
+!i10b 1
+R47
+Z55 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/top/top_tb.vhd|
+Z56 !s107 C:/Users/Jonas/Documents/rt_clock/top/top_tb.vhd|
+!i113 0
+R28
+R18
+Asim
+R50
+R51
+R31
+R6
+R7
+R8
+DEx4 work 6 top_tb 0 22 a7F?0`GAE]^Z:I3B^hTb13
+!i122 56
+l35
+L11 103
+V4@B`f7g]YXRM@7X@WZgOM0
+!s100 4cBHQjf1b7FS1TWTDDUT50
+R12
+33
+R46
+!i10b 1
+R47
+R55
+R56
+!i113 0
+R28
+R18
+Euart_buffered
+Z57 w1644998442
+R6
+R7
+R8
+!i122 54
+R9
+Z58 8C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_buffered.vhd
+Z59 FC:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_buffered.vhd
+l0
+L5 1
+VG=SYfDZS:G29z]KKnV6jP1
+!s100 ;47hkTfzoa<DURCAlGd^@3
+R12
+32
+R46
+!i10b 1
+R14
+Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_buffered.vhd|
+Z61 !s107 C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_buffered.vhd|
+!i113 0
+R17
+R18
+Artl
+Z62 DEx4 work 7 uart_tx 0 22 dZU[YhJcEiaIREO6mIjY>1
+R19
+Z63 DEx4 work 7 uart_rx 0 22 _QIV]V>59h]0mE`=l5ba@0
+R6
+R7
+R8
+R50
+!i122 54
+l45
+L36 82
+VBbKfdW9mh5XB9h>88^=ei3
+!s100 5@Jeng;Xm;B@mfj=2F:d00
+R12
+32
+R46
+!i10b 1
+R14
+R60
+R61
+!i113 0
+R17
+R18
+Euart_rx
+Z64 w1668662130
+R6
+R7
+R8
+!i122 52
+R9
+Z65 8C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_rx.vhd
+Z66 FC:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_rx.vhd
+l0
+L5 1
+V_QIV]V>59h]0mE`=l5ba@0
+!s100 zTa8jUobUhd=`;;1NgHSW0
+R12
+32
+R13
+!i10b 1
+R14
+Z67 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_rx.vhd|
+Z68 !s107 C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_rx.vhd|
+!i113 0
+R17
+R18
+Artl
+R6
+R7
+R8
+R63
+!i122 52
+l51
+L26 134
+VTjc@53IeF27DLiX@5SkR[0
+!s100 [a0fGNXRg0YH8f?aGzE8_1
+R12
+32
+R13
+!i10b 1
+R14
+R67
+R68
+!i113 0
+R17
+R18
+Euart_tx
+Z69 w1668662134
+R6
+R7
+R8
+!i122 53
+R9
+Z70 8C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_tx.vhd
+Z71 FC:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_tx.vhd
+l0
+L5 1
+VdZU[YhJcEiaIREO6mIjY>1
+!s100 SBE92K2ZU2TM1MG6bXN?40
+R12
+32
+R13
+!i10b 1
+R14
+Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_tx.vhd|
+Z73 !s107 C:/Users/Jonas/Documents/rt_clock/uart/uart_src/uart_tx.vhd|
+!i113 0
+R17
+R18
+Artl
+R6
+R7
+R8
+R62
+!i122 53
+l40
+L24 92
+V:R75hebJAoaZdH^<BZV5<3
+!s100 =<1[LOQZC7[gNCH_YOo>F2
+R12
+32
+R13
+!i10b 1
+R14
+R72
+R73
+!i113 0
+R17
+R18

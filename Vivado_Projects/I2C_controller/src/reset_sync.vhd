@@ -4,13 +4,13 @@ use ieee.std_logic_1164.all;
 entity reset_sync is
   generic (
     -- Clock cycles to hold rst_out for after rst_in is released
-    rst_strobe_cycles: positive;-- := 128;
+    rst_strobe_cycles: positive := 128;
 
     -- The polarity of rst_in when reset is active
-    rst_in_active_value: std_logic;-- := '1';
+    rst_in_active_value: std_logic := '1';
 
     -- The desired polarity of rst_out when active
-    rst_out_active_value: std_logic --:= '1'
+    rst_out_active_value: std_logic := '1'
   );
   port (
     clk : in std_logic; -- Slowest clock that uses rst_out

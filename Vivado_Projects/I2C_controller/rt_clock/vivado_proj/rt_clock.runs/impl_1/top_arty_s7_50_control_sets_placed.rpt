@@ -1,0 +1,97 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Sun Nov 27 15:55:40 2022
+| Host         : DESKTOP-FMTOP29 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file top_arty_s7_50_control_sets_placed.rpt
+| Design       : top_arty_s7_50
+| Device       : xc7s50
+-------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    19 |
+|    Minimum number of control sets                        |    19 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    70 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    19 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     2 |
+| >= 8 to < 10       |     5 |
+| >= 10 to < 12      |     6 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     1 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               5 |            3 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              83 |           27 |
+| Yes          | No                    | No                     |              10 |            3 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             128 |           42 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------------+-----------------------------------------------+---------------------------------------+------------------+----------------+--------------+
+|     Clock Signal     |                 Enable Signal                 |            Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------+-----------------------------------------------+---------------------------------------+------------------+----------------+--------------+
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/RX_FIFO/rx_ack_bit_to_send           | TOP/RESET_SYNC/rst_0                  |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/UART_RX/stop_bit_error_i_1_n_0       | TOP/RESET_SYNC/rst_0                  |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG |                                               |                                       |                3 |              5 |         1.67 |
+|  CLK100MHZ_IBUF_BUFG | TOP/I2C_CONTROLLER/scl_hp_cnt[4]_i_1_n_0      | TOP/RESET_SYNC/rst_0                  |                3 |              5 |         1.67 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/UART_RX/FSM_onehot_state[5]_i_1_n_0  | TOP/RESET_SYNC/rst_0                  |                1 |              6 |         6.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/RESET_SYNC/counter[6]_i_1_n_0             | TOP/RESET_SYNC/rst_in_p2              |                2 |              7 |         3.50 |
+|  CLK100MHZ_IBUF_BUFG | TOP/I2C_CONTROLLER/sda_sampled                | TOP/RESET_SYNC/rst_0                  |                1 |              8 |         8.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/UART_RX/shift_reg[7]_i_2_n_0         | TOP/UART/UART_RX/shift_reg[7]_i_1_n_0 |                2 |              8 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/UART_RX/FSM_onehot_state_reg_n_0_[5] | TOP/RESET_SYNC/rst_0                  |                2 |              8 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/I2C_CONTROLLER/byte_to_send[7]_i_1_n_0    | TOP/RESET_SYNC/rst_0                  |                2 |              8 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/I2C_CONTROLLER/rd_tvalid_i_1_n_0          | TOP/RESET_SYNC/rst_0                  |                3 |              9 |         3.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/UART_RX/clk_counter[9]_i_1__0_n_0    | TOP/RESET_SYNC/rst_0                  |                5 |             10 |         2.00 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/UART_TX/clk_counter[9]_i_1_n_0       |                                       |                3 |             10 |         3.33 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/RX_FIFO/index[10]__0_i_1_n_0         | TOP/RESET_SYNC/rst_0                  |                4 |             11 |         2.75 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/RX_FIFO/p_5_in                       | TOP/RESET_SYNC/rst_0                  |                3 |             11 |         3.67 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/TX_FIFO/index[10]__0_i_1__0_n_0      | TOP/RESET_SYNC/rst_0                  |                4 |             11 |         2.75 |
+|  CLK100MHZ_IBUF_BUFG | TOP/UART/TX_FIFO/p_5_in                       | TOP/RESET_SYNC/rst_0                  |                3 |             11 |         3.67 |
+|  CLK100MHZ_IBUF_BUFG | TOP/I2C_CONTROLLER/clk_cnt[12]_i_1_n_0        | TOP/RESET_SYNC/rst_0                  |                5 |             13 |         2.60 |
+|  CLK100MHZ_IBUF_BUFG |                                               | TOP/RESET_SYNC/rst_0                  |               27 |             83 |         3.07 |
++----------------------+-----------------------------------------------+---------------------------------------+------------------+----------------+--------------+
+
+
