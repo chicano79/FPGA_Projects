@@ -18,10 +18,7 @@ proc create_report { reportName command } {
   }
 }
 set_param chipscope.maxJobs 2
-set_param synth.incrementalSynthesisCache C:/Users/desig/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-17292-DESKTOP-7RQ9HLB/incrSyn
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -46,8 +43,8 @@ read_vhdl -library xil_defaultlib C:/Users/desig/Documents/GitHub/FPGA_Projects/
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/RTCC/RTCC.srcs/constrs_1/new/RTCC.xdc
-set_property used_in_implementation false [get_files C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/RTCC/RTCC.srcs/constrs_1/new/RTCC.xdc]
+read_xdc C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc
+set_property used_in_implementation false [get_files C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

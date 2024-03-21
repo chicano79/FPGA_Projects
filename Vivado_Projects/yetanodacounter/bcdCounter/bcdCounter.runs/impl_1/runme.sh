@@ -41,7 +41,7 @@ EAStep()
 }
 
 # pre-commands:
-/bin/touch .init_design.begin.rst
-EAStep vivado -log eightDigitBCDcounter.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source eightDigitBCDcounter.tcl -notrace
+/bin/touch .write_bitstream.begin.rst
+EAStep vivado -log I2C_controller.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source I2C_controller.tcl -notrace
 
 

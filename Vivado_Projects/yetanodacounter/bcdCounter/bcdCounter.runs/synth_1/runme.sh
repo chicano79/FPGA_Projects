@@ -40,4 +40,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log eightDigitBCDcounter.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source eightDigitBCDcounter.tcl
+EAStep vivado -log I2C_controller.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source I2C_controller.tcl

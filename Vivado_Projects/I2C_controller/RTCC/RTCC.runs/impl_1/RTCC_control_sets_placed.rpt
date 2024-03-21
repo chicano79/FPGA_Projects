@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Wed Mar 20 20:38:43 2024
+| Date         : Thu Mar 21 14:52:17 2024
 | Host         : DESKTOP-7RQ9HLB running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file RTCC_control_sets_placed.rpt
 | Design       : RTCC
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    18 |
-|    Minimum number of control sets                        |    18 |
+| Total control sets                                       |    10 |
+|    Minimum number of control sets                        |    10 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    46 |
+| Unused register locations in slices containing registers |    26 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    18 |
-| >= 0 to < 4        |     2 |
-| >= 4 to < 6        |     4 |
-| >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     5 |
+| Total control sets |    10 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     3 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     3 |
 | >= 10 to < 12      |     0 |
-| >= 12 to < 14      |     1 |
+| >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     4 |
+| >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              60 |           26 |
+| No           | No                    | No                     |              18 |            8 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              68 |           21 |
-| Yes          | No                    | No                     |              16 |            4 |
+| No           | Yes                   | No                     |              63 |           15 |
+| Yes          | No                    | No                     |              16 |            3 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              50 |           20 |
+| Yes          | Yes                   | No                     |              29 |           11 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,24 +73,16 @@ Table of Contents
 +------------------------------+--------------------------------------------------+---------------------------+------------------+----------------+
 |         Clock Signal         |                   Enable Signal                  |      Set/Reset Signal     | Slice Load Count | Bel Load Count |
 +------------------------------+--------------------------------------------------+---------------------------+------------------+----------------+
-|  RESET_SYNC/rd_tready3_out   |                                                  |                           |                1 |              1 |
-|  RESET_SYNC/E[0]             |                                                  |                           |                1 |              2 |
-|  I2C_CONTROLLER/E[0]         |                                                  | RESET_SYNC/rst            |                2 |              5 |
-|  RESET_SYNC/rst_out_reg_3[0] |                                                  |                           |                2 |              5 |
 |  RESET_SYNC/rst_out_reg_0[0] |                                                  |                           |                2 |              5 |
-|  clk_MAIN_IBUF_BUFG          | I2C_CONTROLLER/scl_halfperiod_counter[4]_i_1_n_0 | RESET_SYNC/rst            |                2 |              5 |
-|  RESET_SYNC/rst_out_reg_2[0] |                                                  |                           |                3 |              7 |
-|  clk_MAIN_IBUF_BUFG          | RESET_SYNC/counter                               | RESET_SYNC/rst_in_p2      |                3 |              7 |
-|  RESET_SYNC/rst_out_reg_1[0] |                                                  |                           |                3 |              8 |
-|  clk_MAIN_IBUF_BUFG          |                                                  |                           |                5 |              8 |
-|  clk_MAIN_IBUF_BUFG          | I2C_CONTROLLER/byte_to_send[7]_i_1_n_0           | RESET_SYNC/rst            |                2 |              8 |
-|  clk_MAIN_IBUF_BUFG          | I2C_CONTROLLER/sda_sampled                       | RESET_SYNC/rst            |                2 |              8 |
-|  clk_MAIN_IBUF_BUFG          | I2C_CONTROLLER/rd_tvalid_i_1_n_0                 | RESET_SYNC/rst            |                5 |              9 |
-|  clk_MAIN_IBUF_BUFG          | I2C_CONTROLLER/clk_counter[12]_i_1_n_0           | RESET_SYNC/rst            |                6 |             13 |
-|  clk_MAIN_IBUF_BUFG          | internal_anode[7]_i_1_n_0                        |                           |                4 |             16 |
-|  clk_MAIN_IBUF_BUFG          |                                                  | internal_anode[7]_i_1_n_0 |                5 |             17 |
-|  RESET_SYNC/rst_out_reg_4[0] |                                                  |                           |                9 |             24 |
-|  clk_MAIN_IBUF_BUFG          |                                                  | RESET_SYNC/rst            |               14 |             46 |
+|  RESET_SYNC/E[0]             |                                                  |                           |                2 |              5 |
+|  CLK100MHZ_IBUF_BUFG         | I2C_CONTROLLER/scl_halfperiod_counter[4]_i_1_n_0 | RESET_SYNC/rst            |                2 |              5 |
+|  CLK100MHZ_IBUF_BUFG         | RESET_SYNC/counter                               | RESET_SYNC/rst_in_p2      |                2 |              7 |
+|  CLK100MHZ_IBUF_BUFG         |                                                  |                           |                4 |              8 |
+|  CLK100MHZ_IBUF_BUFG         | I2C_CONTROLLER/byte_to_send[7]_i_1_n_0           | RESET_SYNC/rst            |                2 |              8 |
+|  CLK100MHZ_IBUF_BUFG         | I2C_CONTROLLER/clk_counter[8]_i_1_n_0            | RESET_SYNC/rst            |                5 |              9 |
+|  CLK100MHZ_IBUF_BUFG         | internal_anode[7]_i_1_n_0                        |                           |                3 |             16 |
+|  CLK100MHZ_IBUF_BUFG         |                                                  | internal_anode[7]_i_1_n_0 |                5 |             17 |
+|  CLK100MHZ_IBUF_BUFG         |                                                  | RESET_SYNC/rst            |               10 |             46 |
 +------------------------------+--------------------------------------------------+---------------------------+------------------+----------------+
 
 

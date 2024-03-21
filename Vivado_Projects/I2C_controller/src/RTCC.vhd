@@ -1,24 +1,24 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
+---------- Uncomment the following library declaration if using
+---------- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
 
 entity RTCC is
 	generic(
 		FREQ: integer := 100e6;
-		I2C_FREQ: integer := 10e3;
-		DEVICE_ID: std_logic_vector(3 downto 0) := "1101";
-		CHIP_SELECT_BITS: std_logic_vector(2 downto 0) := "111";
+		I2C_FREQ: integer := 100e3;
+		DEVICE_ID: std_logic_vector(6 downto 0) := "1101111";
+		----------CHIP_SELECT_BITS: std_logic_vector(2 downto 0) := "111";
 		WR: std_logic := '0';
 		RD: std_logic := '1';
 		reset_logic: std_logic := '1'
 	);
 	
 	port(
-		clk_MAIN: in std_logic;
-		rst_in: in std_logic;
+		CLK100MHZ: in std_logic;
+		CPU_RESETN: in std_logic;
 		
 		SEG_7: buffer std_logic_vector(0 to 6);
 		ANODE: buffer std_logic_vector(7 downto 0) := (others => '1');
@@ -51,7 +51,7 @@ signal byte_to_send: std_logic_vector(7 downto 0);
 
 signal secondsRegister, minutesRegister, hoursRegister: std_logic_vector(7 downto 0);
 
-signal clk_DISPLAYscan, rst: std_logic;
+signal clk_DISPLAYscan, rst, CLK400KHZ: std_logic;
 
 signal display_segments: std_logic_vector(0 to 55) := (others => '0');
 signal disp_selector: integer range 0 to 20 := 0;
@@ -68,12 +68,14 @@ subtype bcd_digit is std_logic_vector(0 to 6);
 
 signal internal_anode: std_logic_vector(7 downto 0) := (0 => '0', others => '1');
 
+signal i2c_state_variable: integer range 0 to 30 := 1;
+
+signal cpu_rst: std_logic;
+
 function get_segment(dg: integer range 0 to 9) return bcd_digit is
 begin
 	return mdigits(dg);
 end function;
-
-signal i2c_state_variable: integer range 0 to 30 := 0;
 
 
 begin
@@ -89,11 +91,13 @@ display_segments(49 to 55) <= (others => '1');
 
 ANODE <= internal_anode;
 
+cpu_rst <= not CPU_RESETN;
+
 RESET_SYNC:
 entity work.reset_sync(rtl)
   port map(
-    clk => clk_MAIN, -- Slowest clock that uses rst_out
-    rst_in => not rst_in,
+    clk => CLK100MHZ, ---------- Slowest clock that uses rst_out
+    rst_in => cpu_rst,
     rst_out => rst
   );
 
@@ -106,7 +110,7 @@ entity work.i2c_controller(rtl)
 	)
 	
 	port map(
-		clk => clk_MAIN,
+		clk => CLK100MHZ,
 		rst => rst,	
 		scl => SCL,
 		sda => SDA,
@@ -132,12 +136,12 @@ MUX_TO_DISPLAY:
 				 (others => '1') when others;
 
 CLOCK_1KHz_GEN:
-	process(clk_MAIN)
+	process(CLK100MHZ)
 		constant displayStates: integer range 0 to 10 := 8;
 		constant count_range: integer range 0 to FREQ := (FREQ/1e3)-1;
 		variable counter: integer range 0 to count_range := 0;
 	begin
-		if rising_edge(clk_MAIN) then 
+		if rising_edge(CLK100MHZ) then 
 			if counter < count_range then
 				counter := counter + 1;
 			else 
@@ -152,8 +156,25 @@ CLOCK_1KHz_GEN:
 		end if;
 	end process;
 	
+CLOCK_400KHz_GEN:
+	process(CLK100MHZ)
+		constant displayStates: integer range 0 to 10 := 8;
+		constant count_range: integer range 0 to FREQ := (FREQ/400e3)-1;
+		variable counter: integer range 0 to count_range := 0;
+	begin
+		if rising_edge(CLK100MHZ) then 
+			if counter < count_range then
+				counter := counter + 1;
+				CLK400KHZ <= '0';
+			else 
+				counter := 0;
+				CLK400KHZ <= '1';		
+			end if;
+		end if;
+	end process;
+	
 FETCH_RTCC:
-	process(clk_MAIN, rst)
+	process(CLK400KHZ, rst)
 	
         procedure send_cmd(cmd: std_logic_vector(7 downto 0)) is        
         begin            
@@ -161,7 +182,7 @@ FETCH_RTCC:
             cmd_tvalid <= '1';          
 			if cmd_tvalid = '1' and cmd_tready = '1' then
 			  cmd_tvalid <= '0';
-			  i2c_state_variable <= i2c_state_variable + 1; --go to the next state                
+			  i2c_state_variable <= i2c_state_variable + 1; ----------go to the next state                
 			end if;
         end procedure;
 
@@ -169,89 +190,90 @@ FETCH_RTCC:
         begin
             rd_tready <= '1';       
 			if rd_tvalid = '1' and rd_tready = '1' then
-				--the data read at this point is in the rd_tdata register;
+				----------the data read at this point is in the rd_tdata register;
 				rd_tready <= '0';
-				i2c_state_variable <= i2c_state_variable + 1; --go to the next state 
+				i2c_state_variable <= i2c_state_variable + 1; ----------go to the next state 
 			end if;         
         end procedure;
 
-		constant count_range: integer range 0 to FREQ := (FREQ/10) - 1;
-		variable counter: integer range 0 to count_range := 0;
 	begin
 		if rst = reset_logic then
-			--send_cmd(CMD_BUS_RST);
-			i2c_state_variable <= 0;
-		elsif counter < count_range then
-			counter := counter + 1;
+			----------send_cmd(CMD_BUS_RST);
+			i2c_state_variable <= 1;	
 		else			
 			case i2c_state_variable is
 			
-				--reset the I2C Bus
+				----------reset the I2C Bus
 				when 0 =>
-					send_cmd(CMD_BUS_RST);
-					
-				--initiate a start condition
+					send_cmd(CMD_BUS_RST);					
+						
+				------ initiate a start condition
 				when 1 =>
 					send_cmd(CMD_START_CONDITION);
 					
-				--prep and send control byte with write option
+				------ prep and send control byte with write option
 				when 2 =>
-					byte_to_send <= DEVICE_ID & CHIP_SELECT_BITS & WR;
+					--byte_to_send <= DEVICE_ID & WR;
 					send_cmd(CMD_TX_BYTE);					
 				when 3 =>
-					send_cmd(byte_to_send);
+					send_cmd(DEVICE_ID & WR);
 					
-				--prep and send the data address
+				------ prep and send the data address
 				when 4 =>
-					byte_to_send <= startingTimeRegister;
+					--byte_to_send <= startingTimeRegister;
 					send_cmd(CMD_TX_BYTE);					
 				when 5 =>
-					send_cmd(byte_to_send);	
-					
-				--initiate a repeated start condition
+					send_cmd(x"00");
+				
 				when 6 =>
-					send_cmd(CMD_START_CONDITION);
-					
-				--send control byte with read option
-				when 7 =>
-					byte_to_send <= DEVICE_ID & CHIP_SELECT_BITS & RD;
-					send_cmd(CMD_TX_BYTE);
-				when 8 =>
-					send_cmd(byte_to_send);
-				
-				--prep and read the 1st byte with ACK
-				when 9 =>
-					send_cmd(CMD_RX_BYTE_ACK);
-				when 10 =>
-					read_byte;
-				
-				--store the 1st byte and prep for the second byte with ACK
-				when 11 =>
-					secondsRegister <= rd_tdata;
-					send_cmd(CMD_RX_BYTE_ACK);					
-				when 12 =>
-					read_byte;
-
-				--store the 2nd byte and prep for the third byte with NACK
-				when 13 =>
-					minutesRegister <= rd_tdata;
-					send_cmd(CMD_RX_BYTE_NACK);					
-				when 14 =>
-					read_byte;		
-
-				--store the 3rd byte and issue stop command
-				when 15 =>
-					hoursRegister <= rd_tdata;
 					send_cmd(CMD_STOP_CONDITION);
+					
+				when 7 =>
+					i2c_state_variable <= i2c_state_variable;
+					
+				-------- initiate a repeated start condition
+				-- when 6 =>
+					-- send_cmd(CMD_START_CONDITION);
+					
+				-------- send control byte with read option
+				-- when 7 =>
+					-- byte_to_send <= DEVICE_ID & RD;
+					-- send_cmd(CMD_TX_BYTE);
+				-- when 8 =>
+					-- send_cmd(byte_to_send);
 				
-				--start all over after 10secs
-				when 16 =>
-					counter := 0;
-					i2c_state_variable <= 1;
+				-------- prep and read the 1st byte with ACK
+				-- when 9 =>
+					-- send_cmd(CMD_RX_BYTE_ACK);
+				-- when 10 =>
+					-- read_byte;
+				
+				-------- store the 1st byte and prep for the second byte with ACK
+				-- when 11 =>
+					-- secondsRegister <= rd_tdata;
+					-- send_cmd(CMD_RX_BYTE_ACK);					
+				-- when 12 =>
+					-- read_byte;
+
+				-------- store the 2nd byte and prep for the third byte with NACK
+				-- when 13 =>
+					-- minutesRegister <= rd_tdata;
+					-- send_cmd(CMD_RX_BYTE_NACK);					
+				-- when 14 =>
+					-- read_byte;		
+
+				-------- store the 3rd byte and issue stop command
+				-- when 15 =>
+					-- hoursRegister <= rd_tdata;
+					-- send_cmd(CMD_STOP_CONDITION);
+				
+				-------- start all over after 10secs
+				-- when 16 =>
+					-- counter := 0;
+					-- i2c_state_variable <= 1;
 				
 				when others =>
-					counter := 0;
-					i2c_state_variable <= 0;
+					i2c_state_variable <= i2c_state_variable;
 			
 			end case;
 			

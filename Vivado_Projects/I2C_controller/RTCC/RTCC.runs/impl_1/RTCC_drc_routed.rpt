@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Wed Mar 20 20:39:51 2024
+| Date         : Thu Mar 21 14:53:44 2024
 | Host         : DESKTOP-7RQ9HLB running 64-bit major release  (build 9200)
 | Command      : report_drc -file RTCC_drc_routed.rpt -pb RTCC_drc_routed.pb -rpx RTCC_drc_routed.rpx
 | Design       : RTCC
@@ -24,12 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 9
+             Violations found: 4
 +----------+----------+-----------------------------------------------------+------------+
 | Rule     | Severity | Description                                         | Violations |
 +----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
-| PDRC-153 | Warning  | Gated clock check                                   | 8          |
+| PDRC-153 | Warning  | Gated clock check                                   | 2          |
+| RPBF-3   | Warning  | IO port buffering is incomplete                     | 1          |
 +----------+----------+-----------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -49,42 +50,17 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net I2C_CONTROLLER/E[0] is a gated clock net sourced by a combinational pin I2C_CONTROLLER/i2c_state_variable_reg[4]_i_2/O, cell I2C_CONTROLLER/i2c_state_variable_reg[4]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net RESET_SYNC/E[0] is a gated clock net sourced by a combinational pin RESET_SYNC/i2c_state_variable_reg[4]_i_2/O, cell RESET_SYNC/i2c_state_variable_reg[4]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net RESET_SYNC/E[0] is a gated clock net sourced by a combinational pin RESET_SYNC/byte_to_send_reg[2]_i_1/O, cell RESET_SYNC/byte_to_send_reg[2]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net RESET_SYNC/rst_out_reg_0[0] is a gated clock net sourced by a combinational pin RESET_SYNC/cmd_tdata_reg[4]_i_2/O, cell RESET_SYNC/cmd_tdata_reg[4]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
-PDRC-153#3 Warning
-Gated clock check  
-Net RESET_SYNC/rd_tready3_out is a gated clock net sourced by a combinational pin RESET_SYNC/rd_tready_reg_i_2/O, cell RESET_SYNC/rd_tready_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#4 Warning
-Gated clock check  
-Net RESET_SYNC/rst_out_reg_0[0] is a gated clock net sourced by a combinational pin RESET_SYNC/hoursRegister_reg[4]_i_1/O, cell RESET_SYNC/hoursRegister_reg[4]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#5 Warning
-Gated clock check  
-Net RESET_SYNC/rst_out_reg_1[0] is a gated clock net sourced by a combinational pin RESET_SYNC/minutesRegister_reg[7]_i_1/O, cell RESET_SYNC/minutesRegister_reg[7]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#6 Warning
-Gated clock check  
-Net RESET_SYNC/rst_out_reg_2[0] is a gated clock net sourced by a combinational pin RESET_SYNC/secondsRegister_reg[6]_i_1/O, cell RESET_SYNC/secondsRegister_reg[6]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#7 Warning
-Gated clock check  
-Net RESET_SYNC/rst_out_reg_3[0] is a gated clock net sourced by a combinational pin RESET_SYNC/cmd_tdata_reg[3]_i_2/O, cell RESET_SYNC/cmd_tdata_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#8 Warning
-Gated clock check  
-Net RESET_SYNC/rst_out_reg_4[0] is a gated clock net sourced by a combinational pin RESET_SYNC/counter_reg[23]_i_2/O, cell RESET_SYNC/counter_reg[23]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+RPBF-3#1 Warning
+IO port buffering is incomplete  
+Device port SDA expects both input and output buffering but the buffers are incomplete.
 Related violations: <none>
 
 

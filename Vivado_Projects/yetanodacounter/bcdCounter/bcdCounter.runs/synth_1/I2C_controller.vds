@@ -1,0 +1,393 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Thu Mar 21 19:47:08 2024
+# Process ID: 20296
+# Current directory: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/yetanodacounter/bcdCounter/bcdCounter.runs/synth_1
+# Command line: vivado.exe -log I2C_controller.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source I2C_controller.tcl
+# Log file: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/yetanodacounter/bcdCounter/bcdCounter.runs/synth_1/I2C_controller.vds
+# Journal file: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/yetanodacounter/bcdCounter/bcdCounter.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source I2C_controller.tcl -notrace
+Command: synth_design -top I2C_controller -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 21688 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 852.941 ; gain = 234.652
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'I2C_controller' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/old_Code/I2C_controller.vhd:26]
+	Parameter FREQ bound to: 100000000 - type: integer 
+	Parameter DEVICE_ID_WR bound to: 8'b11010000 
+	Parameter DEVICE_ID_RD bound to: 8'b11010001 
+	Parameter reset_logic bound to: 1'b1 
+INFO: [Synth 8-256] done synthesizing module 'I2C_controller' (1#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/old_Code/I2C_controller.vhd:26]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 925.113 ; gain = 306.824
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:12 . Memory (MB): peak = 925.113 ; gain = 306.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:12 . Memory (MB): peak = 925.113 ; gain = 306.824
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 925.113 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc]
+WARNING: [Vivado 12-584] No ports matched 'SEG_7[0]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:56]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:56]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SEG_7[1]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:57]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:57]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SEG_7[2]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:58]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:58]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SEG_7[3]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:59]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:59]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SEG_7[4]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:60]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:60]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SEG_7[5]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:61]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:61]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SEG_7[6]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:62]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:62]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[0]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:64]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:64]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[1]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:65]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:65]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[2]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:66]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:66]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[3]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:67]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:67]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[4]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:68]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:68]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[5]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:69]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:69]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[6]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:70]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:70]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ANODE[7]'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:71]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:71]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CLK_OUT'. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:106]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc:106]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/I2C_controller/src/RTCC.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/I2C_controller_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/I2C_controller_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1022.949 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1022.949 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:24 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:24 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:24 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'i2cVariable_reg' in module 'I2C_controller'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    init |                              000 |                             0000
+                   start |                              001 |                             0001
+                  setup1 |                              010 |                             0010
+                   next2 |                              011 |                             0100
+                  setup2 |                              100 |                             0101
+                   next4 |                              101 |                             0111
+                    stop |                              110 |                             1111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'i2cVariable_reg' using encoding 'sequential' in module 'I2C_controller'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:25 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      7 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 3     
+	   7 Input      8 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 3     
+	   7 Input      5 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 4     
+	   7 Input      1 Bit        Muxes := 9     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module I2C_controller 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      7 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 3     
+	   7 Input      8 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 3     
+	   7 Input      5 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 4     
+	   7 Input      1 Bit        Muxes := 9     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\i2c_dataToSend_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\data_bits_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (SDA_tristate_oe_reg)
+INFO: [Synth 8-3886] merging instance 'i2c_dataToSend_reg[0]' (FDE) to 'i2c_dataToSend_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\i2c_dataToSend_reg[1] )
+INFO: [Synth 8-3886] merging instance 'i2c_dataToSend_reg[1]' (FDE) to 'i2c_dataToSend_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\i2c_dataToSend_reg[2] )
+INFO: [Synth 8-3886] merging instance 'i2c_dataToSend_reg[2]' (FDE) to 'i2c_dataToSend_reg[3]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\i2c_dataToSend_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\counter_i2c_reg[4] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:28 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:42 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:42 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1022.949 ; gain = 404.660
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:49 . Memory (MB): peak = 1028.582 ; gain = 410.293
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:49 . Memory (MB): peak = 1028.582 ; gain = 410.293
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:49 . Memory (MB): peak = 1028.582 ; gain = 410.293
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:49 . Memory (MB): peak = 1028.582 ; gain = 410.293
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:49 . Memory (MB): peak = 1028.582 ; gain = 410.293
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:49 . Memory (MB): peak = 1028.582 ; gain = 410.293
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |BUFG  |     1|
+|2     |LUT1  |     2|
+|3     |LUT2  |    11|
+|4     |LUT3  |     3|
+|5     |LUT4  |     2|
+|6     |LUT5  |     9|
+|7     |LUT6  |    26|
+|8     |FDCE  |    15|
+|9     |FDPE  |     2|
+|10    |FDRE  |    10|
+|11    |IBUF  |     2|
+|12    |IOBUF |     1|
+|13    |OBUF  |     1|
+|14    |OBUFT |     1|
++------+------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |    86|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:49 . Memory (MB): peak = 1028.582 ; gain = 410.293
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:45 . Memory (MB): peak = 1028.582 ; gain = 312.457
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:50 . Memory (MB): peak = 1028.582 ; gain = 410.293
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1040.688 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1040.688 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
+
+INFO: [Common 17-83] Releasing license: Synthesis
+26 Infos, 16 Warnings, 16 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:01:01 . Memory (MB): peak = 1040.688 ; gain = 734.090
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1040.688 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/yetanodacounter/bcdCounter/bcdCounter.runs/synth_1/I2C_controller.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file I2C_controller_utilization_synth.rpt -pb I2C_controller_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 21 19:48:19 2024...
