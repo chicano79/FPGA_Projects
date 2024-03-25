@@ -143,7 +143,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : B4        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : B5        :        :                   :         : 8         :                
 GND                          : B6        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : B7        :        :                   :         : 8         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : B8        :        :                   :         : 7         :                
+CPU_RESETN                   : B8        : input  : 3.3-V LVTTL       :         : 7         : Y              
 GND                          : B9        : gnd    :                   :         :           :                
 LEDR[3]                      : B10       : output : 3.3-V LVTTL       :         : 7         : Y              
 LEDR[9]                      : B11       : output : 3.3-V LVTTL       :         : 7         : Y              
@@ -410,7 +410,7 @@ VCCIO2                       : P7        : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : P8        :        :                   :         : 2         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : P9        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : P10       :        :                   :         : 3         :                
-CLK_50MHz                    : P11       : input  : 3.3-V LVTTL       :         : 3         : Y              
+CLK50MHZ                     : P11       : input  : 3.3-V LVTTL       :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : P12       :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : P13       :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : P14       :        :                   :         : 5         :                

@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Sun Mar  3 00:58:50 2024
+Analysis & Synthesis Status : Successful - Sat Mar 23 02:47:37 2024
 Quartus Prime Version : 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 Revision Name : moving_message_display
 Top-level Entity Name : movingText
 Family : MAX 10
-Total logic elements : 1,074
-    Total combinational functions : 813
-    Dedicated logic registers : 421
-Total registers : 421
-Total pins : 31
+Total logic elements : 1,118
+    Total combinational functions : 856
+    Dedicated logic registers : 443
+Total registers : 443
+Total pins : 32
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

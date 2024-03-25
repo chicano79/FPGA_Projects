@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Fri Mar 22 06:35:01 2024
+Quartus Prime Version : 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+Revision Name : RTCC
+Top-level Entity Name : I2C_controller
+Family : MAX 10
+Total logic elements : 27
+    Total combinational functions : 24
+    Dedicated logic registers : 18
+Total registers : 18
+Total pins : 5
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
+UFM blocks : 0
+ADC blocks : 0

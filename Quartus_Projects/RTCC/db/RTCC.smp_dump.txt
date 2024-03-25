@@ -1,0 +1,16 @@
+
+State Machine - |I2C_controller|i2cVariable
+Name i2cVariable.STOP i2cVariable.ACK1 i2cVariable.WAIT8 i2cVariable.WAIT7 i2cVariable.WAIT6 i2cVariable.WAIT5 i2cVariable.WAIT4 i2cVariable.NEXT_BIT i2cVariable.WAIT3 i2cVariable.WAIT2 i2cVariable.WAIT1 i2cVariable.START i2cVariable.INIT 
+i2cVariable.INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 
+i2cVariable.START 0 0 0 0 0 0 0 0 0 0 0 1 1 
+i2cVariable.WAIT1 0 0 0 0 0 0 0 0 0 0 1 0 1 
+i2cVariable.WAIT2 0 0 0 0 0 0 0 0 0 1 0 0 1 
+i2cVariable.WAIT3 0 0 0 0 0 0 0 0 1 0 0 0 1 
+i2cVariable.NEXT_BIT 0 0 0 0 0 0 0 1 0 0 0 0 1 
+i2cVariable.WAIT4 0 0 0 0 0 0 1 0 0 0 0 0 1 
+i2cVariable.WAIT5 0 0 0 0 0 1 0 0 0 0 0 0 1 
+i2cVariable.WAIT6 0 0 0 0 1 0 0 0 0 0 0 0 1 
+i2cVariable.WAIT7 0 0 0 1 0 0 0 0 0 0 0 0 1 
+i2cVariable.WAIT8 0 0 1 0 0 0 0 0 0 0 0 0 1 
+i2cVariable.ACK1 0 1 0 0 0 0 0 0 0 0 0 0 1 
+i2cVariable.STOP 1 0 0 0 0 0 0 0 0 0 0 0 1 

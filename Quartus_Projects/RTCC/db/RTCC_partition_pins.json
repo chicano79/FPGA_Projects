@@ -1,0 +1,29 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "clk_out",
+					"strict" : false
+				},
+				{
+					"name" : "SCL",
+					"strict" : false
+				},
+				{
+					"name" : "SDA",
+					"strict" : false
+				},
+				{
+					"name" : "CLK50MHZ",
+					"strict" : false
+				},
+				{
+					"name" : "CPU_RESETN",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for moving_message_display
-Sun Mar  3 00:58:50 2024
+Sat Mar 23 02:47:38 2024
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -49,16 +49,16 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Mar  3 00:58:50 2024          ;
+; Analysis & Synthesis Status        ; Successful - Sat Mar 23 02:47:37 2024          ;
 ; Quartus Prime Version              ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
 ; Revision Name                      ; moving_message_display                         ;
 ; Top-level Entity Name              ; movingText                                     ;
 ; Family                             ; MAX 10                                         ;
-; Total logic elements               ; 1,074                                          ;
-;     Total combinational functions  ; 813                                            ;
-;     Dedicated logic registers      ; 421                                            ;
-; Total registers                    ; 421                                            ;
-; Total pins                         ; 31                                             ;
+; Total logic elements               ; 1,118                                          ;
+;     Total combinational functions  ; 856                                            ;
+;     Dedicated logic registers      ; 443                                            ;
+; Total registers                    ; 443                                            ;
+; Total pins                         ; 32                                             ;
 ; Total virtual pins                 ; 0                                              ;
 ; Total memory bits                  ; 0                                              ;
 ; Embedded Multiplier 9-bit elements ; 0                                              ;
@@ -159,59 +159,63 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 10          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 4           ;
+; Maximum used               ; 10          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
 ;     Processor 3            ;   0.0%      ;
 ;     Processor 4            ;   0.0%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processors 8-10        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                           ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                                                    ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------+---------+
-; src/movingText.vhd               ; yes             ; User VHDL File  ; C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                   ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------+---------+
+; src/movingText.vhd               ; yes             ; User VHDL File  ; G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------+---------+
 
 
-+---------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                   ;
-+---------------------------------------------+-----------------+
-; Resource                                    ; Usage           ;
-+---------------------------------------------+-----------------+
-; Estimated Total logic elements              ; 1,074           ;
-;                                             ;                 ;
-; Total combinational functions               ; 813             ;
-; Logic element usage by number of LUT inputs ;                 ;
-;     -- 4 input functions                    ; 597             ;
-;     -- 3 input functions                    ; 93              ;
-;     -- <=2 input functions                  ; 123             ;
-;                                             ;                 ;
-; Logic elements by mode                      ;                 ;
-;     -- normal mode                          ; 747             ;
-;     -- arithmetic mode                      ; 66              ;
-;                                             ;                 ;
-; Total registers                             ; 421             ;
-;     -- Dedicated logic registers            ; 421             ;
-;     -- I/O registers                        ; 0               ;
-;                                             ;                 ;
-; I/O pins                                    ; 31              ;
-;                                             ;                 ;
-; Embedded Multiplier 9-bit elements          ; 0               ;
-;                                             ;                 ;
-; Maximum fan-out node                        ; CLK_50MHz~input ;
-; Maximum fan-out                             ; 329             ;
-; Total fan-out                               ; 4208            ;
-; Average fan-out                             ; 3.25            ;
-+---------------------------------------------+-----------------+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimated Total logic elements              ; 1,118          ;
+;                                             ;                ;
+; Total combinational functions               ; 856            ;
+; Logic element usage by number of LUT inputs ;                ;
+;     -- 4 input functions                    ; 620            ;
+;     -- 3 input functions                    ; 93             ;
+;     -- <=2 input functions                  ; 143            ;
+;                                             ;                ;
+; Logic elements by mode                      ;                ;
+;     -- normal mode                          ; 771            ;
+;     -- arithmetic mode                      ; 85             ;
+;                                             ;                ;
+; Total registers                             ; 443            ;
+;     -- Dedicated logic registers            ; 443            ;
+;     -- I/O registers                        ; 0              ;
+;                                             ;                ;
+; I/O pins                                    ; 32             ;
+;                                             ;                ;
+; Embedded Multiplier 9-bit elements          ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; CLK50MHZ~input ;
+; Maximum fan-out                             ; 352            ;
+; Total fan-out                               ; 4550           ;
+; Average fan-out                             ; 3.34           ;
++---------------------------------------------+----------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -219,7 +223,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |movingText                ; 813 (813)           ; 421 (421)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 31   ; 0            ; 0          ; |movingText         ; movingText  ; work         ;
+; |movingText                ; 856 (856)           ; 443 (443)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 32   ; 0            ; 0          ; |movingText         ; movingText  ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -296,12 +300,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 421   ;
-; Number of registers using Synchronous Clear  ; 66    ;
-; Number of registers using Synchronous Load   ; 3     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Total registers                              ; 443   ;
+; Number of registers using Synchronous Clear  ; 80    ;
+; Number of registers using Synchronous Load   ; 9     ;
+; Number of registers using Asynchronous Clear ; 108   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 344   ;
+; Number of registers using Clock Enable       ; 377   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -311,13 +315,13 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; output_enable                          ; 2       ;
 ; \SCREEN_AREA_SHIFT_PROC:stringIndex[0] ; 23      ;
-; ascii_char[0]                          ; 184     ;
-; ascii_char[4]                          ; 149     ;
-; ascii_char[2]                          ; 184     ;
-; ascii_char[1]                          ; 171     ;
-; ascii_char[6]                          ; 16      ;
+; output_enable                          ; 2       ;
+; ascii_char[4]                          ; 154     ;
+; ascii_char[2]                          ; 195     ;
+; ascii_char[1]                          ; 170     ;
+; ascii_char[0]                          ; 178     ;
+; ascii_char[6]                          ; 28      ;
 ; Total number of inverted registers = 7 ;         ;
 +----------------------------------------+---------+
 
@@ -327,23 +331,23 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |movingText|\LINE_SACN_PROC:scanCount[4]          ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |movingText|\LINE_SACN_PROC:registerSerialData[5] ;
-; 11:1               ; 31 bits   ; 217 LEs       ; 186 LEs              ; 31 LEs                 ; Yes        ; |movingText|screenAreaLatch[5]                    ;
-; 477:1              ; 2 bits    ; 636 LEs       ; 438 LEs              ; 198 LEs                ; Yes        ; |movingText|screenArea[5][0]                      ;
-; 477:1              ; 3 bits    ; 954 LEs       ; 708 LEs              ; 246 LEs                ; Yes        ; |movingText|screenArea[6][0]                      ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |movingText|\LINE_SACN_PROC:scanCount[2]          ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |movingText|\LINE_SACN_PROC:registerSerialData[4] ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 192 LEs              ; 32 LEs                 ; Yes        ; |movingText|serial_data                           ;
+; 477:1              ; 2 bits    ; 636 LEs       ; 438 LEs              ; 198 LEs                ; Yes        ; |movingText|screenArea[4][0]                      ;
+; 477:1              ; 3 bits    ; 954 LEs       ; 708 LEs              ; 246 LEs                ; Yes        ; |movingText|screenArea[1][0]                      ;
 ; 477:1              ; 2 bits    ; 636 LEs       ; 458 LEs              ; 178 LEs                ; Yes        ; |movingText|screenArea[3][0]                      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Top-level Entity: |movingText ;
-+----------------+----------+------------------------------------------------+
-; Parameter Name ; Value    ; Type                                           ;
-+----------------+----------+------------------------------------------------+
-; FREQ           ; 50000000 ; Signed Integer                                 ;
-; DISPLAY_LENGTH ; 32       ; Signed Integer                                 ;
-+----------------+----------+------------------------------------------------+
++-----------------+----------+-----------------------------------------------+
+; Parameter Name  ; Value    ; Type                                          ;
++-----------------+----------+-----------------------------------------------+
+; FREQ            ; 50000000 ; Signed Integer                                ;
+; DOTMATRIX_WIDTH ; 32       ; Signed Integer                                ;
++-----------------+----------+-----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -352,25 +356,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 31                          ;
-; cycloneiii_ff         ; 421                         ;
-;     ENA               ; 304                         ;
-;     ENA SCLR          ; 37                          ;
+; boundary_port         ; 32                          ;
+; cycloneiii_ff         ; 443                         ;
+;     CLR               ; 17                          ;
+;     CLR SCLR          ; 49                          ;
+;     ENA               ; 332                         ;
+;     ENA CLR           ; 5                           ;
+;     ENA CLR SCLR      ; 31                          ;
+;     ENA CLR SLD       ; 6                           ;
 ;     ENA SLD           ; 3                           ;
-;     SCLR              ; 29                          ;
-;     plain             ; 48                          ;
-; cycloneiii_lcell_comb ; 815                         ;
-;     arith             ; 66                          ;
-;         2 data inputs ; 66                          ;
-;     normal            ; 749                         ;
+; cycloneiii_lcell_comb ; 857                         ;
+;     arith             ; 85                          ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 84                          ;
+;     normal            ; 772                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 9                           ;
 ;         2 data inputs ; 49                          ;
 ;         3 data inputs ; 93                          ;
-;         4 data inputs ; 597                         ;
+;         4 data inputs ; 620                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 8.00                        ;
-; Average LUT depth     ; 3.86                        ;
+; Average LUT depth     ; 3.79                        ;
 +-----------------------+-----------------------------+
 
 
@@ -379,7 +386,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:09     ;
+; Top            ; 00:00:05     ;
 +----------------+--------------+
 
 
@@ -389,42 +396,44 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
-    Info: Processing started: Sun Mar  3 00:58:23 2024
+    Info: Processing started: Sat Mar 23 02:47:25 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off moving_message_display -c moving_message_display
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file src/movingtext.vhd
-    Info (12022): Found design unit 1: movingText-rtl File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 21
-    Info (12023): Found entity 1: movingText File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 5
+    Info (12022): Found design unit 1: movingText-rtl File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 21
+    Info (12023): Found entity 1: movingText File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 5
 Info (12127): Elaborating entity "movingText" for the top level hierarchy
+Info (13000): Registers with preset signals will power-up high File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 388
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
-    Warning (13410): Pin "GPIO[19]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
-    Warning (13410): Pin "GPIO[18]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
-    Warning (13410): Pin "GPIO[17]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
-    Warning (13410): Pin "GPIO[15]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
-    Warning (13410): Pin "GPIO[13]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
-    Warning (13410): Pin "GPIO[11]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
-    Warning (13410): Pin "GPIO[10]" is stuck at GND File: C:/Users/desig/OneDrive - Coventry University/FPGA Design 7067CEM/FPGA_Projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 13
+    Warning (13410): Pin "GPIO[19]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
+    Warning (13410): Pin "GPIO[18]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
+    Warning (13410): Pin "GPIO[17]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
+    Warning (13410): Pin "GPIO[15]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
+    Warning (13410): Pin "GPIO[13]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
+    Warning (13410): Pin "GPIO[11]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
+    Warning (13410): Pin "GPIO[10]" is stuck at GND File: G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/src/movingText.vhd Line: 15
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1106 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 1 input pins
+Info (21057): Implemented 1151 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
     Info (21059): Implemented 30 output pins
-    Info (21061): Implemented 1075 logic cells
+    Info (21061): Implemented 1119 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 18 warnings
-    Info: Peak virtual memory: 4802 megabytes
-    Info: Processing ended: Sun Mar  3 00:58:50 2024
-    Info: Elapsed time: 00:00:27
-    Info: Total CPU time (on all processors): 00:00:30
+    Info: Peak virtual memory: 4901 megabytes
+    Info: Processing ended: Sat Mar 23 02:47:38 2024
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:07
 
 

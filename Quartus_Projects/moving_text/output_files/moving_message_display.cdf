@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484) Path("C:/Users/desig/Documents/GitHub/FPGA_Projects/Quartus_Projects/moving_text/output_files/") File("moving_message_display.sof") MfrSpec(OpMask(1));
+		Device PartName(10M50DAF484) Path("G:/GITHUB/FPGA_projects/Quartus_Projects/moving_text/output_files/") File("moving_message_display.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

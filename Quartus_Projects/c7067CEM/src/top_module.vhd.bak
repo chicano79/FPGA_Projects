@@ -1,0 +1,74 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity top_module is
+	generic(
+		FREQ: positive := 50e6;  --50MHz
+		DOTMATRIX_WIDTH: natural range 0 to 32 := 32	
+	);	
+	
+	port(
+		CLK50MHZ:   in  std_logic;		
+		CPU_RESETN: in  std_logic;
+		BUTN:   in  std_logic;
+		LEDR:       out std_logic_vector(0 to 9)  := (others => '0');
+		GPIO:       out std_logic_vector(0 to 19) := (others => '0')
+	);
+
+end entity;
+
+
+architecture rtl of top_module is
+
+signal selector: std_logic := '0';
+
+begin
+	
+lbl1: if selector = '0' generate
+
+		UUT1:
+			entity work.dotmatrix_show(rtl)		
+				generic map(
+					FREQ => FREQ,
+					DOTMATRIX_WIDTH => DOTMATRIX_WIDTH 	
+				)
+				
+				port map(
+					CLK50MHZ => CLK50MHZ,
+					LEDR => LEDR,
+					CPU_RESETN => CPU_RESETN,
+					GPIO => GPIO
+				);
+				
+	else lbl2: generate				
+
+		UUT2:
+			entity work.movingText(rtl)		
+				generic map(
+					FREQ => FREQ,
+					DOTMATRIX_WIDTH => DOTMATRIX_WIDTH 	
+				)
+				
+				port map(
+					CLK50MHZ => CLK50MHZ,
+					LEDR => LEDR,
+					CPU_RESETN => CPU_RESETN,
+					GPIO => GPIO
+				);
+		
+	end generate lbl1;
+	
+		
+		
+process(CLK50MHZ)
+
+begin
+	if rising_edge(CLK50MHZ) then
+		selector <= not selector;
+	end if;
+end process;
+
+
+
+end architecture;

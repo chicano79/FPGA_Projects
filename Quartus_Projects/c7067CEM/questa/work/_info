@@ -1,0 +1,64 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11e vcom 2021.1 2021.01, Jan 19 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dG:/GITHUB/FPGA_projects/Vivado_Projects/I2C_controller/src/questa_proj
+T_opt
+!s110 1711123962
+VlhQ5a7FdV;Q9aVSkngZIT3
+04 14 3 work dotmatrix_show rtl 1
+=1-2c3b709306f1-65fdadf9-28a-6244
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+tCvgOpt 0
+n@_opt
+OL;O;2021.1;73
+R0
+Edotmatrix_show
+Z1 w1711123802
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 2
+Z4 dG:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/questa
+Z5 8G:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/src/dotmatrix_show.vhd
+Z6 FG:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/src/dotmatrix_show.vhd
+l0
+L5 1
+V:Nn7fET452[5VFRhmbPk<1
+!s100 JD5UPZdlYj<NC3db5dYoB3
+Z7 OL;C;2021.1;73
+33
+Z8 !s110 1711124090
+!i10b 1
+Z9 !s108 1711124090.000000
+Z10 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/src/dotmatrix_show.vhd|
+Z11 !s107 G:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/src/dotmatrix_show.vhd|
+!i113 0
+Z12 o-work work -2008 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+Z14 DEx4 work 14 dotmatrix_show 0 22 :Nn7fET452[5VFRhmbPk<1
+!i122 2
+l154
+Z15 L21 636
+Z16 VJ:J[RTMbbJ7Rj=2kcbh:53
+Z17 !s100 ?EB5JmLQ0`l?LV]UdOQkV0
+R7
+33
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 0
+R12
+R13
