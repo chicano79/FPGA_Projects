@@ -1,0 +1,119 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11e vcom 2021.1 2021.01, Jan 19 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dG:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/questa
+T_opt
+!s110 1711580640
+VgdKQ65i2YQWfg^eo<KYW<1
+04 12 3 work dotmatrix_tb sim 1
+=1-2c3b709306f1-6604a5e0-7-80c8
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+tCvgOpt 0
+n@_opt
+OL;O;2021.1;73
+Edotmatrix_show
+Z1 w1711579282
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 14
+Z4 dG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/questa_proj
+Z5 8G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_show.vhd
+Z6 FG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_show.vhd
+l0
+L5 1
+V5PEXc:5GK;zlaAAK2O2Sc1
+!s100 adoEYIMIZM1]Af7o1dKJ11
+Z7 OL;C;2021.1;73
+33
+Z8 !s110 1711580630
+!i10b 1
+Z9 !s108 1711580630.000000
+Z10 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_show.vhd|
+Z11 !s107 G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_show.vhd|
+!i113 0
+Z12 o-work work -2008 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+Z14 DEx4 work 14 dotmatrix_show 0 22 5PEXc:5GK;zlaAAK2O2Sc1
+!i122 14
+l153
+L21 577
+V1P]J<EFjhfO0aMAUck93:0
+!s100 J9L`I[C2R>^?C2LGc^?TK3
+R7
+33
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 0
+R12
+R13
+Edotmatrix_tb
+Z15 w1711580594
+Z16 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
+Z17 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+R2
+R3
+!i122 15
+R4
+Z18 8G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd
+Z19 FG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd
+l0
+L8 1
+V6jX75U^7eVgIRij6LLDQ^1
+!s100 OLeZomk1?0BJW>oUUSL5:0
+R7
+33
+R8
+!i10b 1
+R9
+Z20 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd|
+Z21 !s107 G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd|
+!i113 0
+R12
+R13
+Asim
+R14
+R16
+R17
+R2
+R3
+DEx4 work 12 dotmatrix_tb 0 22 6jX75U^7eVgIRij6LLDQ^1
+!i122 15
+l25
+L11 106
+VPB4b=O[JTX<CklBMan<<Z1
+!s100 DJSQiiECX<P75nBTD2Mn?1
+R7
+33
+R8
+!i10b 1
+R9
+R20
+R21
+!i113 0
+R12
+R13
