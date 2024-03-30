@@ -6,49 +6,71 @@ use std.textio.all;
 use std.env.finish;
 
 entity dotmatrix_tb is
+    generic(
+        FREQ: positive := 50e6;
+		BUS_WIDTH: integer range 0 to 64 := 32
+	);
 end dotmatrix_tb;
 
 architecture sim of dotmatrix_tb is
 
-    constant clk_hz : integer := 50e6;
-    constant clk_period : time := 1 sec / clk_hz;
+    constant clk_hz : integer := FREQ;
+    constant clk_period : time := (1 sec) / clk_hz;
 
-    signal CLK50MHZ : std_logic := '0';
-    signal LEDR: std_logic_vector(0 to 9) := (others => '0');
-    signal CPU_RESETN: std_logic := '1';
-	signal GPIO: std_logic_vector(0 to 19) := (others => '0');
+    signal MAIN_CLK:    std_logic := '0';
+    signal LEDR:        std_logic_vector(0 to 9) := (others => '0');
+    signal CPU_RESETN:  std_logic := '1';
+	signal GPIO:        std_logic_vector(0 to 19) := (others => '0');
 
     -- constant C: string := "This is a string";
     -- signal X: std_logic_vector(3 downto 0) := "1010";
     -- signal Y: integer := 100;
 
+    signal Q: std_logic_vector(BUS_WIDTH-1 downto 0) := (others => '0');
+
 begin
 
-    CLK50MHZ <= not CLK50MHZ after clk_period / 2;
+    MAIN_CLK <= not MAIN_CLK after clk_period/2;
 
-    DUT : entity work.dotmatrix_show(rtl)
+    DOTMATRIX_SHOW: entity work.dotmatrix_show(rtl)
 	generic map(
-		FREQ => 50e6,  --50MHz
+		FREQ => FREQ,  
 		DOTMATRIX_WIDTH => 32  -- := 32	
 	)
-	
+
 	port map(
-		CLK50MHZ => CLK50MHZ,
+		MAIN_CLK => MAIN_CLK,
 		LEDR => LEDR, 
 		CPU_RESETN => CPU_RESETN,
 		GPIO => GPIO
 	);
 
+    e74HC595: entity work.e74HC595(rtl)
+        generic map(
+            BUS_WIDTH => BUS_WIDTH
+        )
+        port map(
+            CLK     => GPIO(6),
+            D_in    => GPIO(0),
+            LAT_CLK => GPIO(4),
+            OE      => GPIO(2),
+            RST     => '1',
+            Q       => Q
+        ); 
+
 
     SEQUENCER_PROC : process
     begin
+        
+        wait for 20 ns;
+
         CPU_RESETN <= '0';
 
         wait for 100 ns;
 
         CPU_RESETN <= '1';
 
-        --wait until rising_edge(CLK50MHZ);
+        --wait until rising_edge(MAIN_CLK);
         
         wait for clk_period * 2000;
 

@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484) Path("G:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/output_files/") File("FPGA_coursework.pof") MfrSpec(OpMask(3) Child_OpMask(2 3 3));
+		Device PartName(10M50DAF484) Path("G:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/output_files/") File("FPGA_coursework.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
