@@ -1,0 +1,14 @@
+===================================
+Configuration Memory information
+===================================
+File Format        BIN
+Interface          SPIX4
+Size               16M
+Start Address      0x00000000
+End Address        0x00FFFFFF
+Checksum           0xF804D367
+Fill Value         0xFF
+
+Addr1         Addr2         Date                    File(s)                                                                                                                              Checksum
+0x00000000    0x0007488B    Mar 30 09:20:47 2024    C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/dotmatrix_project.runs/impl_1/main_top_module.bit    0x004616DB
+File Checksum Total                                                                                                                                                                      0x004616DB

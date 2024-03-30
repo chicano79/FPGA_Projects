@@ -1,0 +1,581 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Sat Mar 30 09:17:53 2024
+# Process ID: 17748
+# Current directory: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/dotmatrix_project.runs/synth_1
+# Command line: vivado.exe -log main_top_module.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source main_top_module.tcl
+# Log file: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/dotmatrix_project.runs/synth_1/main_top_module.vds
+# Journal file: C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/dotmatrix_project.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source main_top_module.tcl -notrace
+Command: synth_design -top main_top_module -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 13752 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 852.137 ; gain = 234.746
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'main_top_module' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:23]
+	Parameter FREQ bound to: 100000000 - type: integer 
+	Parameter DOTMATRIX_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'movingText' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/movingText.vhd:21]
+	Parameter FREQ bound to: 100000000 - type: integer 
+	Parameter DOTMATRIX_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/movingText.vhd:409]
+WARNING: [Synth 8-614] signal 'dummy' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/movingText.vhd:387]
+INFO: [Synth 8-256] done synthesizing module 'movingText' (1#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/movingText.vhd:21]
+INFO: [Synth 8-638] synthesizing module 'dotmatrix_show' [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/dotmatrix_show.vhd:21]
+	Parameter FREQ bound to: 100000000 - type: integer 
+	Parameter DOTMATRIX_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/dotmatrix_show.vhd:264]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ascii_char_reg' and it is trimmed from '8' to '7' bits. [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/dotmatrix_show.vhd:174]
+INFO: [Synth 8-256] done synthesizing module 'dotmatrix_show' (2#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/dotmatrix_show.vhd:21]
+WARNING: [Synth 8-614] signal 'arch_variable' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:76]
+WARNING: [Synth 8-614] signal 'CPU_RESETN' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:76]
+WARNING: [Synth 8-614] signal 'LEDR_arch1' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:76]
+WARNING: [Synth 8-614] signal 'GPIO_arch1' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:76]
+WARNING: [Synth 8-614] signal 'LEDR_arch2' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:76]
+WARNING: [Synth 8-614] signal 'GPIO_arch2' is read in the process but is not in the sensitivity list [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:76]
+INFO: [Synth 8-256] done synthesizing module 'main_top_module' (3#1) [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/main_top_module.vhd:23]
+WARNING: [Synth 8-3331] design dotmatrix_show has unconnected port GPIO[10]
+WARNING: [Synth 8-3331] design dotmatrix_show has unconnected port GPIO[11]
+WARNING: [Synth 8-3331] design dotmatrix_show has unconnected port GPIO[13]
+WARNING: [Synth 8-3331] design dotmatrix_show has unconnected port GPIO[15]
+WARNING: [Synth 8-3331] design movingText has unconnected port GPIO[10]
+WARNING: [Synth 8-3331] design movingText has unconnected port GPIO[11]
+WARNING: [Synth 8-3331] design movingText has unconnected port GPIO[13]
+WARNING: [Synth 8-3331] design movingText has unconnected port GPIO[15]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 926.988 ; gain = 309.598
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 926.988 ; gain = 309.598
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 926.988 ; gain = 309.598
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 926.988 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/DOTMATRIX.xdc]
+Finished Parsing XDC File [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/DOTMATRIX.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/src/DOTMATRIX.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/main_top_module_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/main_top_module_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1027.793 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1027.793 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1027.793 ; gain = 410.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1027.793 ; gain = 410.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1027.793 ; gain = 410.402
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'shiftedColumnState_reg' in module 'movingText'
+INFO: [Synth 8-802] inferred FSM for state register 'scanStateVariable_reg' in module 'movingText'
+INFO: [Synth 8-5544] ROM "shiftedColumnState" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-802] inferred FSM for state register 'scanStateVariable_reg' in module 'dotmatrix_show'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    col1 |                          0000001 |                              000
+                    col2 |                          0000010 |                              001
+                    col3 |                          0000100 |                              010
+                    col4 |                          0001000 |                              011
+                    col5 |                          0010000 |                              100
+                    col6 |                          0100000 |                              101
+                    col7 |                          1000000 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'shiftedColumnState_reg' using encoding 'one-hot' in module 'movingText'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   load1 |                            00000 |                            00100
+              bit_clock1 |                            00001 |                            00101
+              bit_shift1 |                            00010 |                            00110
+                   show1 |                            00011 |                            00111
+                   load2 |                            00100 |                            01000
+              bit_clock2 |                            00101 |                            01001
+              bit_shift2 |                            00110 |                            01010
+                   show2 |                            00111 |                            01011
+                   load3 |                            01000 |                            01100
+              bit_clock3 |                            01001 |                            01101
+              bit_shift3 |                            01010 |                            01110
+                   show3 |                            01011 |                            01111
+                   load4 |                            01100 |                            10000
+              bit_clock4 |                            01101 |                            10001
+              bit_shift4 |                            01110 |                            10010
+                   show4 |                            01111 |                            10011
+                   load5 |                            10000 |                            10100
+              bit_clock5 |                            10001 |                            10101
+              bit_shift5 |                            10010 |                            10110
+                   show5 |                            10011 |                            10111
+                   load6 |                            10100 |                            11000
+              bit_clock6 |                            10101 |                            11001
+              bit_shift6 |                            10110 |                            11010
+                   show6 |                            10111 |                            11011
+                   load7 |                            11000 |                            11100
+              bit_clock7 |                            11001 |                            11101
+              bit_shift7 |                            11010 |                            11110
+                   show7 |                            11011 |                            11111
+                   load0 |                            11100 |                            00000
+              bit_clock0 |                            11101 |                            00001
+              bit_shift0 |                            11110 |                            00010
+                   show0 |                            11111 |                            00011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'scanStateVariable_reg' using encoding 'sequential' in module 'movingText'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   load0 |                            00000 |                            00000
+              bit_clock0 |                            00001 |                            00001
+              bit_shift0 |                            00010 |                            00010
+                   show0 |                            00011 |                            00011
+                   load1 |                            00100 |                            00100
+              bit_clock1 |                            00101 |                            00101
+              bit_shift1 |                            00110 |                            00110
+                   show1 |                            00111 |                            00111
+                   load2 |                            01000 |                            01000
+              bit_clock2 |                            01001 |                            01001
+              bit_shift2 |                            01010 |                            01010
+                   show2 |                            01011 |                            01011
+                   load3 |                            01100 |                            01100
+              bit_clock3 |                            01101 |                            01101
+              bit_shift3 |                            01110 |                            01110
+                   show3 |                            01111 |                            01111
+                   load4 |                            10000 |                            10000
+              bit_clock4 |                            10001 |                            10001
+              bit_shift4 |                            10010 |                            10010
+                   show4 |                            10011 |                            10011
+                   load5 |                            10100 |                            10100
+              bit_clock5 |                            10101 |                            10101
+              bit_shift5 |                            10110 |                            10110
+                   show5 |                            10111 |                            10111
+                   load6 |                            11000 |                            11000
+              bit_clock6 |                            11001 |                            11001
+              bit_shift6 |                            11010 |                            11010
+                   show6 |                            11011 |                            11011
+                   load7 |                            11100 |                            11100
+              bit_clock7 |                            11101 |                            11101
+              bit_shift7 |                            11110 |                            11110
+                   show7 |                            11111 |                            11111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'scanStateVariable_reg' using encoding 'sequential' in module 'dotmatrix_show'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:17 . Memory (MB): peak = 1027.793 ; gain = 410.402
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     25 Bit       Adders := 1     
+	   2 Input     23 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      7 Bit       Adders := 2     
+	   2 Input      6 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 4     
++---Registers : 
+	               32 Bit    Registers := 10    
+	               27 Bit    Registers := 3     
+	                8 Bit    Registers := 4     
+	                6 Bit    Registers := 3     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 14    
++---Muxes : 
+	   7 Input     32 Bit        Muxes := 8     
+	  32 Input     32 Bit        Muxes := 2     
+	   2 Input     25 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 1     
+	   2 Input     17 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 2     
+	  95 Input      8 Bit        Muxes := 2     
+	  32 Input      8 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
+	   3 Input      7 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 18    
+	  32 Input      5 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 4     
+	  95 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 17    
+	   7 Input      1 Bit        Muxes := 1     
+	  32 Input      1 Bit        Muxes := 26    
+	   5 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module main_top_module 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     17 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 5     
+Module movingText 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     23 Bit       Adders := 1     
+	   2 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 9     
+	               27 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
+	                6 Bit    Registers := 2     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   7 Input     32 Bit        Muxes := 8     
+	  32 Input     32 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 1     
+	  95 Input      8 Bit        Muxes := 1     
+	  32 Input      8 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 9     
+	  32 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	  95 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 10    
+	   7 Input      1 Bit        Muxes := 1     
+	  32 Input      1 Bit        Muxes := 13    
+Module dotmatrix_show 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     25 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      7 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               27 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 6     
++---Muxes : 
+	  32 Input     32 Bit        Muxes := 1     
+	   2 Input     25 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	  95 Input      8 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 1     
+	  32 Input      8 Bit        Muxes := 1     
+	   3 Input      7 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 9     
+	  32 Input      5 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	  95 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	  32 Input      1 Bit        Muxes := 13    
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT2/screenAreaLatch_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT1/screenAreaLatch_reg[0] )
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[2]__0' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT2/counter_reg[2]' (FDC) to 'UUT2/drtcount_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[4]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[5]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[6]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[7]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[8]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[9]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[10]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[11]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[12]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[13]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[14]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[15]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[16]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[17]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[18]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[19]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[20]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[21]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[22]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[23]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[24]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[25]' (FDC) to 'UUT1/counter_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/counter_reg[26]' (FDC) to 'UUT1/drtcount_reg[26]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT2/serial_data_count_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT1/serial_data_count_reg[5] )
+INFO: [Synth 8-3886] merging instance 'UUT2/drtcount_reg[25]' (FDC) to 'UUT2/drtcount_reg[26]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT2/drtcount_reg[26] )
+INFO: [Synth 8-3886] merging instance 'UUT1/drtcount_reg[23]' (FDC) to 'UUT1/drtcount_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/drtcount_reg[24]' (FDC) to 'UUT1/drtcount_reg[26]'
+INFO: [Synth 8-3886] merging instance 'UUT1/drtcount_reg[25]' (FDC) to 'UUT1/drtcount_reg[26]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT1/drtcount_reg[26] )
+INFO: [Synth 8-3886] merging instance 'UUT2/screenAreaLatch_reg[0]' (FDE) to 'UUT2/screenAreaLatch_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT2/screenAreaLatch_reg[1] )
+INFO: [Synth 8-3886] merging instance 'UUT2/screenAreaLatch_reg[1]' (FDE) to 'UUT2/screenAreaLatch_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT2/screenAreaLatch_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\UUT2/char_num_reg[7] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1027.793 ; gain = 410.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++----------------+----------------------+---------------+----------------+
+|Module Name     | RTL Object           | Depth x Width | Implemented As | 
++----------------+----------------------+---------------+----------------+
+|movingText      | message_info[1]      | 64x7          | LUT            | 
+|movingText      | LedFont[0][1]        | 128x8         | LUT            | 
+|movingText      | LedFont[0][2]        | 128x8         | LUT            | 
+|movingText      | LedFont[0][3]        | 128x8         | LUT            | 
+|movingText      | LedFont[0][4]        | 128x8         | LUT            | 
+|movingText      | LedFont[0][5]        | 128x8         | LUT            | 
+|dotmatrix_show  | LedFont[0][5]        | 128x8         | LUT            | 
+|dotmatrix_show  | LedFont[0][4]        | 128x8         | LUT            | 
+|dotmatrix_show  | LedFont[0][3]        | 128x8         | LUT            | 
+|dotmatrix_show  | LedFont[0][2]        | 128x8         | LUT            | 
+|dotmatrix_show  | LedFont[0][1]        | 128x8         | LUT            | 
+|main_top_module | UUT1/message_info[1] | 64x7          | LUT            | 
+|main_top_module | UUT1/LedFont[0][1]   | 128x8         | LUT            | 
+|main_top_module | UUT1/LedFont[0][2]   | 128x8         | LUT            | 
+|main_top_module | UUT1/LedFont[0][3]   | 128x8         | LUT            | 
+|main_top_module | UUT1/LedFont[0][4]   | 128x8         | LUT            | 
+|main_top_module | UUT1/LedFont[0][5]   | 128x8         | LUT            | 
+|main_top_module | UUT2/LedFont[0][4]   | 128x8         | LUT            | 
+|main_top_module | UUT2/LedFont[0][3]   | 128x8         | LUT            | 
+|main_top_module | UUT2/LedFont[0][2]   | 128x8         | LUT            | 
+|main_top_module | UUT2/LedFont[0][1]   | 128x8         | LUT            | 
+|main_top_module | UUT2/row_driver      | 32x8          | LUT            | 
+|main_top_module | UUT1/row_driver      | 32x8          | LUT            | 
++----------------+----------------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:33 . Memory (MB): peak = 1027.793 ; gain = 410.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 1051.422 ; gain = 434.031
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:36 . Memory (MB): peak = 1058.770 ; gain = 441.379
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:40 . Memory (MB): peak = 1061.570 ; gain = 444.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:40 . Memory (MB): peak = 1061.570 ; gain = 444.180
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:40 . Memory (MB): peak = 1061.570 ; gain = 444.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:40 . Memory (MB): peak = 1061.570 ; gain = 444.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:41 . Memory (MB): peak = 1061.570 ; gain = 444.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:41 . Memory (MB): peak = 1061.570 ; gain = 444.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     3|
+|2     |CARRY4 |    26|
+|3     |LUT1   |     7|
+|4     |LUT2   |    81|
+|5     |LUT3   |    36|
+|6     |LUT4   |    27|
+|7     |LUT5   |    98|
+|8     |LUT6   |   328|
+|9     |MUXF7  |    41|
+|10    |FDCE   |   413|
+|11    |FDPE   |     9|
+|12    |FDRE   |    82|
+|13    |LDC    |     1|
+|14    |IBUF   |     3|
+|15    |OBUF   |    18|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+---------------+------+
+|      |Instance |Module         |Cells |
++------+---------+---------------+------+
+|1     |top      |               |  1173|
+|2     |  UUT1   |movingText     |   797|
+|3     |  UUT2   |dotmatrix_show |   351|
++------+---------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:41 . Memory (MB): peak = 1061.570 ; gain = 444.180
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:38 . Memory (MB): peak = 1061.570 ; gain = 343.375
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:41 . Memory (MB): peak = 1061.570 ; gain = 444.180
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 1073.621 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 68 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1074.277 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  LDC => LDCE: 1 instance 
+
+INFO: [Common 17-83] Releasing license: Synthesis
+68 Infos, 16 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:47 . Memory (MB): peak = 1074.277 ; gain = 769.105
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1074.277 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/desig/Documents/GitHub/FPGA_Projects/Vivado_Projects/dotmatrix_project/dotmatrix_project.runs/synth_1/main_top_module.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file main_top_module_utilization_synth.rpt -pb main_top_module_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Mar 30 09:18:44 2024...
