@@ -248,7 +248,7 @@ SCAN_CLK_PROC: process(MAIN_CLK, cpu_rst) --generating vertical scan clock
 VERTICAL_SCAN_PROC: process(SCAN_CLK, cpu_rst) --vertical scanning of the dotmatrix display through the 74HC595 shift register
 
 	variable serial_data_count: integer range 0 to DOTMATRIX_WIDTH := 0; 
-	constant scanCountRange: integer range 0 to 100000 := 49900;  --66700; 
+	constant scanCountRange: integer range 0 to 100000 := 9900; --new 49900;  --66700; 
 	variable scanCount: integer range 0 to scanCountRange := 0;
 	variable clock_count: integer range 0 to 2 := 0;
 
