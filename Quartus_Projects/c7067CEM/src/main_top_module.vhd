@@ -9,7 +9,7 @@ entity main_top_module is
 	);	
 	
 	port(
-		CLK50MHZ:   in std_logic;		
+		MAIN_CLK:   in std_logic;		
 		CPU_RESETN: in std_logic;
 		BUTN:       in std_logic;
 		LEDR:       out std_logic_vector(0 to 9)  := (others => '0');
@@ -22,12 +22,12 @@ end entity;
 
 architecture rtl of main_top_module is
 
-	signal	CLK50MHZ_arch1:   std_logic;
+	signal	MAIN_CLK_arch1:   std_logic;
 	signal	CPU_RESETN_arch1: std_logic;
 	signal	LEDR_arch1:       std_logic_vector(0 to 9); 	
 	signal	GPIO_arch1:       std_logic_vector(0 to 19);
 	
-	signal	CLK50MHZ_arch2:   std_logic;
+	signal	MAIN_CLK_arch2:   std_logic;
 	signal	CPU_RESETN_arch2: std_logic;
 	signal	LEDR_arch2:       std_logic_vector(0 to 9);	
 	signal	GPIO_arch2:       std_logic_vector(0 to 19);
@@ -50,7 +50,7 @@ UUT1:
 	)
 	
 	port map(
-		CLK50MHZ => CLK50MHZ_arch1,
+		MAIN_CLK => MAIN_CLK_arch1,
 		LEDR => LEDR_arch1,
 		CPU_RESETN => CPU_RESETN_arch1,
 		GPIO => GPIO_arch1
@@ -66,32 +66,32 @@ UUT2:
 	)
 	
 	port map(
-		CLK50MHZ => CLK50MHZ_arch2,
+		MAIN_CLK => MAIN_CLK_arch2,
 		LEDR => LEDR_arch2,
 		CPU_RESETN => CPU_RESETN_arch2,
 		GPIO => GPIO_arch2
 	);
 
 	
-process(CLK50MHZ)
+process(MAIN_CLK)
 begin
 	case arch_variable is 
 		when ARCH1 =>
-			CLK50MHZ_arch1 <= CLK50MHZ;
+			MAIN_CLK_arch1 <= MAIN_CLK;
 			CPU_RESETN_arch1 <= CPU_RESETN;
 			LEDR <= LEDR_arch1;
 			GPIO <= GPIO_arch1;
 			
-			CLK50MHZ_arch2 <= '0';
+			MAIN_CLK_arch2 <= '0';
 			CPU_RESETN_arch2 <= '0';
 	
 		when ARCH2 =>
-			CLK50MHZ_arch2 <= CLK50MHZ;
+			MAIN_CLK_arch2 <= MAIN_CLK;
 			CPU_RESETN_arch2 <= CPU_RESETN;
 			LEDR <= LEDR_arch2;
 			GPIO <= GPIO_arch2;
 			
-			CLK50MHZ_arch1 <= '0';
+			MAIN_CLK_arch1 <= '0';
 			CPU_RESETN_arch1 <= '0';	
 	end case;	
 end process;

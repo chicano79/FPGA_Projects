@@ -1,5 +1,5 @@
 Timing Analyzer report for FPGA_coursework
-Sun Mar 24 14:18:27 2024
+Sat Mar 30 01:18:43 2024
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -94,110 +94,109 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 10          ;
 ;                            ;             ;
-; Average used               ; 1.79        ;
+; Average used               ; 1.96        ;
 ; Maximum used               ; 10          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   9.5%      ;
-;     Processor 3            ;   8.7%      ;
-;     Processors 4-10        ;   8.7%      ;
+;     Processor 2            ;  10.9%      ;
+;     Processors 3-10        ;  10.6%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                                                                                     ;
-+--------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------------------+
-; Clock Name                           ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets                                  ;
-+--------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------------------+
-; BUTN                                 ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { BUTN }                                 ;
-; CLK50MHZ                             ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLK50MHZ }                             ;
-; CPU_RESETN                           ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CPU_RESETN }                           ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { dotmatrix_show:UUT2|CHAR_CLK }         ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { dotmatrix_show:UUT2|shiftRegisterClk } ;
-; movingText:UUT1|shiftRegisterClk     ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { movingText:UUT1|shiftRegisterClk }     ;
-+--------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                                                                   ;
++-------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------------------------------------+
+; Clock Name                          ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets                                 ;
++-------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------------------------------------+
+; BUTN                                ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { BUTN }                                ;
+; CPU_RESETN                          ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CPU_RESETN }                          ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { dotmatrix_show:UUT2|CHAR_CHANGE_CLK } ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { dotmatrix_show:UUT2|SCAN_CLK }        ;
+; MAIN_CLK                            ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { MAIN_CLK }                            ;
+; movingText:UUT1|SCAN_CLK            ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { movingText:UUT1|SCAN_CLK }            ;
++-------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Fmax Summary                                                                                                  ;
-+------------+-----------------+--------------------------------------+---------------------------------------------------------------+
-; Fmax       ; Restricted Fmax ; Clock Name                           ; Note                                                          ;
-+------------+-----------------+--------------------------------------+---------------------------------------------------------------+
-; 71.58 MHz  ; 71.58 MHz       ; CPU_RESETN                           ;                                                               ;
-; 132.05 MHz ; 132.05 MHz      ; CLK50MHZ                             ;                                                               ;
-; 196.35 MHz ; 196.35 MHz      ; dotmatrix_show:UUT2|shiftRegisterClk ;                                                               ;
-; 214.04 MHz ; 214.04 MHz      ; movingText:UUT1|shiftRegisterClk     ;                                                               ;
-; 236.52 MHz ; 236.52 MHz      ; dotmatrix_show:UUT2|CHAR_CLK         ;                                                               ;
-; 1424.5 MHz ; 250.0 MHz       ; BUTN                                 ; limit due to minimum period restriction (max I/O toggle rate) ;
-+------------+-----------------+--------------------------------------+---------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary                                                                                                 ;
++------------+-----------------+-------------------------------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name                          ; Note                                                          ;
++------------+-----------------+-------------------------------------+---------------------------------------------------------------+
+; 69.3 MHz   ; 69.3 MHz        ; CPU_RESETN                          ;                                                               ;
+; 147.56 MHz ; 147.56 MHz      ; MAIN_CLK                            ;                                                               ;
+; 216.22 MHz ; 216.22 MHz      ; dotmatrix_show:UUT2|SCAN_CLK        ;                                                               ;
+; 225.53 MHz ; 225.53 MHz      ; movingText:UUT1|SCAN_CLK            ;                                                               ;
+; 250.06 MHz ; 250.06 MHz      ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ;                                                               ;
+; 1424.5 MHz ; 250.0 MHz       ; BUTN                                ; limit due to minimum period restriction (max I/O toggle rate) ;
++------------+-----------------+-------------------------------------+---------------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+---------------------------------------------------------------+
-; Slow 1200mV 85C Model Setup Summary                           ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; CPU_RESETN                           ; -9.021 ; -25.195       ;
-; movingText:UUT1|shiftRegisterClk     ; -7.305 ; -323.812      ;
-; CLK50MHZ                             ; -6.573 ; -1651.392     ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -5.572 ; -275.398      ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -3.228 ; -23.206       ;
-; BUTN                                 ; 0.298  ; 0.000         ;
-+--------------------------------------+--------+---------------+
++--------------------------------------------------------------+
+; Slow 1200mV 85C Model Setup Summary                          ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; CPU_RESETN                          ; -7.889 ; -22.605       ;
+; movingText:UUT1|SCAN_CLK            ; -5.838 ; -398.872      ;
+; MAIN_CLK                            ; -5.777 ; -1619.012     ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -4.919 ; -334.636      ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -2.999 ; -22.692       ;
+; BUTN                                ; 0.298  ; 0.000         ;
++-------------------------------------+--------+---------------+
+
+
++-------------------------------------------------------------+
+; Slow 1200mV 85C Model Hold Summary                          ;
++-------------------------------------+-------+---------------+
+; Clock                               ; Slack ; End Point TNS ;
++-------------------------------------+-------+---------------+
+; movingText:UUT1|SCAN_CLK            ; 0.323 ; 0.000         ;
+; MAIN_CLK                            ; 0.341 ; 0.000         ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 0.341 ; 0.000         ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; 0.341 ; 0.000         ;
+; BUTN                                ; 0.393 ; 0.000         ;
+; CPU_RESETN                          ; 1.753 ; 0.000         ;
++-------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------+
-; Slow 1200mV 85C Model Hold Summary                           ;
-+--------------------------------------+-------+---------------+
-; Clock                                ; Slack ; End Point TNS ;
-+--------------------------------------+-------+---------------+
-; CLK50MHZ                             ; 0.323 ; 0.000         ;
-; movingText:UUT1|shiftRegisterClk     ; 0.325 ; 0.000         ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; 0.343 ; 0.000         ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; 0.343 ; 0.000         ;
-; BUTN                                 ; 0.393 ; 0.000         ;
-; CPU_RESETN                           ; 1.880 ; 0.000         ;
-+--------------------------------------+-------+---------------+
+; Slow 1200mV 85C Model Recovery Summary                       ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; movingText:UUT1|SCAN_CLK            ; -5.656 ; -179.345      ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -3.862 ; -30.795       ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -3.070 ; -98.911       ;
+; MAIN_CLK                            ; -3.038 ; -1125.014     ;
++-------------------------------------+--------+---------------+
 
 
-+---------------------------------------------------------------+
-; Slow 1200mV 85C Model Recovery Summary                        ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; movingText:UUT1|shiftRegisterClk     ; -5.681 ; -165.670      ;
-; CLK50MHZ                             ; -3.575 ; -1259.735     ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -3.074 ; -24.571       ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -3.032 ; -78.068       ;
-+--------------------------------------+--------+---------------+
++-------------------------------------------------------------+
+; Slow 1200mV 85C Model Removal Summary                       ;
++-------------------------------------+-------+---------------+
+; Clock                               ; Slack ; End Point TNS ;
++-------------------------------------+-------+---------------+
+; MAIN_CLK                            ; 1.436 ; 0.000         ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; 2.252 ; 0.000         ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 3.155 ; 0.000         ;
+; movingText:UUT1|SCAN_CLK            ; 3.197 ; 0.000         ;
++-------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------+
-; Slow 1200mV 85C Model Removal Summary                        ;
-+--------------------------------------+-------+---------------+
-; Clock                                ; Slack ; End Point TNS ;
-+--------------------------------------+-------+---------------+
-; CLK50MHZ                             ; 1.472 ; 0.000         ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; 2.319 ; 0.000         ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; 2.371 ; 0.000         ;
-; movingText:UUT1|shiftRegisterClk     ; 3.659 ; 0.000         ;
-+--------------------------------------+-------+---------------+
-
-
-+---------------------------------------------------------------+
-; Slow 1200mV 85C Model Minimum Pulse Width Summary             ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; CLK50MHZ                             ; -3.000 ; -541.752      ;
-; BUTN                                 ; -3.000 ; -4.403        ;
-; CPU_RESETN                           ; -3.000 ; -3.000        ;
-; movingText:UUT1|shiftRegisterClk     ; -1.403 ; -131.882      ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -1.403 ; -123.464      ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -1.403 ; -11.224       ;
-+--------------------------------------+--------+---------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary            ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; MAIN_CLK                            ; -3.000 ; -540.349      ;
+; BUTN                                ; -3.000 ; -4.403        ;
+; CPU_RESETN                          ; -3.000 ; -3.000        ;
+; movingText:UUT1|SCAN_CLK            ; -1.403 ; -140.300      ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -1.403 ; -134.688      ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -1.403 ; -11.224       ;
++-------------------------------------+--------+---------------+
 
 
 -----------------------------------------------
@@ -206,85 +205,85 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 No synchronizer chains to report.
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Fmax Summary                                                                                                    ;
-+-------------+-----------------+--------------------------------------+---------------------------------------------------------------+
-; Fmax        ; Restricted Fmax ; Clock Name                           ; Note                                                          ;
-+-------------+-----------------+--------------------------------------+---------------------------------------------------------------+
-; 75.35 MHz   ; 75.35 MHz       ; CPU_RESETN                           ;                                                               ;
-; 142.94 MHz  ; 142.94 MHz      ; CLK50MHZ                             ;                                                               ;
-; 211.51 MHz  ; 211.51 MHz      ; dotmatrix_show:UUT2|shiftRegisterClk ;                                                               ;
-; 231.75 MHz  ; 231.75 MHz      ; movingText:UUT1|shiftRegisterClk     ;                                                               ;
-; 253.61 MHz  ; 253.61 MHz      ; dotmatrix_show:UUT2|CHAR_CLK         ;                                                               ;
-; 1564.95 MHz ; 250.0 MHz       ; BUTN                                 ; limit due to minimum period restriction (max I/O toggle rate) ;
-+-------------+-----------------+--------------------------------------+---------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                                                                                                   ;
++-------------+-----------------+-------------------------------------+---------------------------------------------------------------+
+; Fmax        ; Restricted Fmax ; Clock Name                          ; Note                                                          ;
++-------------+-----------------+-------------------------------------+---------------------------------------------------------------+
+; 73.74 MHz   ; 73.74 MHz       ; CPU_RESETN                          ;                                                               ;
+; 159.31 MHz  ; 159.31 MHz      ; MAIN_CLK                            ;                                                               ;
+; 237.47 MHz  ; 237.47 MHz      ; dotmatrix_show:UUT2|SCAN_CLK        ;                                                               ;
+; 241.49 MHz  ; 241.49 MHz      ; movingText:UUT1|SCAN_CLK            ;                                                               ;
+; 271.3 MHz   ; 271.3 MHz       ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ;                                                               ;
+; 1564.95 MHz ; 250.0 MHz       ; BUTN                                ; limit due to minimum period restriction (max I/O toggle rate) ;
++-------------+-----------------+-------------------------------------+---------------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+---------------------------------------------------------------+
-; Slow 1200mV 0C Model Setup Summary                            ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; CPU_RESETN                           ; -8.356 ; -23.276       ;
-; movingText:UUT1|shiftRegisterClk     ; -6.737 ; -298.618      ;
-; CLK50MHZ                             ; -5.996 ; -1494.013     ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -4.985 ; -250.942      ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -2.943 ; -20.752       ;
-; BUTN                                 ; 0.361  ; 0.000         ;
-+--------------------------------------+--------+---------------+
++--------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup Summary                           ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; CPU_RESETN                          ; -7.318 ; -20.935       ;
+; movingText:UUT1|SCAN_CLK            ; -5.322 ; -364.550      ;
+; MAIN_CLK                            ; -5.277 ; -1457.949     ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -4.372 ; -304.612      ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -2.686 ; -20.217       ;
+; BUTN                                ; 0.361  ; 0.000         ;
++-------------------------------------+--------+---------------+
+
+
++-------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold Summary                           ;
++-------------------------------------+-------+---------------+
+; Clock                               ; Slack ; End Point TNS ;
++-------------------------------------+-------+---------------+
+; movingText:UUT1|SCAN_CLK            ; 0.291 ; 0.000         ;
+; MAIN_CLK                            ; 0.305 ; 0.000         ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 0.305 ; 0.000         ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; 0.306 ; 0.000         ;
+; BUTN                                ; 0.354 ; 0.000         ;
+; CPU_RESETN                          ; 1.432 ; 0.000         ;
++-------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------+
-; Slow 1200mV 0C Model Hold Summary                            ;
-+--------------------------------------+-------+---------------+
-; Clock                                ; Slack ; End Point TNS ;
-+--------------------------------------+-------+---------------+
-; CLK50MHZ                             ; 0.290 ; 0.000         ;
-; movingText:UUT1|shiftRegisterClk     ; 0.292 ; 0.000         ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; 0.308 ; 0.000         ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; 0.308 ; 0.000         ;
-; BUTN                                 ; 0.354 ; 0.000         ;
-; CPU_RESETN                           ; 1.539 ; 0.000         ;
-+--------------------------------------+-------+---------------+
+; Slow 1200mV 0C Model Recovery Summary                        ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; movingText:UUT1|SCAN_CLK            ; -5.131 ; -163.063      ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -3.551 ; -28.311       ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -2.806 ; -90.298       ;
+; MAIN_CLK                            ; -2.715 ; -1006.958     ;
++-------------------------------------+--------+---------------+
 
 
-+---------------------------------------------------------------+
-; Slow 1200mV 0C Model Recovery Summary                         ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; movingText:UUT1|shiftRegisterClk     ; -5.182 ; -151.022      ;
-; CLK50MHZ                             ; -3.221 ; -1137.219     ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -2.852 ; -22.798       ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -2.799 ; -72.094       ;
-+--------------------------------------+--------+---------------+
++-------------------------------------------------------------+
+; Slow 1200mV 0C Model Removal Summary                        ;
++-------------------------------------+-------+---------------+
+; Clock                               ; Slack ; End Point TNS ;
++-------------------------------------+-------+---------------+
+; MAIN_CLK                            ; 1.384 ; 0.000         ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; 2.203 ; 0.000         ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 3.019 ; 0.000         ;
+; movingText:UUT1|SCAN_CLK            ; 3.035 ; 0.000         ;
++-------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------+
-; Slow 1200mV 0C Model Removal Summary                         ;
-+--------------------------------------+-------+---------------+
-; Clock                                ; Slack ; End Point TNS ;
-+--------------------------------------+-------+---------------+
-; CLK50MHZ                             ; 1.379 ; 0.000         ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; 2.190 ; 0.000         ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; 2.236 ; 0.000         ;
-; movingText:UUT1|shiftRegisterClk     ; 3.414 ; 0.000         ;
-+--------------------------------------+-------+---------------+
-
-
-+---------------------------------------------------------------+
-; Slow 1200mV 0C Model Minimum Pulse Width Summary              ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; CLK50MHZ                             ; -3.000 ; -541.752      ;
-; BUTN                                 ; -3.000 ; -4.403        ;
-; CPU_RESETN                           ; -3.000 ; -3.000        ;
-; movingText:UUT1|shiftRegisterClk     ; -1.403 ; -131.882      ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -1.403 ; -123.464      ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -1.403 ; -11.224       ;
-+--------------------------------------+--------+---------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary             ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; MAIN_CLK                            ; -3.000 ; -540.349      ;
+; BUTN                                ; -3.000 ; -4.403        ;
+; CPU_RESETN                          ; -3.000 ; -3.000        ;
+; movingText:UUT1|SCAN_CLK            ; -1.403 ; -140.300      ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -1.403 ; -134.688      ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -1.403 ; -11.224       ;
++-------------------------------------+--------+---------------+
 
 
 ----------------------------------------------
@@ -293,70 +292,70 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 No synchronizer chains to report.
 
 
-+---------------------------------------------------------------+
-; Fast 1200mV 0C Model Setup Summary                            ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; CPU_RESETN                           ; -3.781 ; -10.464       ;
-; movingText:UUT1|shiftRegisterClk     ; -2.591 ; -126.757      ;
-; CLK50MHZ                             ; -2.270 ; -472.170      ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -1.784 ; -94.951       ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -0.797 ; -5.143        ;
-; BUTN                                 ; 0.693  ; 0.000         ;
-+--------------------------------------+--------+---------------+
++--------------------------------------------------------------+
+; Fast 1200mV 0C Model Setup Summary                           ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; CPU_RESETN                          ; -3.825 ; -11.117       ;
+; movingText:UUT1|SCAN_CLK            ; -2.578 ; -161.137      ;
+; MAIN_CLK                            ; -2.109 ; -450.385      ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -2.026 ; -125.356      ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -0.665 ; -4.766        ;
+; BUTN                                ; 0.693  ; 0.000         ;
++-------------------------------------+--------+---------------+
+
+
++-------------------------------------------------------------+
+; Fast 1200mV 0C Model Hold Summary                           ;
++-------------------------------------+-------+---------------+
+; Clock                               ; Slack ; End Point TNS ;
++-------------------------------------+-------+---------------+
+; movingText:UUT1|SCAN_CLK            ; 0.141 ; 0.000         ;
+; MAIN_CLK                            ; 0.147 ; 0.000         ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 0.148 ; 0.000         ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; 0.148 ; 0.000         ;
+; BUTN                                ; 0.169 ; 0.000         ;
+; CPU_RESETN                          ; 0.875 ; 0.000         ;
++-------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------+
-; Fast 1200mV 0C Model Hold Summary                            ;
-+--------------------------------------+-------+---------------+
-; Clock                                ; Slack ; End Point TNS ;
-+--------------------------------------+-------+---------------+
-; CLK50MHZ                             ; 0.142 ; 0.000         ;
-; movingText:UUT1|shiftRegisterClk     ; 0.142 ; 0.000         ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; 0.149 ; 0.000         ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; 0.150 ; 0.000         ;
-; BUTN                                 ; 0.169 ; 0.000         ;
-; CPU_RESETN                           ; 0.879 ; 0.000         ;
-+--------------------------------------+-------+---------------+
+; Fast 1200mV 0C Model Recovery Summary                        ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; movingText:UUT1|SCAN_CLK            ; -2.714 ; -86.439       ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -1.732 ; -13.804       ;
+; MAIN_CLK                            ; -1.617 ; -593.894      ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -1.354 ; -43.748       ;
++-------------------------------------+--------+---------------+
 
 
-+---------------------------------------------------------------+
-; Fast 1200mV 0C Model Recovery Summary                         ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; movingText:UUT1|shiftRegisterClk     ; -2.748 ; -80.354       ;
-; CLK50MHZ                             ; -1.889 ; -667.809      ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -1.409 ; -11.255       ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -1.394 ; -35.755       ;
-+--------------------------------------+--------+---------------+
++-------------------------------------------------------------+
+; Fast 1200mV 0C Model Removal Summary                        ;
++-------------------------------------+-------+---------------+
+; Clock                               ; Slack ; End Point TNS ;
++-------------------------------------+-------+---------------+
+; MAIN_CLK                            ; 0.522 ; 0.000         ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; 0.695 ; 0.000         ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 1.142 ; 0.000         ;
+; movingText:UUT1|SCAN_CLK            ; 1.319 ; 0.000         ;
++-------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------+
-; Fast 1200mV 0C Model Removal Summary                         ;
-+--------------------------------------+-------+---------------+
-; Clock                                ; Slack ; End Point TNS ;
-+--------------------------------------+-------+---------------+
-; CLK50MHZ                             ; 0.613 ; 0.000         ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; 0.843 ; 0.000         ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; 0.879 ; 0.000         ;
-; movingText:UUT1|shiftRegisterClk     ; 1.574 ; 0.000         ;
-+--------------------------------------+-------+---------------+
-
-
-+---------------------------------------------------------------+
-; Fast 1200mV 0C Model Minimum Pulse Width Summary              ;
-+--------------------------------------+--------+---------------+
-; Clock                                ; Slack  ; End Point TNS ;
-+--------------------------------------+--------+---------------+
-; CLK50MHZ                             ; -3.000 ; -470.952      ;
-; BUTN                                 ; -3.000 ; -4.381        ;
-; CPU_RESETN                           ; -3.000 ; -3.177        ;
-; movingText:UUT1|shiftRegisterClk     ; -1.000 ; -94.000       ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; -1.000 ; -88.000       ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; -1.000 ; -8.000        ;
-+--------------------------------------+--------+---------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary             ;
++-------------------------------------+--------+---------------+
+; Clock                               ; Slack  ; End Point TNS ;
++-------------------------------------+--------+---------------+
+; MAIN_CLK                            ; -3.000 ; -460.231      ;
+; BUTN                                ; -3.000 ; -4.485        ;
+; CPU_RESETN                          ; -3.000 ; -3.653        ;
+; movingText:UUT1|SCAN_CLK            ; -1.000 ; -100.000      ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; -1.000 ; -96.000       ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -1.000 ; -8.000        ;
++-------------------------------------+--------+---------------+
 
 
 ----------------------------------------------
@@ -365,26 +364,26 @@ No synchronizer chains to report.
 No synchronizer chains to report.
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                   ;
-+---------------------------------------+-----------+-------+-----------+---------+---------------------+
-; Clock                                 ; Setup     ; Hold  ; Recovery  ; Removal ; Minimum Pulse Width ;
-+---------------------------------------+-----------+-------+-----------+---------+---------------------+
-; Worst-case Slack                      ; -9.021    ; 0.142 ; -5.681    ; 0.613   ; -3.000              ;
-;  BUTN                                 ; 0.298     ; 0.169 ; N/A       ; N/A     ; -3.000              ;
-;  CLK50MHZ                             ; -6.573    ; 0.142 ; -3.575    ; 0.613   ; -3.000              ;
-;  CPU_RESETN                           ; -9.021    ; 0.879 ; N/A       ; N/A     ; -3.000              ;
-;  dotmatrix_show:UUT2|CHAR_CLK         ; -3.228    ; 0.149 ; -3.074    ; 0.879   ; -1.403              ;
-;  dotmatrix_show:UUT2|shiftRegisterClk ; -5.572    ; 0.150 ; -3.032    ; 0.843   ; -1.403              ;
-;  movingText:UUT1|shiftRegisterClk     ; -7.305    ; 0.142 ; -5.681    ; 1.574   ; -1.403              ;
-; Design-wide TNS                       ; -2299.003 ; 0.0   ; -1528.044 ; 0.0     ; -815.725            ;
-;  BUTN                                 ; 0.000     ; 0.000 ; N/A       ; N/A     ; -4.403              ;
-;  CLK50MHZ                             ; -1651.392 ; 0.000 ; -1259.735 ; 0.000   ; -541.752            ;
-;  CPU_RESETN                           ; -25.195   ; 0.000 ; N/A       ; N/A     ; -3.177              ;
-;  dotmatrix_show:UUT2|CHAR_CLK         ; -23.206   ; 0.000 ; -24.571   ; 0.000   ; -11.224             ;
-;  dotmatrix_show:UUT2|shiftRegisterClk ; -275.398  ; 0.000 ; -78.068   ; 0.000   ; -123.464            ;
-;  movingText:UUT1|shiftRegisterClk     ; -323.812  ; 0.000 ; -165.670  ; 0.000   ; -131.882            ;
-+---------------------------------------+-----------+-------+-----------+---------+---------------------+
++------------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                                  ;
++--------------------------------------+-----------+-------+-----------+---------+---------------------+
+; Clock                                ; Setup     ; Hold  ; Recovery  ; Removal ; Minimum Pulse Width ;
++--------------------------------------+-----------+-------+-----------+---------+---------------------+
+; Worst-case Slack                     ; -7.889    ; 0.141 ; -5.656    ; 0.522   ; -3.000              ;
+;  BUTN                                ; 0.298     ; 0.169 ; N/A       ; N/A     ; -3.000              ;
+;  CPU_RESETN                          ; -7.889    ; 0.875 ; N/A       ; N/A     ; -3.000              ;
+;  MAIN_CLK                            ; -5.777    ; 0.147 ; -3.038    ; 0.522   ; -3.000              ;
+;  dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -2.999    ; 0.148 ; -3.862    ; 1.142   ; -1.403              ;
+;  dotmatrix_show:UUT2|SCAN_CLK        ; -4.919    ; 0.148 ; -3.070    ; 0.695   ; -1.403              ;
+;  movingText:UUT1|SCAN_CLK            ; -5.838    ; 0.141 ; -5.656    ; 1.319   ; -1.403              ;
+; Design-wide TNS                      ; -2397.817 ; 0.0   ; -1434.065 ; 0.0     ; -833.964            ;
+;  BUTN                                ; 0.000     ; 0.000 ; N/A       ; N/A     ; -4.485              ;
+;  CPU_RESETN                          ; -22.605   ; 0.000 ; N/A       ; N/A     ; -3.653              ;
+;  MAIN_CLK                            ; -1619.012 ; 0.000 ; -1125.014 ; 0.000   ; -540.349            ;
+;  dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; -22.692   ; 0.000 ; -30.795   ; 0.000   ; -11.224             ;
+;  dotmatrix_show:UUT2|SCAN_CLK        ; -334.636  ; 0.000 ; -98.911   ; 0.000   ; -134.688            ;
+;  movingText:UUT1|SCAN_CLK            ; -398.872  ; 0.000 ; -179.345  ; 0.000   ; -140.300            ;
++--------------------------------------+-----------+-------+-----------+---------+---------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -433,7 +432,7 @@ No synchronizer chains to report.
 +---------------------+-----------------------+-----------------+-----------------+
 ; CPU_RESETN          ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; BUTN                ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
-; CLK50MHZ            ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; MAIN_CLK            ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ~ALTERA_TMS~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TCK~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TDI~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
@@ -561,89 +560,89 @@ No synchronizer chains to report.
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------+
-; Setup Transfers                                                                                                         ;
-+--------------------------------------+--------------------------------------+----------+----------+----------+----------+
-; From Clock                           ; To Clock                             ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+--------------------------------------+--------------------------------------+----------+----------+----------+----------+
-; BUTN                                 ; BUTN                                 ; 0        ; 0        ; 0        ; 1        ;
-; BUTN                                 ; CLK50MHZ                             ; 0        ; 7        ; 0        ; 0        ;
-; CLK50MHZ                             ; CLK50MHZ                             ; 11537    ; 0        ; 0        ; 0        ;
-; CPU_RESETN                           ; CLK50MHZ                             ; 7        ; 7        ; 0        ; 0        ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; CLK50MHZ                             ; 1        ; 1        ; 0        ; 0        ;
-; BUTN                                 ; CPU_RESETN                           ; 0        ; 7        ; 0        ; 0        ;
-; CPU_RESETN                           ; CPU_RESETN                           ; 14       ; 7        ; 0        ; 0        ;
-; movingText:UUT1|shiftRegisterClk     ; CPU_RESETN                           ; 7        ; 0        ; 0        ; 0        ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; dotmatrix_show:UUT2|CHAR_CLK         ; 490      ; 0        ; 0        ; 0        ;
-; BUTN                                 ; dotmatrix_show:UUT2|shiftRegisterClk ; 0        ; 62       ; 0        ; 0        ;
-; CPU_RESETN                           ; dotmatrix_show:UUT2|shiftRegisterClk ; 62       ; 62       ; 0        ; 0        ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; dotmatrix_show:UUT2|shiftRegisterClk ; 1390     ; 0        ; 0        ; 0        ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; dotmatrix_show:UUT2|shiftRegisterClk ; 2014     ; 0        ; 0        ; 0        ;
-; BUTN                                 ; movingText:UUT1|shiftRegisterClk     ; 0        ; 71       ; 0        ; 0        ;
-; CLK50MHZ                             ; movingText:UUT1|shiftRegisterClk     ; 264      ; 0        ; 0        ; 0        ;
-; CPU_RESETN                           ; movingText:UUT1|shiftRegisterClk     ; 83       ; 71       ; 0        ; 0        ;
-; movingText:UUT1|shiftRegisterClk     ; movingText:UUT1|shiftRegisterClk     ; 2324     ; 0        ; 0        ; 0        ;
-+--------------------------------------+--------------------------------------+----------+----------+----------+----------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Setup Transfers                                                                                                       ;
++-------------------------------------+-------------------------------------+----------+----------+----------+----------+
+; From Clock                          ; To Clock                            ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++-------------------------------------+-------------------------------------+----------+----------+----------+----------+
+; BUTN                                ; BUTN                                ; 0        ; 0        ; 0        ; 1        ;
+; BUTN                                ; CPU_RESETN                          ; 0        ; 7        ; 0        ; 0        ;
+; CPU_RESETN                          ; CPU_RESETN                          ; 14       ; 7        ; 0        ; 0        ;
+; movingText:UUT1|SCAN_CLK            ; CPU_RESETN                          ; 7        ; 0        ; 0        ; 0        ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 490      ; 0        ; 0        ; 0        ;
+; BUTN                                ; dotmatrix_show:UUT2|SCAN_CLK        ; 0        ; 63       ; 0        ; 0        ;
+; CPU_RESETN                          ; dotmatrix_show:UUT2|SCAN_CLK        ; 63       ; 63       ; 0        ; 0        ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; dotmatrix_show:UUT2|SCAN_CLK        ; 1364     ; 0        ; 0        ; 0        ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; dotmatrix_show:UUT2|SCAN_CLK        ; 2606     ; 0        ; 0        ; 0        ;
+; BUTN                                ; MAIN_CLK                            ; 0        ; 7        ; 0        ; 0        ;
+; CPU_RESETN                          ; MAIN_CLK                            ; 7        ; 7        ; 0        ; 0        ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; MAIN_CLK                            ; 1        ; 1        ; 0        ; 0        ;
+; MAIN_CLK                            ; MAIN_CLK                            ; 11541    ; 0        ; 0        ; 0        ;
+; BUTN                                ; movingText:UUT1|SCAN_CLK            ; 0        ; 75       ; 0        ; 0        ;
+; CPU_RESETN                          ; movingText:UUT1|SCAN_CLK            ; 90       ; 75       ; 0        ; 0        ;
+; MAIN_CLK                            ; movingText:UUT1|SCAN_CLK            ; 256      ; 0        ; 0        ; 0        ;
+; movingText:UUT1|SCAN_CLK            ; movingText:UUT1|SCAN_CLK            ; 2795     ; 0        ; 0        ; 0        ;
++-------------------------------------+-------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+-------------------------------------------------------------------------------------------------------------------------+
-; Hold Transfers                                                                                                          ;
-+--------------------------------------+--------------------------------------+----------+----------+----------+----------+
-; From Clock                           ; To Clock                             ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+--------------------------------------+--------------------------------------+----------+----------+----------+----------+
-; BUTN                                 ; BUTN                                 ; 0        ; 0        ; 0        ; 1        ;
-; BUTN                                 ; CLK50MHZ                             ; 0        ; 7        ; 0        ; 0        ;
-; CLK50MHZ                             ; CLK50MHZ                             ; 11537    ; 0        ; 0        ; 0        ;
-; CPU_RESETN                           ; CLK50MHZ                             ; 7        ; 7        ; 0        ; 0        ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; CLK50MHZ                             ; 1        ; 1        ; 0        ; 0        ;
-; BUTN                                 ; CPU_RESETN                           ; 0        ; 7        ; 0        ; 0        ;
-; CPU_RESETN                           ; CPU_RESETN                           ; 14       ; 7        ; 0        ; 0        ;
-; movingText:UUT1|shiftRegisterClk     ; CPU_RESETN                           ; 7        ; 0        ; 0        ; 0        ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; dotmatrix_show:UUT2|CHAR_CLK         ; 490      ; 0        ; 0        ; 0        ;
-; BUTN                                 ; dotmatrix_show:UUT2|shiftRegisterClk ; 0        ; 62       ; 0        ; 0        ;
-; CPU_RESETN                           ; dotmatrix_show:UUT2|shiftRegisterClk ; 62       ; 62       ; 0        ; 0        ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; dotmatrix_show:UUT2|shiftRegisterClk ; 1390     ; 0        ; 0        ; 0        ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; dotmatrix_show:UUT2|shiftRegisterClk ; 2014     ; 0        ; 0        ; 0        ;
-; BUTN                                 ; movingText:UUT1|shiftRegisterClk     ; 0        ; 71       ; 0        ; 0        ;
-; CLK50MHZ                             ; movingText:UUT1|shiftRegisterClk     ; 264      ; 0        ; 0        ; 0        ;
-; CPU_RESETN                           ; movingText:UUT1|shiftRegisterClk     ; 83       ; 71       ; 0        ; 0        ;
-; movingText:UUT1|shiftRegisterClk     ; movingText:UUT1|shiftRegisterClk     ; 2324     ; 0        ; 0        ; 0        ;
-+--------------------------------------+--------------------------------------+----------+----------+----------+----------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Hold Transfers                                                                                                        ;
++-------------------------------------+-------------------------------------+----------+----------+----------+----------+
+; From Clock                          ; To Clock                            ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++-------------------------------------+-------------------------------------+----------+----------+----------+----------+
+; BUTN                                ; BUTN                                ; 0        ; 0        ; 0        ; 1        ;
+; BUTN                                ; CPU_RESETN                          ; 0        ; 7        ; 0        ; 0        ;
+; CPU_RESETN                          ; CPU_RESETN                          ; 14       ; 7        ; 0        ; 0        ;
+; movingText:UUT1|SCAN_CLK            ; CPU_RESETN                          ; 7        ; 0        ; 0        ; 0        ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 490      ; 0        ; 0        ; 0        ;
+; BUTN                                ; dotmatrix_show:UUT2|SCAN_CLK        ; 0        ; 63       ; 0        ; 0        ;
+; CPU_RESETN                          ; dotmatrix_show:UUT2|SCAN_CLK        ; 63       ; 63       ; 0        ; 0        ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; dotmatrix_show:UUT2|SCAN_CLK        ; 1364     ; 0        ; 0        ; 0        ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; dotmatrix_show:UUT2|SCAN_CLK        ; 2606     ; 0        ; 0        ; 0        ;
+; BUTN                                ; MAIN_CLK                            ; 0        ; 7        ; 0        ; 0        ;
+; CPU_RESETN                          ; MAIN_CLK                            ; 7        ; 7        ; 0        ; 0        ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; MAIN_CLK                            ; 1        ; 1        ; 0        ; 0        ;
+; MAIN_CLK                            ; MAIN_CLK                            ; 11541    ; 0        ; 0        ; 0        ;
+; BUTN                                ; movingText:UUT1|SCAN_CLK            ; 0        ; 75       ; 0        ; 0        ;
+; CPU_RESETN                          ; movingText:UUT1|SCAN_CLK            ; 90       ; 75       ; 0        ; 0        ;
+; MAIN_CLK                            ; movingText:UUT1|SCAN_CLK            ; 256      ; 0        ; 0        ; 0        ;
+; movingText:UUT1|SCAN_CLK            ; movingText:UUT1|SCAN_CLK            ; 2795     ; 0        ; 0        ; 0        ;
++-------------------------------------+-------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+-----------------------------------------------------------------------------------------------+
-; Recovery Transfers                                                                            ;
-+------------+--------------------------------------+----------+----------+----------+----------+
-; From Clock ; To Clock                             ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------+--------------------------------------+----------+----------+----------+----------+
-; BUTN       ; CLK50MHZ                             ; 0        ; 377      ; 0        ; 0        ;
-; CPU_RESETN ; CLK50MHZ                             ; 377      ; 377      ; 0        ; 0        ;
-; BUTN       ; dotmatrix_show:UUT2|CHAR_CLK         ; 0        ; 8        ; 0        ; 0        ;
-; CPU_RESETN ; dotmatrix_show:UUT2|CHAR_CLK         ; 8        ; 8        ; 0        ; 0        ;
-; BUTN       ; dotmatrix_show:UUT2|shiftRegisterClk ; 0        ; 26       ; 0        ; 0        ;
-; CPU_RESETN ; dotmatrix_show:UUT2|shiftRegisterClk ; 26       ; 26       ; 0        ; 0        ;
-; BUTN       ; movingText:UUT1|shiftRegisterClk     ; 0        ; 30       ; 0        ; 0        ;
-; CPU_RESETN ; movingText:UUT1|shiftRegisterClk     ; 30       ; 30       ; 0        ; 0        ;
-+------------+--------------------------------------+----------+----------+----------+----------+
++----------------------------------------------------------------------------------------------+
+; Recovery Transfers                                                                           ;
++------------+-------------------------------------+----------+----------+----------+----------+
+; From Clock ; To Clock                            ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+-------------------------------------+----------+----------+----------+----------+
+; BUTN       ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 0        ; 8        ; 0        ; 0        ;
+; CPU_RESETN ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 8        ; 8        ; 0        ; 0        ;
+; BUTN       ; dotmatrix_show:UUT2|SCAN_CLK        ; 0        ; 33       ; 0        ; 0        ;
+; CPU_RESETN ; dotmatrix_show:UUT2|SCAN_CLK        ; 33       ; 33       ; 0        ; 0        ;
+; BUTN       ; MAIN_CLK                            ; 0        ; 376      ; 0        ; 0        ;
+; CPU_RESETN ; MAIN_CLK                            ; 376      ; 376      ; 0        ; 0        ;
+; BUTN       ; movingText:UUT1|SCAN_CLK            ; 0        ; 35       ; 0        ; 0        ;
+; CPU_RESETN ; movingText:UUT1|SCAN_CLK            ; 35       ; 35       ; 0        ; 0        ;
++------------+-------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+-----------------------------------------------------------------------------------------------+
-; Removal Transfers                                                                             ;
-+------------+--------------------------------------+----------+----------+----------+----------+
-; From Clock ; To Clock                             ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------+--------------------------------------+----------+----------+----------+----------+
-; BUTN       ; CLK50MHZ                             ; 0        ; 377      ; 0        ; 0        ;
-; CPU_RESETN ; CLK50MHZ                             ; 377      ; 377      ; 0        ; 0        ;
-; BUTN       ; dotmatrix_show:UUT2|CHAR_CLK         ; 0        ; 8        ; 0        ; 0        ;
-; CPU_RESETN ; dotmatrix_show:UUT2|CHAR_CLK         ; 8        ; 8        ; 0        ; 0        ;
-; BUTN       ; dotmatrix_show:UUT2|shiftRegisterClk ; 0        ; 26       ; 0        ; 0        ;
-; CPU_RESETN ; dotmatrix_show:UUT2|shiftRegisterClk ; 26       ; 26       ; 0        ; 0        ;
-; BUTN       ; movingText:UUT1|shiftRegisterClk     ; 0        ; 30       ; 0        ; 0        ;
-; CPU_RESETN ; movingText:UUT1|shiftRegisterClk     ; 30       ; 30       ; 0        ; 0        ;
-+------------+--------------------------------------+----------+----------+----------+----------+
++----------------------------------------------------------------------------------------------+
+; Removal Transfers                                                                            ;
++------------+-------------------------------------+----------+----------+----------+----------+
+; From Clock ; To Clock                            ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+-------------------------------------+----------+----------+----------+----------+
+; BUTN       ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 0        ; 8        ; 0        ; 0        ;
+; CPU_RESETN ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; 8        ; 8        ; 0        ; 0        ;
+; BUTN       ; dotmatrix_show:UUT2|SCAN_CLK        ; 0        ; 33       ; 0        ; 0        ;
+; CPU_RESETN ; dotmatrix_show:UUT2|SCAN_CLK        ; 33       ; 33       ; 0        ; 0        ;
+; BUTN       ; MAIN_CLK                            ; 0        ; 376      ; 0        ; 0        ;
+; CPU_RESETN ; MAIN_CLK                            ; 376      ; 376      ; 0        ; 0        ;
+; BUTN       ; movingText:UUT1|SCAN_CLK            ; 0        ; 35       ; 0        ; 0        ;
+; CPU_RESETN ; movingText:UUT1|SCAN_CLK            ; 35       ; 35       ; 0        ; 0        ;
++------------+-------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -673,18 +672,18 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 
 
-+--------------------------------------------------------------------------------------------------+
-; Clock Status Summary                                                                             ;
-+--------------------------------------+--------------------------------------+------+-------------+
-; Target                               ; Clock                                ; Type ; Status      ;
-+--------------------------------------+--------------------------------------+------+-------------+
-; BUTN                                 ; BUTN                                 ; Base ; Constrained ;
-; CLK50MHZ                             ; CLK50MHZ                             ; Base ; Constrained ;
-; CPU_RESETN                           ; CPU_RESETN                           ; Base ; Constrained ;
-; dotmatrix_show:UUT2|CHAR_CLK         ; dotmatrix_show:UUT2|CHAR_CLK         ; Base ; Constrained ;
-; dotmatrix_show:UUT2|shiftRegisterClk ; dotmatrix_show:UUT2|shiftRegisterClk ; Base ; Constrained ;
-; movingText:UUT1|shiftRegisterClk     ; movingText:UUT1|shiftRegisterClk     ; Base ; Constrained ;
-+--------------------------------------+--------------------------------------+------+-------------+
++------------------------------------------------------------------------------------------------+
+; Clock Status Summary                                                                           ;
++-------------------------------------+-------------------------------------+------+-------------+
+; Target                              ; Clock                               ; Type ; Status      ;
++-------------------------------------+-------------------------------------+------+-------------+
+; BUTN                                ; BUTN                                ; Base ; Constrained ;
+; CPU_RESETN                          ; CPU_RESETN                          ; Base ; Constrained ;
+; MAIN_CLK                            ; MAIN_CLK                            ; Base ; Constrained ;
+; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; dotmatrix_show:UUT2|CHAR_CHANGE_CLK ; Base ; Constrained ;
+; dotmatrix_show:UUT2|SCAN_CLK        ; dotmatrix_show:UUT2|SCAN_CLK        ; Base ; Constrained ;
+; movingText:UUT1|SCAN_CLK            ; movingText:UUT1|SCAN_CLK            ; Base ; Constrained ;
++-------------------------------------+-------------------------------------+------+-------------+
 
 
 +---------------------------------------------------------------------------------------------------+
@@ -755,7 +754,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
-    Info: Processing started: Sun Mar 24 14:18:22 2024
+    Info: Processing started: Sat Mar 30 01:18:39 2024
 Info: Command: quartus_sta FPGA_coursework -c FPGA_coursework
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -766,15 +765,15 @@ Warning (335093): The Timing Analyzer is analyzing 3 combinational loops as latc
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'FPGA_coursework.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name CLK50MHZ CLK50MHZ
+    Info (332105): create_clock -period 1.000 -name MAIN_CLK MAIN_CLK
     Info (332105): create_clock -period 1.000 -name BUTN BUTN
-    Info (332105): create_clock -period 1.000 -name dotmatrix_show:UUT2|shiftRegisterClk dotmatrix_show:UUT2|shiftRegisterClk
-    Info (332105): create_clock -period 1.000 -name movingText:UUT1|shiftRegisterClk movingText:UUT1|shiftRegisterClk
-    Info (332105): create_clock -period 1.000 -name dotmatrix_show:UUT2|CHAR_CLK dotmatrix_show:UUT2|CHAR_CLK
+    Info (332105): create_clock -period 1.000 -name dotmatrix_show:UUT2|SCAN_CLK dotmatrix_show:UUT2|SCAN_CLK
+    Info (332105): create_clock -period 1.000 -name movingText:UUT1|SCAN_CLK movingText:UUT1|SCAN_CLK
+    Info (332105): create_clock -period 1.000 -name dotmatrix_show:UUT2|CHAR_CHANGE_CLK dotmatrix_show:UUT2|CHAR_CHANGE_CLK
     Info (332105): create_clock -period 1.000 -name CPU_RESETN CPU_RESETN
-Warning (332125): Found combinational loop of 4 nodes File: G:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/src/movingText.vhd Line: 384
+Warning (332125): Found combinational loop of 4 nodes File: G:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/src/movingText.vhd Line: 395
     Warning (332126): Node "UUT1|dummy[1]~2|combout"
-    Warning (332126): Node "UUT1|dummy[0]~8|datab"
+    Warning (332126): Node "UUT1|dummy[0]~8|dataa"
     Warning (332126): Node "UUT1|dummy[0]~8|combout"
     Warning (332126): Node "UUT1|dummy[1]~2|dataa"
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
@@ -783,143 +782,143 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -9.021
+Info (332146): Worst-case setup slack is -7.889
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -9.021             -25.195 CPU_RESETN 
-    Info (332119):    -7.305            -323.812 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -6.573           -1651.392 CLK50MHZ 
-    Info (332119):    -5.572            -275.398 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):    -3.228             -23.206 dotmatrix_show:UUT2|CHAR_CLK 
+    Info (332119):    -7.889             -22.605 CPU_RESETN 
+    Info (332119):    -5.838            -398.872 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -5.777           -1619.012 MAIN_CLK 
+    Info (332119):    -4.919            -334.636 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -2.999             -22.692 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
     Info (332119):     0.298               0.000 BUTN 
 Info (332146): Worst-case hold slack is 0.323
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.323               0.000 CLK50MHZ 
-    Info (332119):     0.325               0.000 movingText:UUT1|shiftRegisterClk 
-    Info (332119):     0.343               0.000 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):     0.343               0.000 dotmatrix_show:UUT2|shiftRegisterClk 
+    Info (332119):     0.323               0.000 movingText:UUT1|SCAN_CLK 
+    Info (332119):     0.341               0.000 MAIN_CLK 
+    Info (332119):     0.341               0.000 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):     0.341               0.000 dotmatrix_show:UUT2|SCAN_CLK 
     Info (332119):     0.393               0.000 BUTN 
-    Info (332119):     1.880               0.000 CPU_RESETN 
-Info (332146): Worst-case recovery slack is -5.681
+    Info (332119):     1.753               0.000 CPU_RESETN 
+Info (332146): Worst-case recovery slack is -5.656
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.681            -165.670 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -3.575           -1259.735 CLK50MHZ 
-    Info (332119):    -3.074             -24.571 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):    -3.032             -78.068 dotmatrix_show:UUT2|shiftRegisterClk 
-Info (332146): Worst-case removal slack is 1.472
+    Info (332119):    -5.656            -179.345 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -3.862             -30.795 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):    -3.070             -98.911 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -3.038           -1125.014 MAIN_CLK 
+Info (332146): Worst-case removal slack is 1.436
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.472               0.000 CLK50MHZ 
-    Info (332119):     2.319               0.000 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):     2.371               0.000 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):     3.659               0.000 movingText:UUT1|shiftRegisterClk 
+    Info (332119):     1.436               0.000 MAIN_CLK 
+    Info (332119):     2.252               0.000 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):     3.155               0.000 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):     3.197               0.000 movingText:UUT1|SCAN_CLK 
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -541.752 CLK50MHZ 
+    Info (332119):    -3.000            -540.349 MAIN_CLK 
     Info (332119):    -3.000              -4.403 BUTN 
     Info (332119):    -3.000              -3.000 CPU_RESETN 
-    Info (332119):    -1.403            -131.882 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -1.403            -123.464 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):    -1.403             -11.224 dotmatrix_show:UUT2|CHAR_CLK 
+    Info (332119):    -1.403            -140.300 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -1.403            -134.688 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -1.403             -11.224 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -8.356
+Info (332146): Worst-case setup slack is -7.318
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -8.356             -23.276 CPU_RESETN 
-    Info (332119):    -6.737            -298.618 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -5.996           -1494.013 CLK50MHZ 
-    Info (332119):    -4.985            -250.942 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):    -2.943             -20.752 dotmatrix_show:UUT2|CHAR_CLK 
+    Info (332119):    -7.318             -20.935 CPU_RESETN 
+    Info (332119):    -5.322            -364.550 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -5.277           -1457.949 MAIN_CLK 
+    Info (332119):    -4.372            -304.612 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -2.686             -20.217 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
     Info (332119):     0.361               0.000 BUTN 
-Info (332146): Worst-case hold slack is 0.290
+Info (332146): Worst-case hold slack is 0.291
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.290               0.000 CLK50MHZ 
-    Info (332119):     0.292               0.000 movingText:UUT1|shiftRegisterClk 
-    Info (332119):     0.308               0.000 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):     0.308               0.000 dotmatrix_show:UUT2|shiftRegisterClk 
+    Info (332119):     0.291               0.000 movingText:UUT1|SCAN_CLK 
+    Info (332119):     0.305               0.000 MAIN_CLK 
+    Info (332119):     0.305               0.000 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):     0.306               0.000 dotmatrix_show:UUT2|SCAN_CLK 
     Info (332119):     0.354               0.000 BUTN 
-    Info (332119):     1.539               0.000 CPU_RESETN 
-Info (332146): Worst-case recovery slack is -5.182
+    Info (332119):     1.432               0.000 CPU_RESETN 
+Info (332146): Worst-case recovery slack is -5.131
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.182            -151.022 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -3.221           -1137.219 CLK50MHZ 
-    Info (332119):    -2.852             -22.798 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):    -2.799             -72.094 dotmatrix_show:UUT2|shiftRegisterClk 
-Info (332146): Worst-case removal slack is 1.379
+    Info (332119):    -5.131            -163.063 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -3.551             -28.311 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):    -2.806             -90.298 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -2.715           -1006.958 MAIN_CLK 
+Info (332146): Worst-case removal slack is 1.384
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.379               0.000 CLK50MHZ 
-    Info (332119):     2.190               0.000 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):     2.236               0.000 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):     3.414               0.000 movingText:UUT1|shiftRegisterClk 
+    Info (332119):     1.384               0.000 MAIN_CLK 
+    Info (332119):     2.203               0.000 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):     3.019               0.000 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):     3.035               0.000 movingText:UUT1|SCAN_CLK 
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -541.752 CLK50MHZ 
+    Info (332119):    -3.000            -540.349 MAIN_CLK 
     Info (332119):    -3.000              -4.403 BUTN 
     Info (332119):    -3.000              -3.000 CPU_RESETN 
-    Info (332119):    -1.403            -131.882 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -1.403            -123.464 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):    -1.403             -11.224 dotmatrix_show:UUT2|CHAR_CLK 
+    Info (332119):    -1.403            -140.300 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -1.403            -134.688 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -1.403             -11.224 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -3.781
+Info (332146): Worst-case setup slack is -3.825
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.781             -10.464 CPU_RESETN 
-    Info (332119):    -2.591            -126.757 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -2.270            -472.170 CLK50MHZ 
-    Info (332119):    -1.784             -94.951 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):    -0.797              -5.143 dotmatrix_show:UUT2|CHAR_CLK 
+    Info (332119):    -3.825             -11.117 CPU_RESETN 
+    Info (332119):    -2.578            -161.137 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -2.109            -450.385 MAIN_CLK 
+    Info (332119):    -2.026            -125.356 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -0.665              -4.766 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
     Info (332119):     0.693               0.000 BUTN 
-Info (332146): Worst-case hold slack is 0.142
+Info (332146): Worst-case hold slack is 0.141
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.142               0.000 CLK50MHZ 
-    Info (332119):     0.142               0.000 movingText:UUT1|shiftRegisterClk 
-    Info (332119):     0.149               0.000 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):     0.150               0.000 dotmatrix_show:UUT2|shiftRegisterClk 
+    Info (332119):     0.141               0.000 movingText:UUT1|SCAN_CLK 
+    Info (332119):     0.147               0.000 MAIN_CLK 
+    Info (332119):     0.148               0.000 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):     0.148               0.000 dotmatrix_show:UUT2|SCAN_CLK 
     Info (332119):     0.169               0.000 BUTN 
-    Info (332119):     0.879               0.000 CPU_RESETN 
-Info (332146): Worst-case recovery slack is -2.748
+    Info (332119):     0.875               0.000 CPU_RESETN 
+Info (332146): Worst-case recovery slack is -2.714
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.748             -80.354 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -1.889            -667.809 CLK50MHZ 
-    Info (332119):    -1.409             -11.255 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):    -1.394             -35.755 dotmatrix_show:UUT2|shiftRegisterClk 
-Info (332146): Worst-case removal slack is 0.613
+    Info (332119):    -2.714             -86.439 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -1.732             -13.804 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):    -1.617            -593.894 MAIN_CLK 
+    Info (332119):    -1.354             -43.748 dotmatrix_show:UUT2|SCAN_CLK 
+Info (332146): Worst-case removal slack is 0.522
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.613               0.000 CLK50MHZ 
-    Info (332119):     0.843               0.000 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):     0.879               0.000 dotmatrix_show:UUT2|CHAR_CLK 
-    Info (332119):     1.574               0.000 movingText:UUT1|shiftRegisterClk 
+    Info (332119):     0.522               0.000 MAIN_CLK 
+    Info (332119):     0.695               0.000 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):     1.142               0.000 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
+    Info (332119):     1.319               0.000 movingText:UUT1|SCAN_CLK 
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -470.952 CLK50MHZ 
-    Info (332119):    -3.000              -4.381 BUTN 
-    Info (332119):    -3.000              -3.177 CPU_RESETN 
-    Info (332119):    -1.000             -94.000 movingText:UUT1|shiftRegisterClk 
-    Info (332119):    -1.000             -88.000 dotmatrix_show:UUT2|shiftRegisterClk 
-    Info (332119):    -1.000              -8.000 dotmatrix_show:UUT2|CHAR_CLK 
+    Info (332119):    -3.000            -460.231 MAIN_CLK 
+    Info (332119):    -3.000              -4.485 BUTN 
+    Info (332119):    -3.000              -3.653 CPU_RESETN 
+    Info (332119):    -1.000            -100.000 movingText:UUT1|SCAN_CLK 
+    Info (332119):    -1.000             -96.000 dotmatrix_show:UUT2|SCAN_CLK 
+    Info (332119):    -1.000              -8.000 dotmatrix_show:UUT2|CHAR_CHANGE_CLK 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 11 warnings
-    Info: Peak virtual memory: 4930 megabytes
-    Info: Processing ended: Sun Mar 24 14:18:27 2024
-    Info: Elapsed time: 00:00:05
+    Info: Peak virtual memory: 4934 megabytes
+    Info: Processing ended: Sat Mar 30 01:18:43 2024
+    Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:02
 
 

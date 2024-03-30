@@ -1,5 +1,5 @@
 Flow report for FPGA_coursework
-Sun Mar 24 14:18:30 2024
+Sat Mar 30 01:18:45 2024
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -41,17 +41,17 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Flow Summary                                                                        ;
 +------------------------------------+------------------------------------------------+
-; Flow Status                        ; Successful - Sun Mar 24 14:18:30 2024          ;
+; Flow Status                        ; Successful - Sat Mar 30 01:18:45 2024          ;
 ; Quartus Prime Version              ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
 ; Revision Name                      ; FPGA_coursework                                ;
 ; Top-level Entity Name              ; main_top_module                                ;
 ; Family                             ; MAX 10                                         ;
 ; Device                             ; 10M50DAF484C7G                                 ;
 ; Timing Models                      ; Final                                          ;
-; Total logic elements               ; 1,695 / 49,760 ( 3 % )                         ;
-;     Total combinational functions  ; 1,516 / 49,760 ( 3 % )                         ;
-;     Dedicated logic registers      ; 575 / 49,760 ( 1 % )                           ;
-; Total registers                    ; 575                                            ;
+; Total logic elements               ; 1,783 / 49,760 ( 4 % )                         ;
+;     Total combinational functions  ; 1,565 / 49,760 ( 3 % )                         ;
+;     Dedicated logic registers      ; 588 / 49,760 ( 1 % )                           ;
+; Total registers                    ; 588                                            ;
 ; Total pins                         ; 33 / 360 ( 9 % )                               ;
 ; Total virtual pins                 ; 0                                              ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                          ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/24/2024 14:17:50 ;
+; Start date & time ; 03/30/2024 01:18:06 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FPGA_coursework     ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+-----------------+-----------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value   ; Entity Name     ; Section Id                        ;
 +-------------------------------------+----------------------------------------+-----------------+-----------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 10995770589204.171128987028356         ; --              ; --              ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 10995770589204.171176148661036         ; --              ; --              ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --              ; --              ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --              ; --              ; eda_timing_analysis               ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --              ; --              ; eda_board_design_boundary_scan    ;
@@ -98,6 +98,7 @@ https://fpgasoftware.intel.com/eula.
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --              ; main_top_module ; Top                               ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --              ; --              ; --                                ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --              ; --              ; --                                ;
+; POWER_USE_INPUT_FILES               ; On                                     ; Off             ; --              ; --                                ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --              ; --              ; --                                ;
 ; TOP_LEVEL_ENTITY                    ; main_top_module                        ; FPGA_coursework ; --              ; --                                ;
 +-------------------------------------+----------------------------------------+-----------------+-----------------+-----------------------------------+
@@ -108,12 +109,12 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 4894 MB             ; 00:00:07                           ;
-; Fitter               ; 00:00:14     ; 1.4                     ; 6093 MB             ; 00:00:07                           ;
+; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 4897 MB             ; 00:00:04                           ;
+; Fitter               ; 00:00:14     ; 1.5                     ; 6081 MB             ; 00:00:06                           ;
 ; Assembler            ; 00:00:03     ; 1.0                     ; 4728 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:05     ; 1.8                     ; 4930 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4653 MB             ; 00:00:01                           ;
-; Total                ; 00:00:38     ; --                      ; --                  ; 00:00:18                           ;
+; Timing Analyzer      ; 00:00:04     ; 2.0                     ; 4934 MB             ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4653 MB             ; 00:00:00                           ;
+; Total                ; 00:00:37     ; --                      ; --                  ; 00:00:13                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

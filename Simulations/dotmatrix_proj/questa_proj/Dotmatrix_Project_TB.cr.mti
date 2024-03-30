@@ -1,0 +1,17 @@
+G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_show.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none {G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd}
+QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity dotmatrix_show
+-- Compiling architecture rtl of dotmatrix_show
+
+} {} {}} G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd
+QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity e74HC595
+-- Compiling architecture rtl of e74HC595
+
+} {} {}}

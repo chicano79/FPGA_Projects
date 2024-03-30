@@ -1,0 +1,3 @@
+Signal X is : 1010
+Signal Y is : 100
+Signal C is : This is a string
