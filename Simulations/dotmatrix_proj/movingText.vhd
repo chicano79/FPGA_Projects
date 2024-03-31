@@ -9,10 +9,10 @@ entity movingText is
 	);	
 	
 	port(
-		CLK50MHZ:   in std_logic;
-		LEDR:       out std_logic_vector(0 to 9);--  := (others => '0');
+		MAIN_CLK:   in std_logic;
+		LEDR:       out std_logic;--  := (others => '0');
 		CPU_RESETN: in std_logic;
-		GPIO:       out std_logic_vector(0 to 19)-- := (others => '0')
+		GPIO:       out std_logic_vector(0 to 16)
 	);
 
 end entity;
@@ -24,27 +24,29 @@ constant reset_logic: std_logic := '1';
 signal cpu_rst: std_logic;
 
 constant message_info: string(1 to 63) := "Welcome to 7067CEM: FPGA-Based Digital System Design.          ";
+
+
 signal ascii_char: character := ' '; --signal fetching each character of the message
 signal char_font_select: integer range 0 to 255 := 0; --signal to select font pattern from the font array according to the character fetched
 
-signal shiftRegisterClk, CHAR_CLK, TEST_CLK: std_logic; --clock controlling the scanning of the screen area
-signal serial_data: 					 std_logic := '0'; --74HC595 serial input data
+signal SCAN_CLK, CHAR_CLK, TEST_CLK: std_logic; --clock controlling the scanning of the screen area
+signal serial_data_in: 					 std_logic := '0'; --74HC595 serial input data
 signal output_enable: 				 std_logic := '1'; --74HC595 output enable control
 signal parallel_load: 			    std_logic := '0'; --74HC595 parallel load control
 signal serial_clk: 				    std_logic := '0'; --74HC595 serial input clock
 signal row_driver: 				    std_logic_vector(7 downto 0) := (others => '0'); --signal to control the sequential lighting of the display rows
 
-type SCAN_STATE is (LOAD1, CLOCK1, SHIFT1, SHOW1, 
-					LOAD2, CLOCK2, SHIFT2, SHOW2, 
-					LOAD3, CLOCK3, SHIFT3, SHOW3, 
-					LOAD4, CLOCK4, SHIFT4, SHOW4, 
-					LOAD5, CLOCK5, SHIFT5, SHOW5,
-					LOAD6, CLOCK6, SHIFT6, SHOW6,
-					LOAD7, CLOCK7, SHIFT7, SHOW7,
-					LOAD8, CLOCK8, SHIFT8, SHOW8
+type SCAN_STATE is (LOAD0, BIT_CLOCK0, BIT_SHIFT0, SHOW0,
+					LOAD1, BIT_CLOCK1, BIT_SHIFT1, SHOW1, 
+					LOAD2, BIT_CLOCK2, BIT_SHIFT2, SHOW2, 
+					LOAD3, BIT_CLOCK3, BIT_SHIFT3, SHOW3, 
+					LOAD4, BIT_CLOCK4, BIT_SHIFT4, SHOW4, 
+					LOAD5, BIT_CLOCK5, BIT_SHIFT5, SHOW5,
+					LOAD6, BIT_CLOCK6, BIT_SHIFT6, SHOW6,
+					LOAD7, BIT_CLOCK7, BIT_SHIFT7, SHOW7					
 					); --states in sending out data into the external 74HC595 network
-					
-signal scanStateVariable: SCAN_STATE := LOAD1;
+
+signal scanStateVariable: SCAN_STATE := LOAD0;
 
 type sevenby8 is array(0 to 6) of std_logic_vector(7 downto 0);  
 
@@ -177,25 +179,30 @@ GPIO(5) <=  row_driver(2);
 GPIO(7) <=  row_driver(1);
 GPIO(9) <=  row_driver(0);
 
-GPIO(0) <= serial_data;
+GPIO(0) <= serial_data_in;
 GPIO(2) <= output_enable;
 GPIO(4) <= parallel_load;
 GPIO(6) <= serial_clk;
 
-LEDR(0) <= CHAR_CLK;
+GPIO(10) <= '0';
+GPIO(11) <= '0';
+GPIO(13) <= '0';
+GPIO(15) <= '0';
+
+LEDR <= CHAR_CLK;
 GPIO(8) <= TEST_CLK;  --shiftRegisterClk;
 
 char_font_select <= (character'pos(ascii_char) - character'pos(' '));
 
 
-    process(CLK50MHZ, cpu_rst) 
+    process(MAIN_CLK, cpu_rst) 
 		constant count_range: integer := FREQ/10e6;
 		variable counter: integer range 0 to FREQ := 0;
 	begin
 		if cpu_rst = reset_logic then
 			counter := 0;
 			TEST_CLK <= '0';	
-		elsif rising_edge(CLK50MHZ) then 
+		elsif rising_edge(MAIN_CLK) then 
 			if counter < count_range-1 then
 				counter := counter + 1;
 			else
@@ -210,14 +217,14 @@ LEVEL1:	for i in 0 to scratchPad'high generate
 MAPPING:	scratchPad(i) <= LedFont(char_font_select)(i);
 			end generate LEVEL1;	
 
-TEST_CLK_PROC: process(CLK50MHZ, cpu_rst) 
+TEST_CLK_PROC: process(MAIN_CLK, cpu_rst) 
 	constant count_range: integer := 5e6;
 	variable drtcount: integer range 0 to FREQ := 0;
 	begin
 		if cpu_rst = reset_logic then
 			drtcount := 0;
 			CHAR_CLK <= '0';	
-		elsif rising_edge(CLK50MHZ) then 
+		elsif rising_edge(MAIN_CLK) then 
 			if drtcount < count_range-1 then			
 				drtcount := drtcount + 1;
 			else
@@ -227,9 +234,9 @@ TEST_CLK_PROC: process(CLK50MHZ, cpu_rst)
 		end if;	
 	end process;
 
-SCREEN_AREA_SHIFT_PROC: process(CLK50MHZ, cpu_rst) -- this is the process that takes care of shifting characters from right to left on the display
+SCREEN_AREA_SHIFT_PROC: process(MAIN_CLK, cpu_rst) -- this is the process that takes care of shifting characters from right to left on the display
 	
-	constant shiftSpeedCountRange: integer range 0 to FREQ := 150e4; --the number of counts required to divide the main clock to produce the needed shift frequency
+	constant shiftSpeedCountRange: integer range 0 to FREQ := 200e4; --the number of counts required to divide the main clock to produce the needed shift frequency
 	variable shiftSpeedCounter: integer range 0 to shiftSpeedCountRange := 0;  --variable to loop through the number of counts
 	variable stringIndex: positive range 1 to message_info'high := 1; --variable indexing each character of the message string
 		
@@ -240,7 +247,7 @@ SCREEN_AREA_SHIFT_PROC: process(CLK50MHZ, cpu_rst) -- this is the process that t
 			screenArea <= (others => (others =>'0'));	
 			ascii_char <= ' ';
 			shiftStateVariable <= LOAD;
-		elsif rising_edge(CLK50MHZ) then			
+		elsif rising_edge(MAIN_CLK) then			
 			case shiftStateVariable is
 			
 				when LOAD =>
@@ -354,376 +361,361 @@ SCREEN_AREA_SHIFT_PROC: process(CLK50MHZ, cpu_rst) -- this is the process that t
 	end process;	
 	
 	
-p74HC595_CLK_PROC: process(CLK50MHZ, cpu_rst) --generate the 74HC595 shift in frequency
+p74HC595_CLK_PROC: process(MAIN_CLK, cpu_rst) --generate the 74HC595 shift in frequency
 
-	constant count_range: integer range 0 to FREQ := FREQ/25e6;
+	constant count_range: integer range 0 to FREQ := (FREQ/25e6);
 	variable counter: integer range 0 to count_range := 0;
 	
 	begin
 		if cpu_rst = reset_logic then
-			shiftRegisterClk <= '0';
+			SCAN_CLK <= '0';
 			counter := 0;
-		elsif rising_edge(CLK50MHZ) then 
+		elsif rising_edge(MAIN_CLK) then 
 			if counter < count_range-1 then
-				shiftRegisterClk <= '0';
+				SCAN_CLK <= '0';
 				counter := counter + 1;
 			else
-				shiftRegisterClk <= '1';
+				SCAN_CLK <= '1';
 				counter := 0;									
 			end if;	
 		end if;			
 	end process;
 
-LINE_SACN_PROC: process(shiftRegisterClk, cpu_rst)
+VERTICAL_SCAN_PROC: process(SCAN_CLK, cpu_rst) --vertical scanning of the dotmatrix display through the 74HC595 shift register
 
-	variable registerSerialData: integer range 0 to DOTMATRIX_WIDTH-1 := 0; 
-	constant scanCountRange: integer range 0 to 1000 := 770; 
+	variable serial_data_count: integer range 0 to DOTMATRIX_WIDTH := 0; 
+	constant scanCountRange: integer range 0 to 100000 := (49900/4); 
 	variable scanCount: integer range 0 to scanCountRange := 0;
+	variable clock_count: integer range 0 to 2 := 0;
 
 	begin
 		if cpu_rst = reset_logic then
 			row_driver <= (others => '0'); --turn off the row drivers
 			scanCount := 0;
-			registerSerialData := 0;
+			serial_data_count := 0;
 			
 			output_enable <= '1'; 
-			serial_data <= '0';
+			serial_data_in <= '0';
 			
 			--shift constant zeros out....
 			parallel_load <= dummy(dummy'high);
 			serial_clk <= dummy(dummy'high-1); 
 			dummy <= dummy(1 downto 0) & dummy(1);
-		elsif rising_edge(shiftRegisterClk) then
+		elsif rising_edge(SCAN_CLK) then
 			dummy <= "001";
 			case scanStateVariable is
-				when LOAD1 =>
-					row_driver <= (others => '0'); --turn off the row drivers
-					output_enable <= '1';
+
+				when LOAD0 =>					
 					serial_clk <= '0';					
-					parallel_load <= '0';
-					
-					screenAreaLatch <= screenArea(0); --copy the first row of the screen area into the latch
-					serial_data <= screenArea(0)(screenArea(0)'left);
-					scanStateVariable <= CLOCK1;
-					
-				when CLOCK1=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT1;
-					
-				when SHIFT1 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						
-						serial_data <= screenAreaLatch(screenAreaLatch'left);						
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK1;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';						
-						scanStateVariable <= SHOW1;	
+					parallel_load <= '0';					
+					screenAreaLatch <= screenArea(0)(screenArea(0)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(0)(screenArea(0)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595
+					scanStateVariable <= BIT_CLOCK0;					
+				when BIT_CLOCK0 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT0;
+						clock_count := 0;
+					else
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT0 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then						
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK0;
+					else
+						serial_data_count := 0;							
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW0;
 					end if;
-					
-				when SHOW1 =>
+				when SHOW0 =>					
+					parallel_load <= '1';
 					output_enable <= '0';
 					row_driver <= (row_driver'left => '1', others => '0');
-					parallel_load <= '0';
-					
-					if scanCount < scanCountRange-1 then
+					if scanCount < scanCountRange then
 						scanCount := scanCount + 1;
+					else						
+						scanCount := 0;						
+						scanStateVariable <= LOAD1;					
+					end if;
+
+
+				when LOAD1 =>					
+					serial_clk <= '0';					
+					parallel_load <= '0';					
+					screenAreaLatch <= screenArea(1)(screenArea(1)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(1)(screenArea(1)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595
+					scanStateVariable <= BIT_CLOCK1;					
+				when BIT_CLOCK1 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT1;
+						clock_count := 0;
 					else
-						
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT1 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK1;
+					else
+						serial_data_count := 0;	
+						serial_clk <= '0';
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW1;
+					end if;
+				when SHOW1 =>					
+					parallel_load <= '1';
+					output_enable <= '0';
+					row_driver <= (row_driver'left-1 => '1', others => '0');
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else						
 						scanCount := 0;						
 						scanStateVariable <= LOAD2;					
 					end if;
-				
-				
-				when LOAD2 =>
-					row_driver <= (others => '0'); --turn off the row drivers					
-					output_enable <= '1';					
-					--serial_clk <= '0';
-					--parallel_load <= '0';					
-					screenAreaLatch <= screenArea(1); --copy the second row of the screen area into the latch	
-					serial_data <= screenArea(1)(screenArea(1)'left);
-					scanStateVariable <= CLOCK2;
-					
-				when CLOCK2=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT2;
-					
-				when SHIFT2 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						serial_data <= screenAreaLatch(screenAreaLatch'left);
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK2;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';			
-						scanStateVariable <= SHOW2;	
-					end if;
-					
-				when SHOW2 =>
-					output_enable <= '0';
-					row_driver <= (row_driver'left-1 => '1', others => '0');
+
+
+				when LOAD2 =>					
+					serial_clk <= '0';					
 					parallel_load <= '0';
-					
-					if scanCount < scanCountRange-1 then
-						scanCount := scanCount + 1;
+					screenAreaLatch <= screenArea(2)(screenArea(2)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(2)(screenArea(2)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595
+					scanStateVariable <= BIT_CLOCK2;					
+				when BIT_CLOCK2 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT2;
+						clock_count := 0;
 					else
-						
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT2 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK2;
+					else
+						serial_data_count := 0;	
+						serial_clk <= '0';
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW2;
+					end if;
+				when SHOW2 =>					
+					parallel_load <= '1';
+					output_enable <= '0';
+					row_driver <= (row_driver'left-2 => '1', others => '0');
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else						
 						scanCount := 0;						
 						scanStateVariable <= LOAD3;					
 					end if;
-				
-				when LOAD3 =>
-					row_driver <= (others => '0'); --turn off the row drivers
-					output_enable <= '1';					
-					--serial_clk <= '0';
-					--parallel_load <= '0';					
-					screenAreaLatch <= screenArea(2); --copy the 3rd row of the screen area into the latch					
-					serial_data <= screenArea(2)(screenArea(2)'left);
-					scanStateVariable <= CLOCK3;
-					
-				when CLOCK3=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT3;
-					
-				when SHIFT3 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						serial_data <= screenAreaLatch(screenAreaLatch'left);
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK3;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';					
-						scanStateVariable <= SHOW3;	
-					end if;
-					
-				when SHOW3 =>
-					output_enable <= '0';
-					row_driver <= (row_driver'left-2 => '1', others => '0');
+
+
+				when LOAD3 =>					
+					serial_clk <= '0';					
 					parallel_load <= '0';
-					
-					if scanCount < scanCountRange-1 then
-						scanCount := scanCount + 1;
+					screenAreaLatch <= screenArea(3)(screenArea(3)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(3)(screenArea(3)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595
+					scanStateVariable <= BIT_CLOCK3;					
+				when BIT_CLOCK3 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT3;
+						clock_count := 0;
 					else
-						
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT3 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK3;
+					else
+						serial_data_count := 0;	
+						serial_clk <= '0';
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW3;
+					end if;
+				when SHOW3 =>					
+					parallel_load <= '1';
+					output_enable <= '0';
+					row_driver <= (row_driver'left-3 => '1', others => '0');
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else						
 						scanCount := 0;						
 						scanStateVariable <= LOAD4;					
 					end if;
 
-				when LOAD4 =>
-					row_driver <= (others => '0'); --turn off the row drivers					
-					output_enable <= '1';
-					--serial_clk <= '0';
-					--parallel_load <= '0';					
-					screenAreaLatch <= screenArea(3); --copy the 4th row of the screen area into the latch					
-					serial_data <= screenArea(3)(screenArea(3)'left);
-					scanStateVariable <= CLOCK4;
-					
-				when CLOCK4=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT4;
-					
-				when SHIFT4 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						serial_data <= screenAreaLatch(screenAreaLatch'left);
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK4;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';					
-						scanStateVariable <= SHOW4;	
-					end if;
-					
-				when SHOW4 =>
-					output_enable <= '0';
-					row_driver <= (row_driver'left-3 => '1', others => '0');
+
+				when LOAD4 =>					
+					serial_clk <= '0';					
 					parallel_load <= '0';
-				
-					if scanCount < scanCountRange-1 then
-						scanCount := scanCount + 1;
+					screenAreaLatch <= screenArea(4)(screenArea(4)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(4)(screenArea(4)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595;
+					scanStateVariable <= BIT_CLOCK4;					
+				when BIT_CLOCK4 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT4;
+						clock_count := 0;
 					else
-						
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT4 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK4;
+					else
+						serial_data_count := 0;	
+						serial_clk <= '0';
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW4;
+					end if;
+				when SHOW4 =>					
+					parallel_load <= '1';
+					output_enable <= '0';
+					row_driver <= (row_driver'left-4 => '1', others => '0');
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else						
 						scanCount := 0;						
 						scanStateVariable <= LOAD5;					
 					end if;
 
-				when LOAD5 =>
-					row_driver <= (others => '0'); --turn off the row drivers
-					output_enable <= '1';
-					--serial_clk <= '0';					
-					--parallel_load <= '0';					
-					screenAreaLatch <= screenArea(4); --copy the 5th row of the screen area into the latch					
-					serial_data <= screenArea(4)(screenArea(4)'left);
-					scanStateVariable <= CLOCK5;
-					
-				when CLOCK5=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT5;
-					
-				when SHIFT5 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						serial_data <= screenAreaLatch(screenAreaLatch'left);
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK5;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';
-						scanStateVariable <= SHOW5;	
-					end if;
-					
-				when SHOW5 =>
-					output_enable <= '0';
-					row_driver <= (row_driver'left-4 => '1', others => '0');
+
+				when LOAD5 =>					
+					serial_clk <= '0';					
 					parallel_load <= '0';
-				
-					if scanCount < scanCountRange-1 then
-						scanCount := scanCount + 1;
+					screenAreaLatch <= screenArea(5)(screenArea(5)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(5)(screenArea(5)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595
+					scanStateVariable <= BIT_CLOCK5;					
+				when BIT_CLOCK5 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT5;
+						clock_count := 0;
 					else
-						
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT5 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK5;
+					else
+						serial_data_count := 0;	
+						serial_clk <= '0';
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW5;
+					end if;
+				when SHOW5 =>					
+					parallel_load <= '1';
+					output_enable <= '0';
+					row_driver <= (row_driver'left-5 => '1', others => '0');
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else						
 						scanCount := 0;						
 						scanStateVariable <= LOAD6;					
 					end if;
 
-
-				when LOAD6 =>
-					row_driver <= (others => '0'); --turn off the row drivers
-					output_enable <= '1';
-					--serial_clk <= '0';					
-					--parallel_load <= '0';					
-					screenAreaLatch <= screenArea(5); --copy the 6th row of the screen area into the latch					
-					serial_data <= screenArea(5)(screenArea(5)'left);
-					scanStateVariable <= CLOCK6;
-					
-				when CLOCK6=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT6;
-					
-				when SHIFT6 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						serial_data <= screenAreaLatch(screenAreaLatch'left);
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK6;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';
-						scanStateVariable <= SHOW6;	
-					end if;
-					
-				when SHOW6 =>
-					output_enable <= '0';
-					row_driver <= (row_driver'left-5 => '1', others => '0');
+				when LOAD6 =>					
+					serial_clk <= '0';					
 					parallel_load <= '0';
-					
-					if scanCount < scanCountRange-1 then
-						scanCount := scanCount + 1;
+					screenAreaLatch <= screenArea(6)(screenArea(6)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(6)(screenArea(6)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595
+					scanStateVariable <= BIT_CLOCK6;					
+				when BIT_CLOCK6 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT6;
+						clock_count := 0;
 					else
-						
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT6 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK6;
+					else
+						serial_data_count := 0;	
+						serial_clk <= '0';
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW6;
+					end if;
+				when SHOW6 =>					
+					parallel_load <= '1';
+					output_enable <= '0';
+					row_driver <= (row_driver'left-6 => '1', others => '0');
+					if scanCount < scanCountRange then
+						scanCount := scanCount + 1;
+					else						
 						scanCount := 0;						
 						scanStateVariable <= LOAD7;					
 					end if;
 
 
-				when LOAD7 =>
-					row_driver <= (others => '0'); --turn off the row drivers
-					output_enable <= '1';
-					--serial_clk <= '0';					
-					--parallel_load <= '0';					
-					screenAreaLatch <= screenArea(6); --copy the 7th row of the screen area into the latch					
-					serial_data <= screenArea(6)(screenArea(6)'left);
-					scanStateVariable <= CLOCK7;
-					
-				when CLOCK7=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT7;
-					
-				when SHIFT7 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						serial_data <= screenAreaLatch(screenAreaLatch'left);
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK7;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';
-						scanStateVariable <= SHOW7;	
-					end if;
-					
-				when SHOW7 =>
-					output_enable <= '0';
-					row_driver <= (row_driver'left-6 => '1', others => '0');
+				when LOAD7 =>					
+					serial_clk <= '0';					
 					parallel_load <= '0';
-					
-					if scanCount < scanCountRange-1 then
-						scanCount := scanCount + 1;
+					screenAreaLatch <= screenArea(7)(screenArea(7)'left-1 downto 0) & '0'; --copy the first row of the screen area into the latch
+					serial_data_in <= screenArea(7)(screenArea(7)'left); -- make the MSB immediately availlabe to serial input pin of the 74HC595
+					scanStateVariable <= BIT_CLOCK7;					
+				when BIT_CLOCK7 =>
+					if clock_count = 2 then
+						scanStateVariable <= BIT_SHIFT7;
+						clock_count := 0;
 					else
-						
-						scanCount := 0;						
-						scanStateVariable <= LOAD8;					
+						serial_clk <= not serial_clk;
+						clock_count := clock_count + 1;
+					end if;					
+				when BIT_SHIFT7 =>
+					if serial_data_count < DOTMATRIX_WIDTH-1 then
+						serial_data_in <= screenAreaLatch(screenAreaLatch'left);
+						screenAreaLatch <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
+						serial_data_count := serial_data_count + 1;
+						scanStateVariable <= BIT_CLOCK7;
+					else
+						serial_data_count := 0;	
+						serial_clk <= '0';
+						output_enable <= '1';
+						row_driver <= (others => '0'); --turn off the row drivers						
+						scanStateVariable <= SHOW7;
 					end if;
-
-
-				when LOAD8 =>
-					row_driver <= (others => '0'); --turn off the row drivers
-					output_enable <= '1';
-					--serial_clk <= '0';					
-					--parallel_load <= '0';					
-					screenAreaLatch <= screenArea(7); --copy the 8th row of the screen area into the latch					
-					serial_data <= screenArea(7)(screenArea(7)'left);
-					scanStateVariable <= CLOCK8;
-					
-				when CLOCK8=>
-					serial_clk <= '1';
-					scanStateVariable <= SHIFT8;
-					
-				when SHIFT8 =>
-					serial_clk <= '0';
-					
-					if registerSerialData < (DOTMATRIX_WIDTH-1) then
-						registerSerialData := registerSerialData + 1;
-						serial_data <= screenAreaLatch(screenAreaLatch'left);
-						screenAreaLatch(screenAreaLatch'left downto 0) <= screenAreaLatch(screenAreaLatch'left-1 downto 0) & '0';
-						scanStateVariable <= CLOCK8;
-					else	
-						registerSerialData := 0;						
-						parallel_load <= '1';
-						scanStateVariable <= SHOW8;	
-					end if;
-					
-				when SHOW8 =>
+				when SHOW7 =>					
+					parallel_load <= '1';
 					output_enable <= '0';
 					row_driver <= (row_driver'right => '1', others => '0');
-					parallel_load <= '0';
-					
-					if scanCount < scanCountRange-1 then
+					if scanCount < scanCountRange then
 						scanCount := scanCount + 1;
-					else
-						
+					else						
 						scanCount := 0;						
-						scanStateVariable <= LOAD1;					
+						scanStateVariable <= LOAD0;					
 					end if;
 					
 				when others =>				
-					scanStateVariable <= LOAD1;
+					scanStateVariable <= LOAD0;
 			
 			end case;		
 		end if;	

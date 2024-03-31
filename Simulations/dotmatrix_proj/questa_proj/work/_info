@@ -69,6 +69,26 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11e vcom 2021.1 2021.01, Jan 19 2021
 13
 !s112 1.1
@@ -76,143 +96,238 @@ R0
 !i10e 25
 !i10f 100
 cModel Technology
-dG:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/questa
+Z1 dG:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/questa
 T_opt
-!s110 1711760837
-VNjzo8fQbQE<AL`mMfFLk[3
-04 12 3 work dotmatrix_tb sim 1
-=71-2c3b709306f1-660765c4-27c-bb98
-!s124 OEM100
-o-quiet -auto_acc_if_foreign -work work +acc
-tCvgOpt 0
+!s110 1711883613
+VYhIEmk1bYFH0fAO:CLAka3
+Z2 04 12 3 work dotmatrix_tb sim 1
+=11-2c3b709306f1-6609455c-278-f354
+Z3 !s124 OEM100
+Z4 o-quiet -auto_acc_if_foreign -work work +acc
+Z5 tCvgOpt 0
 n@_opt
-OL;O;2021.1;73
+Z6 OL;O;2021.1;73
+T_opt1
+!s110 1711879615
+VGC>>A_Ha9TF^Yc=`WWQT@0
+R2
+=4-2c3b709306f1-660935be-30e-f354
+R3
+R4
+R5
+n@_opt1
+R6
+R1
 Edotmatrix_show
-Z1 w1711760717
-Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 91
-Z4 dG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/questa_proj
-Z5 8G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd
-Z6 FG:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd
+Z7 w1711883597
+Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z9 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 159
+Z10 dG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/questa_proj
+Z11 8G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd
+Z12 FG:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd
 l0
 L5 1
-VS<<>a^][70Fc7384QkJ0J1
-!s100 41dOCDYP:Kjcc1:WUzeIz0
-Z7 OL;C;2021.1;73
+VzZCBEY;lA8@?OORMXM4fX3
+!s100 iEA>XgozA>CDk^?F>nol22
+Z13 OL;C;2021.1;73
 33
-Z8 !s110 1711760724
+Z14 !s110 1711883605
 !i10b 1
-Z9 !s108 1711760724.000000
-Z10 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd|
-Z11 !s107 G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd|
+Z15 !s108 1711883604.000000
+Z16 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd|
+Z17 !s107 G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\dotmatrix_show.vhd|
 !i113 0
-Z12 o-work work -2008 -explicit
-Z13 tExplicit 1 CvgOpt 0
+Z18 o-work work -2008 -explicit
+Z19 tExplicit 1 CvgOpt 0
 Artl
-R2
-R3
-Z14 DEx4 work 14 dotmatrix_show 0 22 S<<>a^][70Fc7384QkJ0J1
-!i122 91
-l153
-L21 562
-VUAlY>S:JZcm=WY?JVoX9e3
-!s100 bK@dcKU5jWF0_j<=:o>e`0
-R7
-33
 R8
-!i10b 1
 R9
-R10
-R11
-!i113 0
-R12
+Z20 DEx4 work 14 dotmatrix_show 0 22 zZCBEY;lA8@?OORMXM4fX3
+!i122 159
+l153
+L21 567
+VMfjoZ=?QC?ZJ2JS0:ziW83
+!s100 TCL@cT?WOkF>FMfLVf2b@3
 R13
-Edotmatrix_tb
-Z15 w1711760822
-Z16 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
-Z17 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
-R2
-R3
-!i122 92
-R4
-Z18 8G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd
-Z19 FG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd
-l0
-L8 1
-VQ:jDo05YzNNf[Ef4LfR>V2
-!s100 Y=@6IlmiOPUUHa83YMA6X2
-R7
 33
-Z20 !s110 1711760828
-!i10b 1
-Z21 !s108 1711760828.000000
-Z22 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd|
-Z23 !s107 G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd|
-!i113 0
-R12
-R13
-Asim
-Z24 DEx4 work 8 e74hc595 0 22 nGej[>CLVJMe3z>:]bGGm1
 R14
+!i10b 1
+R15
 R16
 R17
-R2
-R3
-DEx4 work 12 dotmatrix_tb 0 22 Q:jDo05YzNNf[Ef4LfR>V2
-!i122 92
-l31
-L15 124
-V10KkWbfc@lAc9M9G6>0nm3
-!s100 =h2=EdUmR>JZS812M8Pi]1
-R7
+!i113 0
+R18
+R19
+Edotmatrix_tb
+Z21 w1711883068
+Z22 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
+Z23 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+R8
+R9
+!i122 158
+R10
+Z24 8G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd
+Z25 FG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd
+l0
+L8 1
+V`nEALY75NfgAF<l56znfJ3
+!s100 PodEb]6II9n0aCB?3IXl_0
+R13
 33
-R20
+Z26 !s110 1711883079
 !i10b 1
-R21
+Z27 !s108 1711883078.000000
+Z28 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd|
+Z29 !s107 G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/dotmatrix_tb.vhd|
+!i113 0
+R18
+R19
+Asim
+Z30 DEx4 work 15 main_top_module 0 22 cAaWU20:9k;=aG:[1a?k81
+Z31 DEx4 work 8 e74hc595 0 22 nGej[>CLVJMe3z>:]bGGm1
 R22
 R23
-!i113 0
-R12
+R8
+R9
+DEx4 work 12 dotmatrix_tb 0 22 `nEALY75NfgAF<l56znfJ3
+!i122 158
+l28
+L15 137
+Vh=bJ;SXAf]aea93B4Ce[I3
+!s100 W8z16>:FS@PcTo08jCVY41
 R13
+33
+R26
+!i10b 1
+R27
+R28
+R29
+!i113 0
+R18
+R19
 Ee74hc595
-Z25 w1711720789
-R2
-R3
-!i122 75
-R4
-Z26 8G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd
-Z27 FG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd
+Z32 w1711720789
+R8
+R9
+!i122 148
+R10
+Z33 8G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd
+Z34 FG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd
 l0
 L6 1
 VnGej[>CLVJMe3z>:]bGGm1
 !s100 =S60C;CLE9`z>eAH6eF[X1
-R7
-33
-Z28 !s110 1711758725
-!i10b 1
-Z29 !s108 1711758725.000000
-Z30 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd|
-Z31 !s107 G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd|
-!i113 0
-R12
 R13
+33
+Z35 !s110 1711878729
+!i10b 1
+Z36 !s108 1711878729.000000
+Z37 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd|
+Z38 !s107 G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/74HC595.vhd|
+!i113 0
+R18
+R19
 Artl
-R2
-R3
-R24
-!i122 75
+R8
+R9
+R31
+!i122 148
 l27
 L23 24
 Vg`X[KSKXOZDfXDjSYRdOl2
 !s100 <QObcPTFmDcZhm4ji;:@^3
-R7
-33
-R28
-!i10b 1
-R29
-R30
-R31
-!i113 0
-R12
 R13
+33
+R35
+!i10b 1
+R36
+R37
+R38
+!i113 0
+R18
+R19
+Emain_top_module
+Z39 w1711843573
+R8
+R9
+!i122 149
+R10
+Z40 8G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/main_top_module.vhd
+Z41 FG:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/main_top_module.vhd
+l0
+L5 1
+VcAaWU20:9k;=aG:[1a?k81
+!s100 `5_C9@??[bFSDWFOB5e^X2
+R13
+33
+R35
+!i10b 1
+R36
+Z42 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/main_top_module.vhd|
+Z43 !s107 G:/GITHUB/FPGA_projects/Simulations/dotmatrix_proj/main_top_module.vhd|
+!i113 0
+R18
+R19
+Artl
+R20
+Z44 DEx4 work 10 movingtext 0 22 S3lFjFYfJgaN`UGROD`_n2
+R8
+R9
+R30
+!i122 149
+l40
+L23 84
+ViaL]]ELCj`Dg9FLBRNOm20
+!s100 jf3Mo>L7@I3mEMOz6TC8X3
+R13
+33
+R35
+!i10b 1
+R36
+R42
+R43
+!i113 0
+R18
+R19
+Emovingtext
+Z45 w1711879056
+R8
+R9
+!i122 153
+R10
+Z46 8G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd
+Z47 FG:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd
+l0
+L5 1
+VS3lFjFYfJgaN`UGROD`_n2
+!s100 jRoDBhaI7zZ0V]kjoncbQ2
+R13
+33
+Z48 !s110 1711879077
+!i10b 1
+Z49 !s108 1711879077.000000
+Z50 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd|
+Z51 !s107 G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd|
+!i113 0
+R18
+R19
+Artl
+R8
+R9
+R44
+!i122 153
+l169
+L21 704
+VQGX1X<kiJz:GJ4k;F5::82
+!s100 1YklNokORmS;oFm]D;=5z1
+R13
+33
+R48
+!i10b 1
+R49
+R50
+R51
+!i113 0
+R18
+R19

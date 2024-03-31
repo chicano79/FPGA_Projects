@@ -10,9 +10,9 @@ entity dotmatrix_show is
 	
 	port(
 		MAIN_CLK:   in std_logic;
-		LEDR:       out std_logic_vector(0 to 9);--  := (others => '0');
+		LEDR:       out std_logic;--  := (others => '0');
 		CPU_RESETN: in std_logic;
-		GPIO:       out std_logic_vector(0 to 19)-- := (others => '0')
+		GPIO:       out std_logic_vector(0 to 16)
 	);
 
 end entity;
@@ -168,26 +168,31 @@ GPIO(2) <= output_enable;
 GPIO(4) <= parallel_load;
 GPIO(6) <= serial_clk;
 
-LEDR(0) <= CHAR_CHANGE_CLK;
+LEDR <= CHAR_CHANGE_CLK;
 GPIO(8) <= SCAN_CLK;
+
+GPIO(10) <= '0';
+GPIO(11) <= '0';
+GPIO(13) <= '0';
+GPIO(15) <= '0';
 
 char_font_select <= (character'pos(ascii_char) - character'pos(' '));
 			
 --copy to scratchpad
-LEVEL1:	for i in 9 downto 3 generate
-MAPPING:	screenArea(0)(i) <= LedFont(char_font_select)(9-i)(7);
-			screenArea(1)(i) <= LedFont(char_font_select)(9-i)(6);
-			screenArea(2)(i) <= LedFont(char_font_select)(9-i)(5);
-			screenArea(3)(i) <= LedFont(char_font_select)(9-i)(4);
-			screenArea(4)(i) <= LedFont(char_font_select)(9-i)(3);
-			screenArea(5)(i) <= LedFont(char_font_select)(9-i)(2);
-			screenArea(6)(i) <= LedFont(char_font_select)(9-i)(1);
-			screenArea(7)(i) <= LedFont(char_font_select)(9-i)(0);
+LEVEL1:	for i in 8 downto 2 generate
+MAPPING:	screenArea(0)(i) <= LedFont(char_font_select)(8-i)(7);
+			screenArea(1)(i) <= LedFont(char_font_select)(8-i)(6);
+			screenArea(2)(i) <= LedFont(char_font_select)(8-i)(5);
+			screenArea(3)(i) <= LedFont(char_font_select)(8-i)(4);
+			screenArea(4)(i) <= LedFont(char_font_select)(8-i)(3);
+			screenArea(5)(i) <= LedFont(char_font_select)(8-i)(2);
+			screenArea(6)(i) <= LedFont(char_font_select)(8-i)(1);
+			screenArea(7)(i) <= LedFont(char_font_select)(8-i)(0);
 		end generate LEVEL1;	
 
 
 CHAR_CHANGE_CLK_PROC: process(MAIN_CLK, cpu_rst) --generating clock that controls the speed of change of character on the dotmatrix
-	constant count_range: integer := FREQ/2; --FREQ/(2*2);
+	constant count_range: integer := FREQ/(20*2); --FREQ/(2*2);
 	variable drtcount: integer range 0 to FREQ := 0;
 	begin
 		if cpu_rst = reset_logic then
@@ -227,7 +232,7 @@ SELECT_CHAR_PROC: process(CHAR_CHANGE_CLK, cpu_rst)	--implementing the change of
 
 SCAN_CLK_PROC: process(MAIN_CLK, cpu_rst) --generating vertical scan clock
 
-	constant count_range: integer range 0 to FREQ := FREQ/25e6;
+	constant count_range: integer range 0 to FREQ := (FREQ/25e6);
 	variable counter: integer range 0 to count_range := 0;
 	
 	begin
@@ -248,7 +253,7 @@ SCAN_CLK_PROC: process(MAIN_CLK, cpu_rst) --generating vertical scan clock
 VERTICAL_SCAN_PROC: process(SCAN_CLK, cpu_rst) --vertical scanning of the dotmatrix display through the 74HC595 shift register
 
 	variable serial_data_count: integer range 0 to DOTMATRIX_WIDTH := 0; 
-	constant scanCountRange: integer range 0 to 100000 := 9900; --new 49900;  --66700; 
+	constant scanCountRange: integer range 0 to 100000 := 9900;  --66700; 
 	variable scanCount: integer range 0 to scanCountRange := 0;
 	variable clock_count: integer range 0 to 2 := 0;
 

@@ -7,7 +7,7 @@ use std.env.finish;
 
 entity dotmatrix_tb is
     generic(
-        FREQ: positive := 50e6;
+        FREQ: positive := 100e6;
 		BUS_WIDTH: integer range 0 to 64 := 32
 	);
 end dotmatrix_tb;
@@ -18,32 +18,16 @@ architecture sim of dotmatrix_tb is
     constant clk_period : time := (1 sec) / clk_hz;
 
     signal MAIN_CLK:    std_logic := '0';
-    signal LEDR:        std_logic_vector(0 to 9) := (others => '0');
+    signal LEDR:        std_logic := '0';
     signal CPU_RESETN:  std_logic := '1';
-	signal GPIO:        std_logic_vector(0 to 19) := (others => '0');
-
-    -- constant C: string := "This is a string";
-    -- signal X: std_logic_vector(3 downto 0) := "1010";
-    -- signal Y: integer := 100;
-
+	signal GPIO:        std_logic_vector(0 to 16) := (others => '0');
+    signal SEL_BUTN:    std_logic := '0';
+    
     signal Q: std_logic_vector(BUS_WIDTH-1 downto 0) := (others => '0');
 
 begin
 
     MAIN_CLK <= not MAIN_CLK after clk_period/2;
-
-    DOTMATRIX_SHOW: entity work.dotmatrix_show(rtl)
-	generic map(
-		FREQ => FREQ,  
-		DOTMATRIX_WIDTH => 32  -- := 32	
-	)
-
-	port map(
-		MAIN_CLK => MAIN_CLK,
-		LEDR => LEDR, 
-		CPU_RESETN => CPU_RESETN,
-		GPIO => GPIO
-	);
 
     e74HC595: entity work.e74HC595(rtl)
         generic map(
@@ -58,21 +42,50 @@ begin
             Q       => Q
         ); 
 
+    TOP_ENTITY: entity work.main_top_module(rtl)
+        generic map(
+            FREQ => FREQ,
+            DOTMATRIX_WIDTH => BUS_WIDTH
+        )	
+        
+        port map(
+            MAIN_CLK => MAIN_CLK,		
+            CPU_RESETN => CPU_RESETN,
+            SEL_BUTN => SEL_BUTN,
+            LEDR => LEDR,
+            GPIO => GPIO
+        );
+
 
     SEQUENCER_PROC : process
     begin
         
-        wait for 20 ns;
+         --wait for 20 ns;
 
         CPU_RESETN <= '0';
 
         wait for 100 ns;
 
         CPU_RESETN <= '1';
-
-        --wait until rising_edge(MAIN_CLK);
+        SEL_BUTN <= '1';
         
-        wait for clk_period * 2000;
+        wait for clk_period * 100e6;  --wait until after 8 ms.
+
+        SEL_BUTN <= '0';
+
+        wait for clk_period * 100e6;  --wait until after 2 ms.
+
+        SEL_BUTN <= '1';
+
+        wait for clk_period * 100e6;  --wait until after 8 ms.
+
+        SEL_BUTN <= '0';
+
+        wait for clk_period * 100e6;  --wait until after 2 ms.
+
+        SEL_BUTN <= '1';
+
+
 
 
         -- wait for clk_period * 10;

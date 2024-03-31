@@ -23,7 +23,9 @@ architecture rtl of movingText is
 constant reset_logic: std_logic := '1';
 signal cpu_rst: std_logic;
 
-constant message_info: string(1 to 63) := "Welcome to 7067CEM: FPGA-Based Digital System Design.          ";
+constant message_info: string(1 to 63) 
+              := "Welcome to 7067CEM: FPGA-Based Digital System Design.          ";
+
 signal ascii_char: character := ' '; --signal fetching each character of the message
 signal char_font_select: integer range 0 to 255 := 0; --signal to select font pattern from the font array according to the character fetched
 
@@ -54,7 +56,7 @@ type SCAN_STATE is (LOAD0, BIT_CLOCK0, BIT_SHIFT0, SHOW0,
 					-- LOAD8, CLOCK8, SHIFT8, SHOW8
 					-- ); --states in sending out data into the external 74HC595 network
 					
-signal scanStateVariable: SCAN_STATE := LOAD1;
+signal scanStateVariable: SCAN_STATE := LOAD0;
 
 type sevenby8 is array(0 to 6) of std_logic_vector(7 downto 0);  
 
@@ -62,6 +64,8 @@ signal scratchPad: sevenby8 := (others => (others => '0')); -- creating a signal
 
 type screenAreaFormat is array(0 to 7) of std_logic_vector(DOTMATRIX_WIDTH-1 downto 0); --structure of the screen area
 signal screenArea: screenAreaFormat := (others => (others =>'0'));
+
+
 signal screenAreaLatch: std_logic_vector(DOTMATRIX_WIDTH-1 downto 0) := (others => '0');  --a lacthed copy of each row of the screen area
 
 
@@ -220,7 +224,7 @@ LEVEL1:	for i in 0 to scratchPad'high generate
 MAPPING:	scratchPad(i) <= LedFont(char_font_select)(i);
 			end generate LEVEL1;	
 
-TEST_CLK_PROC: process(MAIN_CLK, cpu_rst) 
+CHAR_CHANGE_CLK_PROC: process(MAIN_CLK, cpu_rst) 
 	constant count_range: integer := 5e6;
 	variable drtcount: integer range 0 to FREQ := 0;
 	begin
@@ -364,8 +368,7 @@ SCREEN_AREA_SHIFT_PROC: process(MAIN_CLK, cpu_rst) -- this is the process that t
 	end process;	
 	
 	
-p74HC595_CLK_PROC: process(MAIN_CLK, cpu_rst) --generate the 74HC595 shift in frequency
-
+SCAN_CLK_PROC: process(MAIN_CLK, cpu_rst) --generate the 74HC595 shift in frequency
 	constant count_range: integer range 0 to FREQ := FREQ/25e6;
 	variable counter: integer range 0 to count_range := 0;
 	
