@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Sat Mar 30 09:19:36 2024
+| Date         : Sun Mar 31 05:14:03 2024
 | Host         : DESKTOP-7RQ9HLB running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file main_top_module_control_sets_placed.rpt
 | Design       : main_top_module
@@ -73,26 +73,26 @@ Table of Contents
 +-------------------------------------+-----------------------------------------------+-------------------------------------+------------------+----------------+
 |             Clock Signal            |                 Enable Signal                 |           Set/Reset Signal          | Slice Load Count | Bel Load Count |
 +-------------------------------------+-----------------------------------------------+-------------------------------------+------------------+----------------+
-|  UUT1/parallel_load_reg_LDC_i_1_n_0 |                                               | UUT1/parallel_load_reg_LDC_i_2_n_0  |                1 |              1 |
-|  SCAN_CLK                           |                                               | UUT1/parallel_load_reg_LDC_i_2_n_0  |                1 |              1 |
 |  SCAN_CLK                           |                                               | UUT1/parallel_load_reg_LDC_i_1_n_0  |                1 |              1 |
-|  SCAN_CLK                           |                                               |                                     |                1 |              2 |
+|  SCAN_CLK                           |                                               | UUT1/parallel_load_reg_LDC_i_2_n_0  |                1 |              1 |
+|  UUT1/parallel_load_reg_LDC_i_1_n_0 |                                               | UUT1/parallel_load_reg_LDC_i_2_n_0  |                1 |              1 |
 |  GPIO_arch2_BUFG[8]                 |                                               |                                     |                1 |              2 |
 |  GPIO_arch2_BUFG[8]                 |                                               | UUT2/clear                          |                2 |              2 |
+|  SCAN_CLK                           |                                               |                                     |                1 |              2 |
 |  SCAN_CLK                           |                                               | UUT1/cpu_rst                        |                3 |              3 |
-|  SCAN_CLK                           | UUT1/scanStateVariable0                       |                                     |                1 |              5 |
-|  SCAN_CLK                           | UUT1/serial_data_count                        | UUT1/cpu_rst                        |                1 |              5 |
 |  GPIO_arch2_BUFG[8]                 | UUT2/scanStateVariable0                       |                                     |                1 |              5 |
 |  GPIO_arch2_BUFG[8]                 | UUT2/serial_data_count                        | UUT2/clear                          |                2 |              5 |
+|  SCAN_CLK                           | UUT1/scanStateVariable0                       |                                     |                1 |              5 |
+|  SCAN_CLK                           | UUT1/serial_data_count                        | UUT1/cpu_rst                        |                1 |              5 |
 |  MAIN_CLK_arch1_BUFG                | UUT1/stringIndex[5]_i_1_n_0                   | UUT1/cpu_rst                        |                2 |              6 |
 |  UUT2/LEDR_arch2                    | UUT2/char_num0                                | UUT2/clear                          |                3 |              7 |
 |  MAIN_CLK_arch1_BUFG                | UUT1/FSM_onehot_shiftedColumnState[6]_i_1_n_0 |                                     |                2 |              7 |
 |  MAIN_CLK_arch1_BUFG                | UUT1/ascii_char[6]_i_1_n_0                    | UUT1/cpu_rst                        |                2 |              7 |
 |  GPIO_arch2_BUFG[8]                 | UUT2/serial_data_in0                          |                                     |                3 |              7 |
-|  SCAN_CLK                           | UUT1/row_driver                               | UUT1/cpu_rst                        |                3 |              9 |
 |  GPIO_arch2_BUFG[8]                 | UUT2/row_driver                               | UUT2/clear                          |                2 |              9 |
-|  SCAN_CLK                           | UUT1/scanCount                                | UUT1/cpu_rst                        |                4 |             14 |
+|  SCAN_CLK                           | UUT1/row_driver                               | UUT1/cpu_rst                        |                3 |              9 |
 |  GPIO_arch2_BUFG[8]                 | UUT2/scanCount                                | UUT2/clear                          |                4 |             14 |
+|  SCAN_CLK                           | UUT1/scanCount                                | UUT1/cpu_rst                        |                4 |             14 |
 |  MAIN_CLK_arch1_BUFG                | UUT1/shiftStateVariable_reg_n_0               | UUT1/cpu_rst                        |                6 |             21 |
 |  GPIO_arch2_BUFG[8]                 | UUT2/serial_data_in0                          | UUT2/screenAreaLatch[31]_i_1__0_n_0 |                5 |             23 |
 |  UUT2/MAIN_CLK_arch2                |                                               | UUT2/clear                          |               11 |             29 |

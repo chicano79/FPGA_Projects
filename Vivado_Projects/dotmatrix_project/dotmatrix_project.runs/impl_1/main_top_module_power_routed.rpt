@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date             : Sat Mar 30 09:20:30 2024
+| Date             : Sun Mar 31 05:15:01 2024
 | Host             : DESKTOP-7RQ9HLB running 64-bit major release  (build 9200)
 | Command          : report_power -file main_top_module_power_routed.rpt -pb main_top_module_power_summary_routed.pb -rpx main_top_module_power_routed.rpx
 | Design           : main_top_module
