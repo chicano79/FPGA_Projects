@@ -185,7 +185,6 @@ MAPPING:	screenArea(0)(i) <= LedFont(char_font_select)(8-i)(7);
 			screenArea(7)(i) <= LedFont(char_font_select)(8-i)(0);
 		end generate LEVEL1;	
 
-
 CHAR_CHANGE_CLK_PROC: process(MAIN_CLK, cpu_rst) --generating clock that controls the speed of change of character on the dotmatrix
 	constant count_range: integer := FREQ/(2*2); --FREQ/(2*2);
 	variable drtcount: integer range 0 to FREQ := 0;
