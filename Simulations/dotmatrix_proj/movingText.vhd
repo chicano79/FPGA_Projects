@@ -12,7 +12,7 @@ entity movingText is
 		MAIN_CLK:   in std_logic;
 		LEDR:       out std_logic;--  := (others => '0');
 		CPU_RESETN: in std_logic;
-		GPIO:       out std_logic_vector(0 to 16)
+		GPIO:       out std_logic_vector(0 to 16)-- := (others => '0')
 	);
 
 end entity;
@@ -24,8 +24,6 @@ constant reset_logic: std_logic := '1';
 signal cpu_rst: std_logic;
 
 constant message_info: string(1 to 63) := "Welcome to 7067CEM: FPGA-Based Digital System Design.          ";
-
-
 signal ascii_char: character := ' '; --signal fetching each character of the message
 signal char_font_select: integer range 0 to 255 := 0; --signal to select font pattern from the font array according to the character fetched
 
@@ -64,6 +62,8 @@ type COL_STATE is (COL1, COL2, COL3, COL4, COL5, COL6, COL7);
 signal shiftedColumnState: COL_STATE := COL1;
 
 signal dummy: std_logic_vector(2 downto 0) := "001";
+
+signal load_ready: std_logic := '0';
 
 --type sevenby8 is array(0 to 6) of std_logic_vector(7 downto 0);--font structure: (each font is an array of 7 elements; each element is 8-bits)
 type newFont is array(0 to 94) of sevenby8;
@@ -184,11 +184,6 @@ GPIO(2) <= output_enable;
 GPIO(4) <= parallel_load;
 GPIO(6) <= serial_clk;
 
-GPIO(10) <= '0';
-GPIO(11) <= '0';
-GPIO(13) <= '0';
-GPIO(15) <= '0';
-
 LEDR <= CHAR_CLK;
 GPIO(8) <= TEST_CLK;  --shiftRegisterClk;
 
@@ -263,98 +258,104 @@ SCREEN_AREA_SHIFT_PROC: process(MAIN_CLK, cpu_rst) -- this is the process that t
 					if shiftSpeedCounter < shiftSpeedCountRange-1 then 
 						shiftSpeedCounter := shiftSpeedCounter + 1;
 					else
-						shiftSpeedCounter := 0; 
+						--shiftSpeedCounter := 0; 
+						
+						if load_ready = '1' then
 
-						case shiftedColumnState is
-							when COL1 =>	
-									screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(7);
-									screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(6);
-									screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(5);
-									screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(4);
-									screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(3);
-									screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(2);
-									screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(1);
-									screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(0);
-							
-									shiftedColumnState <= COL2;	
-							
-							when COL2 =>							
-									screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(7);
-									screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(6);
-									screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(5);
-									screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(4);
-									screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(3);
-									screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(2);
-									screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(1);
-									screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(0);
-							
-									shiftedColumnState <= COL3;
-
-							when COL3 =>						
-									screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(7);
-									screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(6);
-									screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(5);
-									screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(4);
-									screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(3);
-									screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(2);
-									screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(1);
-									screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(0);
-							
-									shiftedColumnState <= COL4;
-
-							when COL4 =>							
-									screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(7);
-									screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(6);
-									screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(5);
-									screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(4);
-									screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(3);
-									screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(2);
-									screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(1);
-									screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(0);
-							
-									shiftedColumnState <= COL5;
-
-							when COL5 =>							
-									screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(7);
-									screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(6);
-									screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(5);
-									screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(4);
-									screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(3);
-									screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(2);
-									screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(1);
-									screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(0);
-							
-									shiftedColumnState <= COL6;
+							case shiftedColumnState is
+								when COL1 =>	
+										screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(7);
+										screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(6);
+										screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(5);
+										screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(4);
+										screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(3);
+										screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(2);
+										screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(1);
+										screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(0)(0);
 								
-							when COL6 =>						
-									screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(7);
-									screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(6);
-									screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(5);
-									screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(4);
-									screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(3);
-									screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(2);
-									screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(1);
-									screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(0);
-							
-									shiftedColumnState <= COL7;
+										shiftedColumnState <= COL2;	
 								
-							when COL7=>						
-									screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(7);
-									screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(6);
-									screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(5);
-									screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(4);
-									screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(3);
-									screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(2);
-									screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(1);
-									screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(0);
-							
+								when COL2 =>							
+										screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(7);
+										screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(6);
+										screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(5);
+										screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(4);
+										screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(3);
+										screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(2);
+										screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(1);
+										screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(1)(0);
+								
+										shiftedColumnState <= COL3;
+
+								when COL3 =>						
+										screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(7);
+										screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(6);
+										screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(5);
+										screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(4);
+										screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(3);
+										screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(2);
+										screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(1);
+										screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(2)(0);
+								
+										shiftedColumnState <= COL4;
+
+								when COL4 =>							
+										screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(7);
+										screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(6);
+										screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(5);
+										screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(4);
+										screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(3);
+										screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(2);
+										screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(1);
+										screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(3)(0);
+								
+										shiftedColumnState <= COL5;
+
+								when COL5 =>							
+										screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(7);
+										screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(6);
+										screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(5);
+										screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(4);
+										screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(3);
+										screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(2);
+										screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(1);
+										screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(4)(0);
+								
+										shiftedColumnState <= COL6;
+									
+								when COL6 =>						
+										screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(7);
+										screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(6);
+										screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(5);
+										screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(4);
+										screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(3);
+										screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(2);
+										screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(1);
+										screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(5)(0);
+								
+										shiftedColumnState <= COL7;
+									
+								when COL7=>						
+										screenArea(0) <= screenArea(0)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(7);
+										screenArea(1) <= screenArea(1)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(6);
+										screenArea(2) <= screenArea(2)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(5);
+										screenArea(3) <= screenArea(3)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(4);
+										screenArea(4) <= screenArea(4)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(3);
+										screenArea(5) <= screenArea(5)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(2);
+										screenArea(6) <= screenArea(6)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(1);
+										screenArea(7) <= screenArea(7)(DOTMATRIX_WIDTH-2 downto 0) & scratchPad(6)(0);
+								
+										shiftedColumnState <= COL1;
+										shiftStateVariable <= LOAD;
+								
+								when others =>
 									shiftedColumnState <= COL1;
 									shiftStateVariable <= LOAD;
+							end case;
 							
-							when others =>
-								shiftedColumnState <= COL1;
-								shiftStateVariable <= LOAD;
-						end case;						
+							shiftSpeedCounter := 0;
+						end if;
+									
 					end if;
 			end case;
 		end if;	
@@ -363,7 +364,7 @@ SCREEN_AREA_SHIFT_PROC: process(MAIN_CLK, cpu_rst) -- this is the process that t
 	
 p74HC595_CLK_PROC: process(MAIN_CLK, cpu_rst) --generate the 74HC595 shift in frequency
 
-	constant count_range: integer range 0 to FREQ := (FREQ/25e6);
+	constant count_range: integer range 0 to FREQ := FREQ/25e6;
 	variable counter: integer range 0 to count_range := 0;
 	
 	begin
@@ -384,7 +385,7 @@ p74HC595_CLK_PROC: process(MAIN_CLK, cpu_rst) --generate the 74HC595 shift in fr
 VERTICAL_SCAN_PROC: process(SCAN_CLK, cpu_rst) --vertical scanning of the dotmatrix display through the 74HC595 shift register
 
 	variable serial_data_count: integer range 0 to DOTMATRIX_WIDTH := 0; 
-	constant scanCountRange: integer range 0 to 100000 := (49900/4); 
+	constant scanCountRange: integer range 0 to 100000 := 10000; 
 	variable scanCount: integer range 0 to scanCountRange := 0;
 	variable clock_count: integer range 0 to 2 := 0;
 
@@ -703,14 +704,16 @@ VERTICAL_SCAN_PROC: process(SCAN_CLK, cpu_rst) --vertical scanning of the dotmat
 						row_driver <= (others => '0'); --turn off the row drivers						
 						scanStateVariable <= SHOW7;
 					end if;
-				when SHOW7 =>					
+				when SHOW7 =>
+					load_ready <= '1';
 					parallel_load <= '1';
 					output_enable <= '0';
 					row_driver <= (row_driver'right => '1', others => '0');
 					if scanCount < scanCountRange then
 						scanCount := scanCount + 1;
 					else						
-						scanCount := 0;						
+						scanCount := 0;
+						load_ready <= '0';
 						scanStateVariable <= LOAD0;					
 					end if;
 					

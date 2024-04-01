@@ -192,7 +192,7 @@ MAPPING:	screenArea(0)(i) <= LedFont(char_font_select)(8-i)(7);
 
 
 CHAR_CHANGE_CLK_PROC: process(MAIN_CLK, cpu_rst) --generating clock that controls the speed of change of character on the dotmatrix
-	constant count_range: integer := FREQ/(20*2); --FREQ/(2*2);
+	constant count_range: integer := FREQ/(2*2); --FREQ/(2*2);
 	variable drtcount: integer range 0 to FREQ := 0;
 	begin
 		if cpu_rst = reset_logic then

@@ -43,18 +43,8 @@ type SCAN_STATE is (LOAD0, BIT_CLOCK0, BIT_SHIFT0, SHOW0,
 					LOAD6, BIT_CLOCK6, BIT_SHIFT6, SHOW6,
 					LOAD7, BIT_CLOCK7, BIT_SHIFT7, SHOW7					
 					); --states in sending out data into the external 74HC595 network
-
--- type SCAN_STATE is (LOAD1, CLOCK1, SHIFT1, SHOW1, 
-					-- LOAD2, CLOCK2, SHIFT2, SHOW2, 
-					-- LOAD3, CLOCK3, SHIFT3, SHOW3, 
-					-- LOAD4, CLOCK4, SHIFT4, SHOW4, 
-					-- LOAD5, CLOCK5, SHIFT5, SHOW5,
-					-- LOAD6, CLOCK6, SHIFT6, SHOW6,
-					-- LOAD7, CLOCK7, SHIFT7, SHOW7,
-					-- LOAD8, CLOCK8, SHIFT8, SHOW8
-					-- ); --states in sending out data into the external 74HC595 network
 					
-signal scanStateVariable: SCAN_STATE := LOAD1;
+signal scanStateVariable: SCAN_STATE := LOAD0;
 
 type sevenby8 is array(0 to 6) of std_logic_vector(7 downto 0);  
 
