@@ -90,6 +90,8 @@ R0
 R0
 R0
 R0
+R0
+R0
 !s11e vcom 2021.1 2021.01, Jan 19 2021
 13
 !s112 1.1
@@ -99,10 +101,10 @@ R0
 cModel Technology
 Z1 dG:/GITHUB/FPGA_projects/Quartus_Projects/c7067CEM/questa
 T_opt
-!s110 1711948637
-V@Zl?ATNQJ_8eB@;5[Z=R:1
+!s110 1711949011
+Vz55ZE>e0_Ez3?2::[@>z[2
 Z2 04 12 3 work dotmatrix_tb sim 1
-=12-2c3b709306f1-660a435b-319-f354
+=14-2c3b709306f1-660a44d2-160-f354
 Z3 !s124 OEM100
 Z4 o-quiet -auto_acc_if_foreign -work work +acc
 Z5 tCvgOpt 0
@@ -292,10 +294,10 @@ R42
 R18
 R19
 Emovingtext
-Z44 w1711948416
+Z44 w1711948985
 R8
 R9
-!i122 164
+!i122 166
 R10
 Z45 8G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd
 Z46 FG:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd
@@ -305,11 +307,11 @@ VS3lFjFYfJgaN`UGROD`_n2
 !s100 jRoDBhaI7zZ0V]kjoncbQ2
 R13
 33
-Z47 !s110 1711948586
+Z47 !s110 1711948992
 !i10b 1
-R15
-Z48 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd|
-Z49 !s107 G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd|
+Z48 !s108 1711948992.000000
+Z49 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd|
+Z50 !s107 G:\GITHUB\FPGA_projects\Simulations\dotmatrix_proj\movingText.vhd|
 !i113 0
 R18
 R19
@@ -317,18 +319,18 @@ Artl
 R8
 R9
 R43
-!i122 164
+!i122 166
 l169
-L21 707
-V:_0Cj1j;9@P[klGNiXG>Y3
-!s100 ^67ZgZj`:GdGFFBPGSWAG2
+L21 712
+VJBK_g;n>G9oa3jHUHfGK;2
+!s100 1PZj[K4U^61NF_SlAIJFc2
 R13
 33
 R47
 !i10b 1
-R15
 R48
 R49
+R50
 !i113 0
 R18
 R19
