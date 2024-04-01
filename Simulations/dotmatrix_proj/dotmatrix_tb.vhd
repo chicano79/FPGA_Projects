@@ -67,24 +67,14 @@ begin
         wait for 100 ns;
 
         CPU_RESETN <= '1';
-        SEL_BUTN <= '1';
+        
+        SEL_BUTN <= '0';
         
         wait for clk_period * 100e6;  --wait until after 8 ms.
 
-        SEL_BUTN <= '0';
-
-        wait for clk_period * 100e6;  --wait until after 2 ms.
-
         SEL_BUTN <= '1';
 
-        wait for clk_period * 100e6;  --wait until after 8 ms.
-
-        SEL_BUTN <= '0';
-
-        wait for clk_period * 100e6;  --wait until after 2 ms.
-
-        SEL_BUTN <= '1';
-
+        wait for clk_period * 100e6;  --wait until after 2 ms.       
 
 
 

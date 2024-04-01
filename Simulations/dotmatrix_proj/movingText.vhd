@@ -184,6 +184,11 @@ GPIO(2) <= output_enable;
 GPIO(4) <= parallel_load;
 GPIO(6) <= serial_clk;
 
+GPIO(10) <= '0';
+GPIO(11) <= '0';
+GPIO(13) <= '0';
+GPIO(15) <= '0';
+
 LEDR <= CHAR_CLK;
 GPIO(8) <= TEST_CLK;  --shiftRegisterClk;
 
