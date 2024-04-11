@@ -48,7 +48,7 @@ comp1:  entity work.bcd_counter
 				bcd_out_to_port => bcd_counters(i),
 				segment => SEG((i+0)+(i*6) to (i+6)+(i*6))
 			);
-	end generate;
+end generate;
 
 counter_clk_in(0 to 7) <= clk_1KHz & counter_clk_out (0 to 6);
 
