@@ -236,7 +236,7 @@ TEST_CLK_PROC: process(MAIN_CLK, cpu_rst)
 
 SCREEN_AREA_SHIFT_PROC: process(MAIN_CLK, cpu_rst) -- this is the process that takes care of shifting characters from right to left on the display
 	
-	constant shiftSpeedCountRange: integer range 0 to FREQ := 200e4; --the number of counts required to divide the main clock to produce the needed shift frequency
+	constant shiftSpeedCountRange: integer range 0 to FREQ := 150e4; --the number of counts required to divide the main clock to produce the needed shift frequency
 	variable shiftSpeedCounter: integer range 0 to shiftSpeedCountRange := 0;  --variable to loop through the number of counts
 	variable stringIndex: positive range 1 to message_info'high := 1; --variable indexing each character of the message string
 		
@@ -390,7 +390,7 @@ p74HC595_CLK_PROC: process(MAIN_CLK, cpu_rst) --generate the 74HC595 shift in fr
 VERTICAL_SCAN_PROC: process(SCAN_CLK, cpu_rst) --vertical scanning of the dotmatrix display through the 74HC595 shift register
 
 	variable serial_data_count: integer range 0 to DOTMATRIX_WIDTH := 0; 
-	constant scanCountRange: integer range 0 to 100000 := 10000; 
+	constant scanCountRange: integer range 0 to 100000 := 49000; 
 	variable scanCount: integer range 0 to scanCountRange := 0;
 	variable clock_count: integer range 0 to 2 := 0;
 
